@@ -1,0 +1,31 @@
+version: 1
+build:
+  binary: milumd
+accounts:
+- name: main
+  coins:
+  - 10000000000000000trm
+genesis:
+  app_state:
+    crisis:
+      constant_fee:
+        denom: trm
+    evm:
+      params:
+        evm_denom: trm
+    gov:
+      deposit_params:
+        min_deposit:
+        - amount: "1000000"
+          denom: trm
+    mint:
+      params:
+        mint_denom: trm
+    staking:
+      params:
+        bond_denom: trm
+  chain_id: terramilum-testnet
+validators:
+- name: main
+  bonded: 100000000000trm
+  home: $HOME/.milumd

@@ -1,0 +1,1076 @@
+I[2023-05-15|12:51:32.591] starting node with ABCI Tendermint in-process module=server 
+I[2023-05-15|12:51:32.607] service start                                module=proxy msg="Starting multiAppConn service" impl=multiAppConn
+I[2023-05-15|12:51:32.607] service start                                module=abci-client connection=query msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:32.607] service start                                module=abci-client connection=snapshot msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:32.607] service start                                module=abci-client connection=mempool msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:32.607] service start                                module=abci-client connection=consensus msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:32.607] service start                                module=events msg="Starting EventBus service" impl=EventBus
+I[2023-05-15|12:51:32.607] service start                                module=pubsub msg="Starting PubSub service" impl=PubSub
+I[2023-05-15|12:51:32.620] service start                                module=txindex msg="Starting IndexerService service" impl=IndexerService
+I[2023-05-15|12:51:32.620] ABCI Handshake App Info                      module=consensus height=445 hash=7DD85031F6F75AA4AB9D1C4EDD5903A46F12641734C43A518796CE92DEF7B05D software-version=0.1.0-6-g27367e6 protocol-version=0
+I[2023-05-15|12:51:32.620] ABCI Replay Blocks                           module=consensus appHeight=445 storeHeight=445 stateHeight=444
+I[2023-05-15|12:51:32.620] Replay last block using mock app             module=consensus 
+I[2023-05-15|12:51:32.620] executed block                               module=consensus height=445 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:32.621] committed state                              module=consensus height=445 num_txs=0 app_hash=7DD85031F6F75AA4AB9D1C4EDD5903A46F12641734C43A518796CE92DEF7B05D
+I[2023-05-15|12:51:32.622] Completed ABCI Handshake - CometBFT and App are synced module=consensus appHeight=445 appHash=7DD85031F6F75AA4AB9D1C4EDD5903A46F12641734C43A518796CE92DEF7B05D
+I[2023-05-15|12:51:32.622] Version info                                 module=server tendermint_version=0.37.0 abci=1.0.0 block=11 p2p=8 commit_hash=
+I[2023-05-15|12:51:32.622] This node is not a validator                 module=consensus addr=545E4EC16AC4BCD15F4B6421D9687209F0D45A10 pubKey=PubKeyEd25519{69BE24D7C675AA89E0B344C9423236F0F893C40F53139FDA2A4B8620E8A4FD6A}
+I[2023-05-15|12:51:32.623] indexed block exents                         module=txindex height=445
+I[2023-05-15|12:51:32.625] P2P Node ID                                  module=p2p ID=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec file=/home/emrahmersinli/.milumd/config/node_key.json
+I[2023-05-15|12:51:32.625] Adding persistent peers                      module=p2p addrs=[596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656]
+I[2023-05-15|12:51:32.625] Adding unconditional peer ids                module=p2p ids=[]
+I[2023-05-15|12:51:32.625] Add our address to book                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json addr=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec@0.0.0.0:26656
+I[2023-05-15|12:51:32.625] service start                                module=server msg="Starting Node service" impl=Node
+I[2023-05-15|12:51:32.625] Starting pprof server                        module=server laddr=localhost:6060
+I[2023-05-15|12:51:32.626] service start                                module=p2p msg="Starting P2P Switch service" impl="P2P Switch"
+I[2023-05-15|12:51:32.626] service start                                module=statesync msg="Starting StateSync service" impl=StateSync
+I[2023-05-15|12:51:32.626] service start                                module=pex msg="Starting PEX service" impl=PEX
+I[2023-05-15|12:51:32.626] serve                                        module=rpc-server msg="Starting RPC HTTP server on 127.0.0.1:26657"
+I[2023-05-15|12:51:32.626] service start                                module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json msg="Starting AddrBook service" impl=AddrBook
+I[2023-05-15|12:51:32.626] service start                                module=blockchain msg="Starting Reactor service" impl=Reactor
+I[2023-05-15|12:51:32.626] service start                                module=blockchain msg="Starting BlockPool service" impl=BlockPool
+I[2023-05-15|12:51:32.626] service start                                module=consensus msg="Starting Consensus service" impl=ConsensusReactor
+I[2023-05-15|12:51:32.626] Reactor                                      module=consensus waitSync=true
+I[2023-05-15|12:51:32.626] service start                                module=evidence msg="Starting Evidence service" impl=Evidence
+I[2023-05-15|12:51:32.626] Saving AddrBook to file                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json size=1
+I[2023-05-15|12:51:32.626] Ensure peers                                 module=pex numOutPeers=0 numInPeers=0 numDialing=0 numToDial=10
+I[2023-05-15|12:51:32.770] service start                                module=p2p peer=596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656 msg="Starting Peer service" impl="Peer{MConn{134.209.247.1:26656} 596e12519eee4779bfff4b25e0f4dd4ddd41f257 out}"
+I[2023-05-15|12:51:32.770] service start                                module=p2p peer=596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656 msg="Starting MConnection service" impl=MConn{134.209.247.1:26656}
+I[2023-05-15|12:51:33.639] minted coins from module account             module=x/bank amount=205989013TRM from=mint
+I[2023-05-15|12:51:33.639] executed block                               module=state height=446 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:33.644] commit synced                                module=server commit=436F6D6D697449447B5B31352031333620323430203320313935203230392031343520373020393320393120313330203235322032343720313532203530203131382032303020313137203231372038332031333720323337203231312031303720313832203620353920313636203134362031353020323533203234305D3A3142457D
+I[2023-05-15|12:51:33.644] committed state                              module=state height=446 num_txs=0 app_hash=0F88F003C3D191465D5B82FCF7983276C875D95389EDD36BB6063BA69296FDF0
+I[2023-05-15|12:51:33.645] indexed block exents                         module=txindex height=446
+I[2023-05-15|12:51:37.289] minted coins from module account             module=x/bank amount=205989050TRM from=mint
+I[2023-05-15|12:51:37.290] executed block                               module=state height=447 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.295] commit synced                                module=server commit=436F6D6D697449447B5B31353320323132203232352032343520313930203133302032343220353820323132203333203635203435203234322038312034302036302034342031393820323334203238203234352039332031322031322033352031353220323534203235322031323220343320383220375D3A3142467D
+I[2023-05-15|12:51:37.295] committed state                              module=state height=447 num_txs=0 app_hash=99D4E1F5BE82F23AD421412DF251283C2CC6EA1CF55D0C0C2398FEFC7A2B5207
+I[2023-05-15|12:51:37.297] indexed block exents                         module=txindex height=447
+I[2023-05-15|12:51:37.298] minted coins from module account             module=x/bank amount=205989087TRM from=mint
+I[2023-05-15|12:51:37.298] executed block                               module=state height=448 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.301] commit synced                                module=server commit=436F6D6D697449447B5B373020323431203230332032303420313120343220323720353720323139203133342031373620313934203138382032353220313734203832203134203235203135382035322032342039392031313620333220313531203133332032333220313336203233312031333420323337203139395D3A3143307D
+I[2023-05-15|12:51:37.301] committed state                              module=state height=448 num_txs=0 app_hash=46F1CBCC0B2A1B39DB86B0C2BCFCAE520E199E34186374209785E888E786EDC7
+I[2023-05-15|12:51:37.302] indexed block exents                         module=txindex height=448
+I[2023-05-15|12:51:37.303] minted coins from module account             module=x/bank amount=205989124TRM from=mint
+I[2023-05-15|12:51:37.303] executed block                               module=state height=449 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.305] commit synced                                module=server commit=436F6D6D697449447B5B3137332035352031343620343620313337203138203132312031353820383420323033203333203135392031383720343420323437203233382031333420313733203233382037322037342032312031303620333520383220323239203139352032302031333320343720313538203135375D3A3143317D
+I[2023-05-15|12:51:37.305] committed state                              module=state height=449 num_txs=0 app_hash=AD37922E8912799E54CB219FBB2CF7EE86ADEE484A156A2352E5C314852F9E9D
+I[2023-05-15|12:51:37.307] indexed block exents                         module=txindex height=449
+I[2023-05-15|12:51:37.307] minted coins from module account             module=x/bank amount=205989161TRM from=mint
+I[2023-05-15|12:51:37.308] executed block                               module=state height=450 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.311] commit synced                                module=server commit=436F6D6D697449447B5B323239203232362032323720313620323033203137392039362032353320313037203133372031353820313535203138392031323820343920383720353420373820313136203532203739203137342038362032313020313637203736203135392039332032303320313820313930203132355D3A3143327D
+I[2023-05-15|12:51:37.311] committed state                              module=state height=450 num_txs=0 app_hash=E5E2E310CBB360FD6B899E9BBD803157364E74344FAE56D2A74C9F5DCB12BE7D
+I[2023-05-15|12:51:37.312] indexed block exents                         module=txindex height=450
+I[2023-05-15|12:51:37.313] minted coins from module account             module=x/bank amount=205989198TRM from=mint
+I[2023-05-15|12:51:37.313] executed block                               module=state height=451 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.316] commit synced                                module=server commit=436F6D6D697449447B5B31373620313230203232312032343920312037362035392031372039352031353520333920323233203137332031373620313033203234382031373220353720313832203138372032333820323234203136392037392031383020313633203338203136322034332031373820313131203139345D3A3143337D
+I[2023-05-15|12:51:37.316] committed state                              module=state height=451 num_txs=0 app_hash=B078DDF9014C3B115F9B27DFADB067F8AC39B6BBEEE0A94FB4A326A22BB26FC2
+I[2023-05-15|12:51:37.317] indexed block exents                         module=txindex height=451
+I[2023-05-15|12:51:37.318] minted coins from module account             module=x/bank amount=205989234TRM from=mint
+I[2023-05-15|12:51:37.319] executed block                               module=state height=452 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.322] commit synced                                module=server commit=436F6D6D697449447B5B3230352036382034362032322032333220313537203738203136342031373720313538203232322039352032313820383720313837203834203337203537203136322031303420313230203234312031393420313632203134392037362033203634203134382031393020323236203231345D3A3143347D
+I[2023-05-15|12:51:37.322] committed state                              module=state height=452 num_txs=0 app_hash=CD442E16E89D4EA4B19EDE5FDA57BB542539A26878F1C2A2954C034094BEE2D6
+I[2023-05-15|12:51:37.323] indexed block exents                         module=txindex height=452
+I[2023-05-15|12:51:37.324] minted coins from module account             module=x/bank amount=205989271TRM from=mint
+I[2023-05-15|12:51:37.324] executed block                               module=state height=453 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.327] commit synced                                module=server commit=436F6D6D697449447B5B3136322032313320313239203338203133342032333020313337203231392034352039372032303620313838203234302032343920313532203638203136302031333320333720313039203420313339203838203134372032322038302031303120313032203230362032343620313338203135375D3A3143357D
+I[2023-05-15|12:51:37.327] committed state                              module=state height=453 num_txs=0 app_hash=A2D5812686E689DB2D61CEBCF0F99844A085256D048B589316506566CEF68A9D
+I[2023-05-15|12:51:37.328] indexed block exents                         module=txindex height=453
+I[2023-05-15|12:51:37.329] minted coins from module account             module=x/bank amount=205989308TRM from=mint
+I[2023-05-15|12:51:37.329] executed block                               module=state height=454 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.332] commit synced                                module=server commit=436F6D6D697449447B5B3136372032343020313935203331203131322031392031302038302031333320313032203136392032372039392034322031303920313739203533203138392031343120363420382031383120313933203137392031352031332031363220313732203836203230322032303720355D3A3143367D
+I[2023-05-15|12:51:37.332] committed state                              module=state height=454 num_txs=0 app_hash=A7F0C31F70130A508566A91B632A6DB335BD8D4008B5C1B30F0DA2AC56CACF05
+I[2023-05-15|12:51:37.333] indexed block exents                         module=txindex height=454
+I[2023-05-15|12:51:37.334] minted coins from module account             module=x/bank amount=205989345TRM from=mint
+I[2023-05-15|12:51:37.334] executed block                               module=state height=455 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.337] commit synced                                module=server commit=436F6D6D697449447B5B3239203130342030203820373020323437203131362034392031343120353520373120393420313732203234382031393320323333203436203234322031353920393320313035203136392032353220323039203332203739203235322032343220342032343720323139203132385D3A3143377D
+I[2023-05-15|12:51:37.337] committed state                              module=state height=455 num_txs=0 app_hash=1D68000846F774318D37475EACF8C1E92EF29F5D69A9FCD1204FFCF204F7DB80
+I[2023-05-15|12:51:37.338] indexed block exents                         module=txindex height=455
+I[2023-05-15|12:51:37.339] minted coins from module account             module=x/bank amount=205989382TRM from=mint
+I[2023-05-15|12:51:37.339] executed block                               module=state height=456 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.342] commit synced                                module=server commit=436F6D6D697449447B5B32323920313438203939203138372039322032333420333620352036302036352037372033203930203234352031393720383920313134203134312032333620333520313731203137312033322035392031313020382038382031323820333520313634203130332036395D3A3143387D
+I[2023-05-15|12:51:37.342] committed state                              module=state height=456 num_txs=0 app_hash=E59463BB5CEA24053C414D035AF5C559728DEC23ABAB203B6E08588023A46745
+I[2023-05-15|12:51:37.343] indexed block exents                         module=txindex height=456
+I[2023-05-15|12:51:37.344] minted coins from module account             module=x/bank amount=205989419TRM from=mint
+I[2023-05-15|12:51:37.344] executed block                               module=state height=457 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.347] commit synced                                module=server commit=436F6D6D697449447B5B373520323120393920313131203132392032323220383320352031363320313332203132392031383920313631203231322031393920353120313035203233332031393320383720343620383120313430203136392032323720313535203135352032312031353220323520313935203232345D3A3143397D
+I[2023-05-15|12:51:37.347] committed state                              module=state height=457 num_txs=0 app_hash=4B15636F81DE5305A38481BDA1D4C73369E9C1572E518CA9E39B9B159819C3E0
+I[2023-05-15|12:51:37.348] indexed block exents                         module=txindex height=457
+I[2023-05-15|12:51:37.349] minted coins from module account             module=x/bank amount=205989456TRM from=mint
+I[2023-05-15|12:51:37.349] executed block                               module=state height=458 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.352] commit synced                                module=server commit=436F6D6D697449447B5B3939203132203834203331203137342037203938203132382036392031353220323534203235352031353320363720323435203130203434203820313036203234382035352031393220323034203235332031362039312038302032352038392031313820313437203130335D3A3143417D
+I[2023-05-15|12:51:37.352] committed state                              module=state height=458 num_txs=0 app_hash=630C541FAE0762804598FEFF9943F50A2C086AF837C0CCFD105B501959769367
+I[2023-05-15|12:51:37.353] indexed block exents                         module=txindex height=458
+I[2023-05-15|12:51:37.354] minted coins from module account             module=x/bank amount=205989493TRM from=mint
+I[2023-05-15|12:51:37.354] executed block                               module=state height=459 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.357] commit synced                                module=server commit=436F6D6D697449447B5B3135342032343720313535203931203137342032313820323434203234392031363520332031373120313337203137392032303720383520323234203131352032323320313039203833203234312036332032313220363220323720363420313734203131203130352031333720313234203135305D3A3143427D
+I[2023-05-15|12:51:37.357] committed state                              module=state height=459 num_txs=0 app_hash=9AF79B5BAEDAF4F9A503AB89B3CF55E073DF6D53F13FD43E1B40AE0B69897C96
+I[2023-05-15|12:51:37.358] indexed block exents                         module=txindex height=459
+I[2023-05-15|12:51:37.359] minted coins from module account             module=x/bank amount=205989529TRM from=mint
+I[2023-05-15|12:51:37.359] executed block                               module=state height=460 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.363] commit synced                                module=server commit=436F6D6D697449447B5B313432203934203937203531203835203135312031343520393320363520323020323135203435203133332032322031353020393220313839203133203734203132302031313620313831203233352032343520353720333020313733203137332031333620323232203130312036385D3A3143437D
+I[2023-05-15|12:51:37.363] committed state                              module=state height=460 num_txs=0 app_hash=8E5E61335597915D4114D72D8516965CBD0D4A7874B5EBF5391EADAD88DE6544
+I[2023-05-15|12:51:37.364] indexed block exents                         module=txindex height=460
+I[2023-05-15|12:51:37.365] minted coins from module account             module=x/bank amount=205989566TRM from=mint
+I[2023-05-15|12:51:37.365] executed block                               module=state height=461 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.368] commit synced                                module=server commit=436F6D6D697449447B5B31382031313220313331203934203839203232342032333520323039203232342031322032342031323320313836203132382032333620362031353720313338203236203232332037332031333520323530203231352032303620323239203133382039332037372032303820313130203136315D3A3143447D
+I[2023-05-15|12:51:37.368] committed state                              module=state height=461 num_txs=0 app_hash=1270835E59E0EBD1E00C187BBA80EC069D8A1ADF4987FAD7CEE58A5D4DD06EA1
+I[2023-05-15|12:51:37.369] indexed block exents                         module=txindex height=461
+I[2023-05-15|12:51:37.370] minted coins from module account             module=x/bank amount=205989603TRM from=mint
+I[2023-05-15|12:51:37.371] executed block                               module=state height=462 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.375] commit synced                                module=server commit=436F6D6D697449447B5B32303220363520313531203939203131362031333220313335203720323036203620313332203130302034312038312032303020313434203137322031303720313734203131382036382031303420313936203534203431203230362031353020313133203136342031393020323239203134355D3A3143457D
+I[2023-05-15|12:51:37.375] committed state                              module=state height=462 num_txs=0 app_hash=CA41976374848707CE0684642951C890AC6BAE764468C43629CE9671A4BEE591
+I[2023-05-15|12:51:37.376] indexed block exents                         module=txindex height=462
+I[2023-05-15|12:51:37.377] minted coins from module account             module=x/bank amount=205989640TRM from=mint
+I[2023-05-15|12:51:37.378] executed block                               module=state height=463 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.380] commit synced                                module=server commit=436F6D6D697449447B5B3235332032303120313732203131322032353120313130203131342031393220313438203137362031393920353020323036203138392034372038332032323820313020313536203339203139392031393720323036203130312033312039342032343220313131203136372032313920313237203137375D3A3143467D
+I[2023-05-15|12:51:37.380] committed state                              module=state height=463 num_txs=0 app_hash=FDC9AC70FB6E72C094B0C732CEBD2F53E40A9C27C7C5CE651F5EF26FA7DB7FB1
+I[2023-05-15|12:51:37.381] indexed block exents                         module=txindex height=463
+I[2023-05-15|12:51:37.382] minted coins from module account             module=x/bank amount=205989677TRM from=mint
+I[2023-05-15|12:51:37.382] executed block                               module=state height=464 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:37.385] commit synced                                module=server commit=436F6D6D697449447B5B373420323135203233302032313220313038203137203237203131203130342031343920323535203137203820313736203936203435203138372032343320363020313732203136382031393920313531203138322036362036382031363420333220313831203132332034382039385D3A3144307D
+I[2023-05-15|12:51:37.385] committed state                              module=state height=464 num_txs=0 app_hash=4AD7E6D46C111B0B6895FF1108B0602DBBF33CACA8C797B64244A420B57B3062
+I[2023-05-15|12:51:37.386] indexed block exents                         module=txindex height=464
+I[2023-05-15|12:51:38.838] minted coins from module account             module=x/bank amount=205989714TRM from=mint
+I[2023-05-15|12:51:38.839] executed block                               module=state height=465 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:38.843] commit synced                                module=server commit=436F6D6D697449447B5B323432203631203139342038332037352036342037302031373620373120323139203139372038302038302031393020393620323820323135203137362032353320353220313030203930203133362031363120313432203230382039302031313920392031363220313337203231365D3A3144317D
+I[2023-05-15|12:51:38.843] committed state                              module=state height=465 num_txs=0 app_hash=F23DC2534B4046B047DBC55050BE601CD7B0FD34645A88A18ED05A7709A289D8
+I[2023-05-15|12:51:38.845] indexed block exents                         module=txindex height=465
+I[2023-05-15|12:51:38.845] minted coins from module account             module=x/bank amount=205989751TRM from=mint
+I[2023-05-15|12:51:38.846] executed block                               module=state height=466 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:38.848] commit synced                                module=server commit=436F6D6D697449447B5B383920313337203534203633203131203939203232312031312031333120343420323239203235352039302032313020313220373020313938203133382033312039322031303620313136203131352036352031373720323030203230352031383320313536203520323532203133355D3A3144327D
+I[2023-05-15|12:51:38.848] committed state                              module=state height=466 num_txs=0 app_hash=5989363F0B63DD0B832CE5FF5AD20C46C68A1F5C6A747341B1C8CDB79C05FC87
+I[2023-05-15|12:51:38.850] indexed block exents                         module=txindex height=466
+I[2023-05-15|12:51:38.850] minted coins from module account             module=x/bank amount=205989788TRM from=mint
+I[2023-05-15|12:51:38.851] executed block                               module=state height=467 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:38.853] commit synced                                module=server commit=436F6D6D697449447B5B33332032313120323134203130372031393820313820393820352033382032323020323339203139302037342031343520333520313936203232382035352038362035203733203232362031343720313939203230382038332031313820353120323920333020352037365D3A3144337D
+I[2023-05-15|12:51:38.853] committed state                              module=state height=467 num_txs=0 app_hash=21D3D66BC612620526DCEFBE4A9123C4E437560549E293C7D05376331D1E054C
+I[2023-05-15|12:51:38.854] indexed block exents                         module=txindex height=467
+I[2023-05-15|12:51:41.119] minted coins from module account             module=x/bank amount=205989824TRM from=mint
+I[2023-05-15|12:51:41.120] executed block                               module=state height=468 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.124] commit synced                                module=server commit=436F6D6D697449447B5B3137332031383320313632203130302037392032362036312032323520353220313833203132322031333020323420323532203231352031303320313539203137352031303020313331203230382032303720363620313230203734203235332034302038352036352032303220313934203234305D3A3144347D
+I[2023-05-15|12:51:41.125] committed state                              module=state height=468 num_txs=0 app_hash=ADB7A2644F1A3DE134B77A8218FCD7679FAF6483D0CF42784AFD285541CAC2F0
+I[2023-05-15|12:51:41.126] indexed block exents                         module=txindex height=468
+I[2023-05-15|12:51:41.127] minted coins from module account             module=x/bank amount=205989861TRM from=mint
+I[2023-05-15|12:51:41.127] executed block                               module=state height=469 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.129] commit synced                                module=server commit=436F6D6D697449447B5B3836203234392032333420313939203233322031333620323037203235312033302038372031323220363220323231203139372031313620313634203134302031363220313439203431203232302031303220333920323020333520323139203235332032333420333920313337203234203130355D3A3144357D
+I[2023-05-15|12:51:41.129] committed state                              module=state height=469 num_txs=0 app_hash=56F9EAC7E888CFFB1E577A3EDDC574A48CA29529DC66271423DBFDEA27891869
+I[2023-05-15|12:51:41.131] indexed block exents                         module=txindex height=469
+I[2023-05-15|12:51:41.131] minted coins from module account             module=x/bank amount=205989898TRM from=mint
+I[2023-05-15|12:51:41.132] executed block                               module=state height=470 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.135] commit synced                                module=server commit=436F6D6D697449447B5B313537203137392031313820313833203537203130342038332031343020313532203934203131392031343220363920333120323231203837203637203137382031303420323439203132302039342031343020313931203231332031312031383520363720323434203633203937203233305D3A3144367D
+I[2023-05-15|12:51:41.135] committed state                              module=state height=470 num_txs=0 app_hash=9DB376B73968538C985E778E451FDD5743B268F9785E8CBFD50BB943F43F61E6
+I[2023-05-15|12:51:41.136] indexed block exents                         module=txindex height=470
+I[2023-05-15|12:51:41.137] minted coins from module account             module=x/bank amount=205989935TRM from=mint
+I[2023-05-15|12:51:41.137] executed block                               module=state height=471 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.140] commit synced                                module=server commit=436F6D6D697449447B5B31383420313534203232203231372031332037382031393020323132203237203332203131302032303720313537203230372035382031383220323920332030203134342039332031333020393820323237203638203234203334203232332031312036312037332031365D3A3144377D
+I[2023-05-15|12:51:41.140] committed state                              module=state height=471 num_txs=0 app_hash=B89A16D90D4EBED41B206ECF9DCF3AB61D0300905D8262E3441822DF0B3D4910
+I[2023-05-15|12:51:41.141] indexed block exents                         module=txindex height=471
+I[2023-05-15|12:51:41.142] minted coins from module account             module=x/bank amount=205989972TRM from=mint
+I[2023-05-15|12:51:41.142] executed block                               module=state height=472 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.145] commit synced                                module=server commit=436F6D6D697449447B5B31373420333020313036203232362035342031393120313635203137392031333120313037203132342032382035312031353520323231203137352031393620302031392035392031353720323137203131352031323320373220333920393020313320302031313120313332203234305D3A3144387D
+I[2023-05-15|12:51:41.145] committed state                              module=state height=472 num_txs=0 app_hash=AE1E6AE236BFA5B3836B7C1C339BDDAFC400133B9DD9737B48275A0D006F84F0
+I[2023-05-15|12:51:41.146] indexed block exents                         module=txindex height=472
+I[2023-05-15|12:51:41.147] minted coins from module account             module=x/bank amount=205990009TRM from=mint
+I[2023-05-15|12:51:41.147] executed block                               module=state height=473 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.149] commit synced                                module=server commit=436F6D6D697449447B5B34322031393020353520323036203130352031373720313430203239203336203231312032343320353920323431203933203138362039352032333220313030203233302031303420323439203931203835203638203133362031313820393320373920313638203531203535203234355D3A3144397D
+I[2023-05-15|12:51:41.149] committed state                              module=state height=473 num_txs=0 app_hash=2ABE37CE69B18C1D24D3F33BF15DBA5FE864E668F95B554488765D4FA83337F5
+I[2023-05-15|12:51:41.150] indexed block exents                         module=txindex height=473
+I[2023-05-15|12:51:41.151] minted coins from module account             module=x/bank amount=205990046TRM from=mint
+I[2023-05-15|12:51:41.152] executed block                               module=state height=474 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.154] commit synced                                module=server commit=436F6D6D697449447B5B313420343420313020313632203134203230203930203237203232382031333020373220353120323335203136342031363820333720313132203132312039352032303220373020323038203133203233392031353320313735203132322032303420313237203331203230203135375D3A3144417D
+I[2023-05-15|12:51:41.154] committed state                              module=state height=474 num_txs=0 app_hash=0E2C0AA20E145A1BE4824833EBA4A82570795FCA46D00DEF99AF7ACC7F1F149D
+I[2023-05-15|12:51:41.156] indexed block exents                         module=txindex height=474
+I[2023-05-15|12:51:41.156] minted coins from module account             module=x/bank amount=205990083TRM from=mint
+I[2023-05-15|12:51:41.157] executed block                               module=state height=475 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.159] commit synced                                module=server commit=436F6D6D697449447B5B3136203232332039332031383420323231203232302037322031363220343220313834203236203136372039322031383720313230203232372031333220323138203137362036312036342037312032353220323436203638203432203831203432203134392038392038302039315D3A3144427D
+I[2023-05-15|12:51:41.159] committed state                              module=state height=475 num_txs=0 app_hash=10DF5DB8DDDC48A22AB81AA75CBB78E384DAB03D4047FCF6442A512A9559505B
+I[2023-05-15|12:51:41.160] indexed block exents                         module=txindex height=475
+I[2023-05-15|12:51:41.161] minted coins from module account             module=x/bank amount=205990119TRM from=mint
+I[2023-05-15|12:51:41.161] executed block                               module=state height=476 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.164] commit synced                                module=server commit=436F6D6D697449447B5B313530203231203432203234392032343120313734203235203138382033312032343120313232203231312031393920323238203135312031343320313039203233203233203238203834203133203133312031313820323435203138312032313720313736203134392032323420313539203235345D3A3144437D
+I[2023-05-15|12:51:41.164] committed state                              module=state height=476 num_txs=0 app_hash=96152AF9F1AE19BC1FF17AD3C7E4978F6D17171C540D8376F5B5D9B095E09FFE
+I[2023-05-15|12:51:41.165] indexed block exents                         module=txindex height=476
+I[2023-05-15|12:51:41.166] minted coins from module account             module=x/bank amount=205990156TRM from=mint
+I[2023-05-15|12:51:41.166] executed block                               module=state height=477 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.169] commit synced                                module=server commit=436F6D6D697449447B5B32323420383820373220323336203232203832203730203133322032303020323534203133392035382032333020313333203231203336203136372038392031302031343420313633203534203338203231332031353220313432203139382032382035312031333320323131203133315D3A3144447D
+I[2023-05-15|12:51:41.169] committed state                              module=state height=477 num_txs=0 app_hash=E05848EC16524684C8FE8B3AE6851524A7590A90A33626D5988EC61C3385D383
+I[2023-05-15|12:51:41.170] indexed block exents                         module=txindex height=477
+I[2023-05-15|12:51:41.171] minted coins from module account             module=x/bank amount=205990193TRM from=mint
+I[2023-05-15|12:51:41.171] executed block                               module=state height=478 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.173] commit synced                                module=server commit=436F6D6D697449447B5B31313020323033203235312032353420313930203131362033372031303220393420313938203637203137302037372031383020323131203130332032343520313031203132302032313920353920363120363520342032342035312031363420363120323330203734203234203231385D3A3144457D
+I[2023-05-15|12:51:41.173] committed state                              module=state height=478 num_txs=0 app_hash=6ECBFBFEBE7425665EC643AA4DB4D367F56578DB3B3D41041833A43DE64A18DA
+I[2023-05-15|12:51:41.175] indexed block exents                         module=txindex height=478
+I[2023-05-15|12:51:41.175] minted coins from module account             module=x/bank amount=205990230TRM from=mint
+I[2023-05-15|12:51:41.176] executed block                               module=state height=479 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.178] commit synced                                module=server commit=436F6D6D697449447B5B323534203536203239203239203130203136203234302031343820313930203134332032323320353320323137203231362039352032353220313933203938203732203232362035332039342033382032323420323330203137362031383920323239203132382038352032312037385D3A3144467D
+I[2023-05-15|12:51:41.178] committed state                              module=state height=479 num_txs=0 app_hash=FE381D1D0A10F094BE8FDF35D9D85FFCC16248E2355E26E0E6B0BDE58055154E
+I[2023-05-15|12:51:41.180] indexed block exents                         module=txindex height=479
+I[2023-05-15|12:51:41.180] minted coins from module account             module=x/bank amount=205990267TRM from=mint
+I[2023-05-15|12:51:41.181] executed block                               module=state height=480 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.184] commit synced                                module=server commit=436F6D6D697449447B5B3137203136312032313320313833203230342032323120373820313638203231342032323820383520373420323434203139352031343120362031363420323533203233362037312031343920323237203235332031323120323138203232352032342031353120383920323520323433203132325D3A3145307D
+I[2023-05-15|12:51:41.184] committed state                              module=state height=480 num_txs=0 app_hash=11A1D5B7CCDD4EA8D6E4554AF4C38D06A4FDEC4795E3FD79DAE118975919F37A
+I[2023-05-15|12:51:41.185] indexed block exents                         module=txindex height=480
+I[2023-05-15|12:51:41.186] minted coins from module account             module=x/bank amount=205990304TRM from=mint
+I[2023-05-15|12:51:41.186] executed block                               module=state height=481 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.189] commit synced                                module=server commit=436F6D6D697449447B5B35382031373820313437203135312032372031363120323331203136312032343220323134203233362031383320323820323336203231352031313820313433203135362034312031303620323231203230332031333120393220393920323332203131332037392033382034203237203138355D3A3145317D
+I[2023-05-15|12:51:41.189] committed state                              module=state height=481 num_txs=0 app_hash=3AB293971BA1E7A1F2D6ECB71CECD7768F9C296ADDCB835C63E8714F26041BB9
+I[2023-05-15|12:51:41.190] indexed block exents                         module=txindex height=481
+I[2023-05-15|12:51:41.191] minted coins from module account             module=x/bank amount=205990341TRM from=mint
+I[2023-05-15|12:51:41.191] executed block                               module=state height=482 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.193] commit synced                                module=server commit=436F6D6D697449447B5B3233392031332031343120313336203131302031203138342031342031363520313231203836203439203230302031323320323134203133372033362039392032333020323430203636203133362035203137372031373220362035352035382036332031303720323336203231315D3A3145327D
+I[2023-05-15|12:51:41.193] committed state                              module=state height=482 num_txs=0 app_hash=EF0D8D886E01B80EA5795631C87BD6892463E6F0428805B1AC06373A3F6BECD3
+I[2023-05-15|12:51:41.194] indexed block exents                         module=txindex height=482
+I[2023-05-15|12:51:41.195] minted coins from module account             module=x/bank amount=205990378TRM from=mint
+I[2023-05-15|12:51:41.196] executed block                               module=state height=483 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.198] commit synced                                module=server commit=436F6D6D697449447B5B342031323820313730203932203436203133332033382032353420323138203132322031343120373220313030203538203831203134312031203635203132362032313320313237203335203133302032333120313230203334203135372032353520353620313720323333203135325D3A3145337D
+I[2023-05-15|12:51:41.198] committed state                              module=state height=483 num_txs=0 app_hash=0480AA5C2E8526FEDA7A8D48643A518D01417ED57F2382E778229DFF3811E998
+I[2023-05-15|12:51:41.200] indexed block exents                         module=txindex height=483
+I[2023-05-15|12:51:41.201] minted coins from module account             module=x/bank amount=205990414TRM from=mint
+I[2023-05-15|12:51:41.201] executed block                               module=state height=484 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.203] commit synced                                module=server commit=436F6D6D697449447B5B31353820393220393820313435203139203234362032343320383120363420323430203130302033392039352032353120393120313733203230352035332031333920353820313820383720333620323035203131322031383120353720313839203137332032323920372036365D3A3145347D
+I[2023-05-15|12:51:41.203] committed state                              module=state height=484 num_txs=0 app_hash=9E5C629113F6F35140F064275FFB5BADCD358B3A125724CD70B539BDADE50742
+I[2023-05-15|12:51:41.205] indexed block exents                         module=txindex height=484
+I[2023-05-15|12:51:41.205] minted coins from module account             module=x/bank amount=205990451TRM from=mint
+I[2023-05-15|12:51:41.206] executed block                               module=state height=485 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.208] commit synced                                module=server commit=436F6D6D697449447B5B3232302033332035302031343220302031373120313635203339203136392032353120372036382031303020323136203134352031353420332031363420313838203439203235322031332031333120373620323620323620323232203831203230342031353220313336203235345D3A3145357D
+I[2023-05-15|12:51:41.208] committed state                              module=state height=485 num_txs=0 app_hash=DC21328E00ABA527A9FB074464D8919A03A4BC31FC0D834C1A1ADE51CC9888FE
+I[2023-05-15|12:51:41.209] indexed block exents                         module=txindex height=485
+I[2023-05-15|12:51:41.210] minted coins from module account             module=x/bank amount=205990488TRM from=mint
+I[2023-05-15|12:51:41.210] executed block                               module=state height=486 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.213] commit synced                                module=server commit=436F6D6D697449447B5B31333520313339203131362034392031363620313634203537203135302032343120313736203539203231382032303120363020313934203635203134322038382032322036332031383720323338203132372034382039302032313820363820383620323237203230372031352032355D3A3145367D
+I[2023-05-15|12:51:41.213] committed state                              module=state height=486 num_txs=0 app_hash=878B7431A6A43996F1B03BDAC93CC2418E58163FBBEE7F305ADA4456E3CF0F19
+I[2023-05-15|12:51:41.215] indexed block exents                         module=txindex height=486
+I[2023-05-15|12:51:41.215] minted coins from module account             module=x/bank amount=205990525TRM from=mint
+I[2023-05-15|12:51:41.216] executed block                               module=state height=487 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.218] commit synced                                module=server commit=436F6D6D697449447B5B31373720313536203134302031303320373420323139203133332031313120313632203231332031303820383520313835203137362038322032313720323020373220313336203230302031373920323920323230203233352031363520313830203133342031373820383020322035392036355D3A3145377D
+I[2023-05-15|12:51:41.218] committed state                              module=state height=487 num_txs=0 app_hash=B19C8C674ADB856FA2D56C55B9B052D9144888C8B31DDCEBA5B486B250023B41
+I[2023-05-15|12:51:41.219] indexed block exents                         module=txindex height=487
+I[2023-05-15|12:51:41.220] minted coins from module account             module=x/bank amount=205990562TRM from=mint
+I[2023-05-15|12:51:41.220] executed block                               module=state height=488 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.223] commit synced                                module=server commit=436F6D6D697449447B5B31383020323038203233312032343320353020313139203133392036302033352032303320383520373320363520313033203534203233392032343320363820313534203131332032343120382032323520313731203135312037392035332032313520313437203337203736203230345D3A3145387D
+I[2023-05-15|12:51:41.223] committed state                              module=state height=488 num_txs=0 app_hash=B4D0E7F332778B3C23CB5549416736EFF3449A71F108E1AB974F35D793254CCC
+I[2023-05-15|12:51:41.224] indexed block exents                         module=txindex height=488
+I[2023-05-15|12:51:41.225] minted coins from module account             module=x/bank amount=205990599TRM from=mint
+I[2023-05-15|12:51:41.225] executed block                               module=state height=489 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.227] commit synced                                module=server commit=436F6D6D697449447B5B3234362032313520323136203134322039372031353820313737203732203134342032343320323139203336203538203130203138203231203133382032323620323330203131372036372034382032303820313833203937203735203639203538203230203832203232372038315D3A3145397D
+I[2023-05-15|12:51:41.228] committed state                              module=state height=489 num_txs=0 app_hash=F6D7D88E619EB14890F3DB243A0A12158AE2E6754330D0B7614B453A1452E351
+I[2023-05-15|12:51:41.229] indexed block exents                         module=txindex height=489
+I[2023-05-15|12:51:41.230] minted coins from module account             module=x/bank amount=205990636TRM from=mint
+I[2023-05-15|12:51:41.230] executed block                               module=state height=490 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.233] commit synced                                module=server commit=436F6D6D697449447B5B32323620393920323336203235312032343420313130203439203235312031343420313935203232332031342032313920323330203337203338203438203132342032323820302031313620373220313730203235203930203137203335203135362031313920363720323236203233335D3A3145417D
+I[2023-05-15|12:51:41.233] committed state                              module=state height=490 num_txs=0 app_hash=E263ECFBF46E31FB90C3DF0EDBE62526307CE4007448AA195A11239C7743E2E9
+I[2023-05-15|12:51:41.234] indexed block exents                         module=txindex height=490
+I[2023-05-15|12:51:41.235] minted coins from module account             module=x/bank amount=205990673TRM from=mint
+I[2023-05-15|12:51:41.236] executed block                               module=state height=491 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.238] commit synced                                module=server commit=436F6D6D697449447B5B32323720343620333520323338203138322031303520313532203234302031303520383820323234203130342031353020323231203134302031313420323233203831203231312032303920313733203231203720393920313036203933203231302032312031323620313531203930203235325D3A3145427D
+I[2023-05-15|12:51:41.238] committed state                              module=state height=491 num_txs=0 app_hash=E32E23EEB66998F06958E06896DD8C72DF51D3D1AD1507636A5DD2157E975AFC
+I[2023-05-15|12:51:41.239] indexed block exents                         module=txindex height=491
+I[2023-05-15|12:51:41.240] minted coins from module account             module=x/bank amount=205990709TRM from=mint
+I[2023-05-15|12:51:41.240] executed block                               module=state height=492 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.243] commit synced                                module=server commit=436F6D6D697449447B5B3234352031312031323120323238203633203534203139322036382037362039332038372031343920313239203234342031333920323331203438203234332038372032343320393620323137203132312038382038203138302031333720343120313239203132382033203138345D3A3145437D
+I[2023-05-15|12:51:41.243] committed state                              module=state height=492 num_txs=0 app_hash=F50B79E43F36C0444C5D579581F48BE730F357F360D9795808B48929818003B8
+I[2023-05-15|12:51:41.244] indexed block exents                         module=txindex height=492
+I[2023-05-15|12:51:41.245] minted coins from module account             module=x/bank amount=205990746TRM from=mint
+I[2023-05-15|12:51:41.245] executed block                               module=state height=493 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.248] commit synced                                module=server commit=436F6D6D697449447B5B323820313438203134382035312032342031353120353720313434203833203436203434203132392033302033392031343020313830203532203137312031323820323332203139372032323920333220332032343520313937203136362032353520383820323237203232312036335D3A3145447D
+I[2023-05-15|12:51:41.248] committed state                              module=state height=493 num_txs=0 app_hash=1C94943318973990532E2C811E278CB434AB80E8C5E52003F5C5A6FF58E3DD3F
+I[2023-05-15|12:51:41.249] indexed block exents                         module=txindex height=493
+I[2023-05-15|12:51:41.250] minted coins from module account             module=x/bank amount=205990783TRM from=mint
+I[2023-05-15|12:51:41.251] executed block                               module=state height=494 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.254] commit synced                                module=server commit=436F6D6D697449447B5B323920323130203532203135392031303620323236203133382037362032323420313034203130302033382032333720333320313137203134332032343820313636203134362032333020313035203231352031353220313834203130382031323520353220323130203136322035332030203135395D3A3145457D
+I[2023-05-15|12:51:41.254] committed state                              module=state height=494 num_txs=0 app_hash=1DD2349F6AE28A4CE0686426ED21758FF8A692E669D798B86C7D34D2A235009F
+I[2023-05-15|12:51:41.255] indexed block exents                         module=txindex height=494
+I[2023-05-15|12:51:41.405] minted coins from module account             module=x/bank amount=205990820TRM from=mint
+I[2023-05-15|12:51:41.405] executed block                               module=state height=495 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.408] commit synced                                module=server commit=436F6D6D697449447B5B32313320313630203532203139322031343120323920313038203437203230203331203132322032382034362032303020313720323530203139312031313520343320313830203139392031303120313032203420333420323534203238203133382031313120313631203132332031325D3A3145467D
+I[2023-05-15|12:51:41.408] committed state                              module=state height=495 num_txs=0 app_hash=D5A034C08D1D6C2F141F7A1C2EC811FABF732BB4C765660422FE1C8A6FA17B0C
+I[2023-05-15|12:51:41.409] indexed block exents                         module=txindex height=495
+I[2023-05-15|12:51:41.410] minted coins from module account             module=x/bank amount=205990857TRM from=mint
+I[2023-05-15|12:51:41.410] executed block                               module=state height=496 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.413] commit synced                                module=server commit=436F6D6D697449447B5B333020353220323330203235302031382034392031333920323330203930203139203132362034342036362032342031333220323338203138382031333220383920313936203230362031353620323139203538203130392031353320323231203234302032323420313433203134352039325D3A3146307D
+I[2023-05-15|12:51:41.413] committed state                              module=state height=496 num_txs=0 app_hash=1E34E6FA12318BE65A137E2C421884EEBC8459C4CE9CDB3A6D99DDF0E08F915C
+I[2023-05-15|12:51:41.414] indexed block exents                         module=txindex height=496
+I[2023-05-15|12:51:41.415] minted coins from module account             module=x/bank amount=205990894TRM from=mint
+I[2023-05-15|12:51:41.415] executed block                               module=state height=497 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.418] commit synced                                module=server commit=436F6D6D697449447B5B323531203130203134382032323820302031383320323132203137342031303920393620313537203136392032323020343920323020323335203235322032343420313139203432203230342031353820363420353220313434203230302034382032353120313733203232332031382031325D3A3146317D
+I[2023-05-15|12:51:41.418] committed state                              module=state height=497 num_txs=0 app_hash=FB0A94E400B7D4AE6D609DA9DC3114EBFCF4772ACC9E403490C830FBADDF120C
+I[2023-05-15|12:51:41.419] indexed block exents                         module=txindex height=497
+I[2023-05-15|12:51:41.420] minted coins from module account             module=x/bank amount=205990931TRM from=mint
+I[2023-05-15|12:51:41.420] executed block                               module=state height=498 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.423] commit synced                                module=server commit=436F6D6D697449447B5B32313920363820313835203230322034342031363520313737203130382031353720313236203136372037332035372032322031333820313639203130392039322031303120383920323139203138322031383620313531203130312031393920313430203830203232332038203639203234395D3A3146327D
+I[2023-05-15|12:51:41.423] committed state                              module=state height=498 num_txs=0 app_hash=DB44B9CA2CA5B16C9D7EA74939168AA96D5C6559DBB6BA9765C78C50DF0845F9
+I[2023-05-15|12:51:41.424] indexed block exents                         module=txindex height=498
+I[2023-05-15|12:51:41.425] minted coins from module account             module=x/bank amount=205990968TRM from=mint
+I[2023-05-15|12:51:41.425] executed block                               module=state height=499 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.428] commit synced                                module=server commit=436F6D6D697449447B5B3234302031343920313538203938203133312032323820323334203220323139203131332031323020313237203133372034352032352031373120383820313935203332203235352031333220313730203233302032353220313430203434203333203234342032353020393920313936203230385D3A3146337D
+I[2023-05-15|12:51:41.428] committed state                              module=state height=499 num_txs=0 app_hash=F0959E6283E4EA02DB71787F892D19AB58C320FF84AAE6FC8C2C21F4FA63C4D0
+I[2023-05-15|12:51:41.429] indexed block exents                         module=txindex height=499
+I[2023-05-15|12:51:41.430] minted coins from module account             module=x/bank amount=205991004TRM from=mint
+I[2023-05-15|12:51:41.430] executed block                               module=state height=500 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.433] commit synced                                module=server commit=436F6D6D697449447B5B3131382032343620353820313732203137382037382032353120323532203232203236203334203132312032323520373120353120313438203633203537203233312032343820313932203139372031383820313939203231382032303420313438203438203130302031383820313632203138335D3A3146347D
+I[2023-05-15|12:51:41.433] committed state                              module=state height=500 num_txs=0 app_hash=76F63AACB24EFBFC161A2279E14733943F39E7F8C0C5BCC7DACC943064BCA2B7
+I[2023-05-15|12:51:41.435] indexed block exents                         module=txindex height=500
+I[2023-05-15|12:51:41.435] minted coins from module account             module=x/bank amount=205991041TRM from=mint
+I[2023-05-15|12:51:41.436] executed block                               module=state height=501 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.438] commit synced                                module=server commit=436F6D6D697449447B5B323020333020333120313520313736203135302031333720313533203134352039203135352032313920332032342032323220313832203136372039312031343720383820393320313336203835203136332032323120313131203135392031313720393920313433203637203135345D3A3146357D
+I[2023-05-15|12:51:41.438] committed state                              module=state height=501 num_txs=0 app_hash=141E1F0FB096899991099BDB0318DEB6A75B93585D8855A3DD6F9F75638F439A
+I[2023-05-15|12:51:41.440] indexed block exents                         module=txindex height=501
+I[2023-05-15|12:51:41.440] minted coins from module account             module=x/bank amount=205991078TRM from=mint
+I[2023-05-15|12:51:41.441] executed block                               module=state height=502 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.443] commit synced                                module=server commit=436F6D6D697449447B5B343220313435203235322035332030203134312031313520363220352032343520353720323031203234372031383120313837203232312032323320373220333020313238203231382032313520323034203139352031343720313830203132362031313820333620323135203334203137355D3A3146367D
+I[2023-05-15|12:51:41.443] committed state                              module=state height=502 num_txs=0 app_hash=2A91FC35008D733E05F539C9F7B5BBDDDF481E80DAD7CCC393B47E7624D722AF
+I[2023-05-15|12:51:41.445] indexed block exents                         module=txindex height=502
+I[2023-05-15|12:51:41.445] minted coins from module account             module=x/bank amount=205991115TRM from=mint
+I[2023-05-15|12:51:41.446] executed block                               module=state height=503 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.448] commit synced                                module=server commit=436F6D6D697449447B5B31353420313134203133372032343120313639203230312032352031393620313037203130382031383320313530203337203130362032323520333120363220313832203231362032313320313530203234332033392031363620313636203138302039352037372035372032303020313031203234345D3A3146377D
+I[2023-05-15|12:51:41.448] committed state                              module=state height=503 num_txs=0 app_hash=9A7289F1A9C919C46B6CB796256AE11F3EB6D8D596F327A6A6B45F4D39C865F4
+I[2023-05-15|12:51:41.449] indexed block exents                         module=txindex height=503
+I[2023-05-15|12:51:41.450] minted coins from module account             module=x/bank amount=205991152TRM from=mint
+I[2023-05-15|12:51:41.450] executed block                               module=state height=504 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.453] commit synced                                module=server commit=436F6D6D697449447B5B313337203235203139203133372037362031323320323320343620313738203134332031313920333920373620392031303820323535203634203632203231352035382032343220323238203335203232382031352036203131352038302032303920313635203231382036365D3A3146387D
+I[2023-05-15|12:51:41.453] committed state                              module=state height=504 num_txs=0 app_hash=891913894C7B172EB28F77274C096CFF403ED73AF2E423E40F067350D1A5DA42
+I[2023-05-15|12:51:41.454] indexed block exents                         module=txindex height=504
+I[2023-05-15|12:51:41.455] minted coins from module account             module=x/bank amount=205991189TRM from=mint
+I[2023-05-15|12:51:41.455] executed block                               module=state height=505 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.458] commit synced                                module=server commit=436F6D6D697449447B5B383020313630203131342032313820313120313732203133342031393720363520323034203939203139362038342031383420323234203730203233352032352031383320323433203135322031343420323920313520313033203231352039392038392038332032303020313034203135305D3A3146397D
+I[2023-05-15|12:51:41.458] committed state                              module=state height=505 num_txs=0 app_hash=50A072DA0BAC86C541CC63C454B8E046EB19B7F398901D0F67D7635953C86896
+I[2023-05-15|12:51:41.459] indexed block exents                         module=txindex height=505
+I[2023-05-15|12:51:41.460] minted coins from module account             module=x/bank amount=205991226TRM from=mint
+I[2023-05-15|12:51:41.460] executed block                               module=state height=506 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.463] commit synced                                module=server commit=436F6D6D697449447B5B3136352031353520373620313633203932203536203437203634203235352031313520373520313438203820343520313730203431203132302032333620323232203231352031353120313232203138392031342032323820313737203731203932203139372035352032203135315D3A3146417D
+I[2023-05-15|12:51:41.463] committed state                              module=state height=506 num_txs=0 app_hash=A59B4CA35C382F40FF734B94082DAA2978ECDED7977ABD0EE4B1475CC5370297
+I[2023-05-15|12:51:41.464] indexed block exents                         module=txindex height=506
+I[2023-05-15|12:51:41.465] minted coins from module account             module=x/bank amount=205991263TRM from=mint
+I[2023-05-15|12:51:41.465] executed block                               module=state height=507 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.468] commit synced                                module=server commit=436F6D6D697449447B5B343920343820323131203739203234203632203337203435203620313436203735203136362039203232362032323320313539203336203231362031323420373120323039203135382035352031353020313939203136203233322031313620343120323132203132382035355D3A3146427D
+I[2023-05-15|12:51:41.468] committed state                              module=state height=507 num_txs=0 app_hash=3130D34F183E252D06924BA609E2DF9F24D87C47D19E3796C710E87429D48037
+I[2023-05-15|12:51:41.469] indexed block exents                         module=txindex height=507
+I[2023-05-15|12:51:41.470] minted coins from module account             module=x/bank amount=205991300TRM from=mint
+I[2023-05-15|12:51:41.470] executed block                               module=state height=508 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.473] commit synced                                module=server commit=436F6D6D697449447B5B31323720323134203231312034312031363820313639203139382032323920333620383320323435203130362038203231382032353420323020313235203133362031323720313434203139372039382031343420323130203230382031343720313532203232392032333120323132203131203131365D3A3146437D
+I[2023-05-15|12:51:41.473] committed state                              module=state height=508 num_txs=0 app_hash=7FD6D329A8A9C6E52453F56A08DAFE147D887F90C56290D2D09398E5E7D40B74
+I[2023-05-15|12:51:41.474] indexed block exents                         module=txindex height=508
+I[2023-05-15|12:51:41.475] minted coins from module account             module=x/bank amount=205991336TRM from=mint
+I[2023-05-15|12:51:41.475] executed block                               module=state height=509 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.477] commit synced                                module=server commit=436F6D6D697449447B5B3231302033392031363520313420313238203137332035322032333520323338203720313035203632203730203931203639203938203132392031343520343620333620392031323720313120323032203230352032323820323130203230312031303420323320313833203137345D3A3146447D
+I[2023-05-15|12:51:41.477] committed state                              module=state height=509 num_txs=0 app_hash=D227A50E80AD34EBEE07693E465B456281912E24097F0BCACDE4D2C96817B7AE
+I[2023-05-15|12:51:41.479] indexed block exents                         module=txindex height=509
+I[2023-05-15|12:51:41.479] minted coins from module account             module=x/bank amount=205991373TRM from=mint
+I[2023-05-15|12:51:41.480] executed block                               module=state height=510 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.483] commit synced                                module=server commit=436F6D6D697449447B5B33312031323220333420323436203136203838203136352031313520313020323133203136203131302031353020323336203137322034362032303020313434203230382038392032313820313439203834203135203138352031313420352035352031363020333220323432203232355D3A3146457D
+I[2023-05-15|12:51:41.483] committed state                              module=state height=510 num_txs=0 app_hash=1F7A22F61058A5730AD5106E96ECAC2EC890D059DA95540FB9720537A020F2E1
+I[2023-05-15|12:51:41.484] indexed block exents                         module=txindex height=510
+I[2023-05-15|12:51:41.485] minted coins from module account             module=x/bank amount=205991410TRM from=mint
+I[2023-05-15|12:51:41.485] executed block                               module=state height=511 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.488] commit synced                                module=server commit=436F6D6D697449447B5B373220313531203235203231312039352032353020323133203820343220313034203538203130302035332031393320313935203130203133372037332038342032323220313931203232302032303920323130203137312032313520313320393820323439203132352037362035355D3A3146467D
+I[2023-05-15|12:51:41.488] committed state                              module=state height=511 num_txs=0 app_hash=489719D35FFAD5082A683A6435C1C30A894954DEBFDCD1D2ABD70D62F97D4C37
+I[2023-05-15|12:51:41.489] indexed block exents                         module=txindex height=511
+I[2023-05-15|12:51:41.490] minted coins from module account             module=x/bank amount=205991447TRM from=mint
+I[2023-05-15|12:51:41.490] executed block                               module=state height=512 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.493] commit synced                                module=server commit=436F6D6D697449447B5B31343120323120313134203431203231352031303620323334203234302032303220323134203937203234352032333120313530203138362031393320312032352031393720323420323132203739203131392031323920313233203638203231362031353620313732203230362038382037345D3A3230307D
+I[2023-05-15|12:51:41.493] committed state                              module=state height=512 num_txs=0 app_hash=8D157229D76AEAF0CAD661F5E796BAC10119C518D44F77817B44D89CACCE584A
+I[2023-05-15|12:51:41.494] indexed block exents                         module=txindex height=512
+I[2023-05-15|12:51:41.495] minted coins from module account             module=x/bank amount=205991484TRM from=mint
+I[2023-05-15|12:51:41.495] executed block                               module=state height=513 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.497] commit synced                                module=server commit=436F6D6D697449447B5B31353320313032203138362032303820323435203830203731203739203420353020313933203132342034372035392031353420313120323535203220313135203133342031303120313133203731203138332037352031313820323330203520313437203734203137203136325D3A3230317D
+I[2023-05-15|12:51:41.498] committed state                              module=state height=513 num_txs=0 app_hash=9966BAD0F550474F0432C17C2F3B9A0BFF027386657147B74B76E605934A11A2
+I[2023-05-15|12:51:41.499] indexed block exents                         module=txindex height=513
+I[2023-05-15|12:51:41.500] minted coins from module account             module=x/bank amount=205991521TRM from=mint
+I[2023-05-15|12:51:41.500] executed block                               module=state height=514 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.502] commit synced                                module=server commit=436F6D6D697449447B5B373120352035382032333420323236203335203132302031303520353320323134203132302031313720373020313332203137302038352031353920313837203138342031383920313838203233203530203131203235322031353520372037332031383220313733203134312036385D3A3230327D
+I[2023-05-15|12:51:41.502] committed state                              module=state height=514 num_txs=0 app_hash=47053AEAE223786935D678754684AA559FBBB8BDBC17320BFC9B0749B6AD8D44
+I[2023-05-15|12:51:41.503] indexed block exents                         module=txindex height=514
+I[2023-05-15|12:51:41.504] minted coins from module account             module=x/bank amount=205991558TRM from=mint
+I[2023-05-15|12:51:41.504] executed block                               module=state height=515 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.507] commit synced                                module=server commit=436F6D6D697449447B5B3832203232372031363720313035203130372036382032343120313233203932203232352031393720313135203331203233372039342037372031353020333520323230203232392032323820313930203133342032313920363420313437203333203133312031393620353720313237203231345D3A3230337D
+I[2023-05-15|12:51:41.507] committed state                              module=state height=515 num_txs=0 app_hash=52E3A7696B44F17B5CE1C5731FED5E4D9623DCE5E4BE86DB40932183C4397FD6
+I[2023-05-15|12:51:41.508] indexed block exents                         module=txindex height=515
+I[2023-05-15|12:51:41.509] minted coins from module account             module=x/bank amount=205991595TRM from=mint
+I[2023-05-15|12:51:41.509] executed block                               module=state height=516 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.511] commit synced                                module=server commit=436F6D6D697449447B5B3331203238203531203234312033362031363720313636203233332032343920393620382031393620313136203636203233382032312031343920353720343720323135203337203136382031372031393320383120353220353020323233203133203239203937203138335D3A3230347D
+I[2023-05-15|12:51:41.511] committed state                              module=state height=516 num_txs=0 app_hash=1F1C33F124A7A6E9F96008C47442EE1595392FD725A811C1513432DF0D1D61B7
+I[2023-05-15|12:51:41.513] indexed block exents                         module=txindex height=516
+I[2023-05-15|12:51:41.513] minted coins from module account             module=x/bank amount=205991631TRM from=mint
+I[2023-05-15|12:51:41.514] executed block                               module=state height=517 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.516] commit synced                                module=server commit=436F6D6D697449447B5B3139362037392037322038302031393920383520323339203132302033322031363620363120313835203432203230382032333520313737203837203836203234322032323520363920313832203230352034302037302032313020313137203231382031333820343720323135203231305D3A3230357D
+I[2023-05-15|12:51:41.516] committed state                              module=state height=517 num_txs=0 app_hash=C44F4850C755EF7820A63DB92AD0EBB15756F2E145B6CD2846D275DA8A2FD7D2
+I[2023-05-15|12:51:41.517] indexed block exents                         module=txindex height=517
+I[2023-05-15|12:51:41.518] minted coins from module account             module=x/bank amount=205991668TRM from=mint
+I[2023-05-15|12:51:41.518] executed block                               module=state height=518 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.521] commit synced                                module=server commit=436F6D6D697449447B5B34362032333520353920342031323120393720323135203132322031343820313420323434203230332031343820313030203820312031393520313637203230362032313920323437203630203137203234352037342033203135203134382031393820363920313431203231395D3A3230367D
+I[2023-05-15|12:51:41.521] committed state                              module=state height=518 num_txs=0 app_hash=2EEB3B047961D77A940EF4CB94640801C3A7CEDBF73C11F54A030F94C6458DDB
+I[2023-05-15|12:51:41.522] indexed block exents                         module=txindex height=518
+I[2023-05-15|12:51:41.523] minted coins from module account             module=x/bank amount=205991705TRM from=mint
+I[2023-05-15|12:51:41.523] executed block                               module=state height=519 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.527] commit synced                                module=server commit=436F6D6D697449447B5B37332031352031383820313138203131302031322032343720313035203135332031343820313638203831203132332031373420323535203131392032303620353620322033392031342032353320313930203234312031373020323531203132392031363420332039372033302033315D3A3230377D
+I[2023-05-15|12:51:41.527] committed state                              module=state height=519 num_txs=0 app_hash=490FBC766E0CF7699994A8517BAEFF77CE3802270EFDBEF1AAFB81A403611E1F
+I[2023-05-15|12:51:41.528] indexed block exents                         module=txindex height=519
+I[2023-05-15|12:51:41.529] minted coins from module account             module=x/bank amount=205991742TRM from=mint
+I[2023-05-15|12:51:41.529] executed block                               module=state height=520 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.533] commit synced                                module=server commit=436F6D6D697449447B5B3135332033382032343220373920313734203233352031373020383720313934203130342031323420393920313131203138203935203736203439203138372031323620323230203135382031393920343220323038203836203137372032303820313634203132362032353420313132203138355D3A3230387D
+I[2023-05-15|12:51:41.533] committed state                              module=state height=520 num_txs=0 app_hash=9926F24FAEEBAA57C2687C636F125F4C31BB7EDC9EC72AD056B1D0A47EFE70B9
+I[2023-05-15|12:51:41.534] indexed block exents                         module=txindex height=520
+I[2023-05-15|12:51:41.535] minted coins from module account             module=x/bank amount=205991779TRM from=mint
+I[2023-05-15|12:51:41.535] executed block                               module=state height=521 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.538] commit synced                                module=server commit=436F6D6D697449447B5B31363120313736203839203135312035392032333020313830203231342031373720383920313336203239203335203234322035302032343420373020313134203620323033203136332032343320323437203133392032323820372032353420313336203233312031363420313637203136375D3A3230397D
+I[2023-05-15|12:51:41.538] committed state                              module=state height=521 num_txs=0 app_hash=A1B059973BE6B4D6B159881D23F232F4467206CBA3F3F78BE407FE88E7A4A7A7
+I[2023-05-15|12:51:41.539] indexed block exents                         module=txindex height=521
+I[2023-05-15|12:51:41.540] minted coins from module account             module=x/bank amount=205991816TRM from=mint
+I[2023-05-15|12:51:41.540] executed block                               module=state height=522 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.543] commit synced                                module=server commit=436F6D6D697449447B5B31303320313332203838203333203136382037382032313020313336203135322031383120323138203235322031323620323134203133352031342031313520313936203934203939203137342032313320323434203439203137302031373020353320313331203337203131362032342039305D3A3230417D
+I[2023-05-15|12:51:41.543] committed state                              module=state height=522 num_txs=0 app_hash=67845821A84ED28898B5DAFC7ED6870E73C45E63AED5F431AAAA35832574185A
+I[2023-05-15|12:51:41.544] indexed block exents                         module=txindex height=522
+I[2023-05-15|12:51:41.545] minted coins from module account             module=x/bank amount=205991853TRM from=mint
+I[2023-05-15|12:51:41.545] executed block                               module=state height=523 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.547] commit synced                                module=server commit=436F6D6D697449447B5B35382039372031303820323420313039203136203131382032303820323234203135312032303420393420392031383620333720313638203234382032323120313039203532203235312033362038322031353420372032203836203332203132372031343720323135203233345D3A3230427D
+I[2023-05-15|12:51:41.547] committed state                              module=state height=523 num_txs=0 app_hash=3A616C186D1076D0E097CC5E09BA25A8F8DD6D34FB24529A070256207F93D7EA
+I[2023-05-15|12:51:41.549] indexed block exents                         module=txindex height=523
+I[2023-05-15|12:51:41.549] minted coins from module account             module=x/bank amount=205991890TRM from=mint
+I[2023-05-15|12:51:41.550] executed block                               module=state height=524 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.552] commit synced                                module=server commit=436F6D6D697449447B5B3235203231312031323620323239203132312031393920313730203137372032353220313234203939203635203933203131342031363020313439203530203135203138382032343520313333203139332031383020313232203135392031363120342037392037302031363420383920385D3A3230437D
+I[2023-05-15|12:51:41.552] committed state                              module=state height=524 num_txs=0 app_hash=19D37EE579C7AAB1FC7C63415D72A095320FBCF585C1B47A9FA1044F46A45908
+I[2023-05-15|12:51:41.553] indexed block exents                         module=txindex height=524
+I[2023-05-15|12:51:41.554] minted coins from module account             module=x/bank amount=205991926TRM from=mint
+I[2023-05-15|12:51:41.554] executed block                               module=state height=525 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.557] commit synced                                module=server commit=436F6D6D697449447B5B313632203020313136203230322032322031383720313139203137322031382030203132392032343120313337203537203333203139332035332032313020313620323520313030203133362032303820313320313237203832203232352031313820313436203731203639203132325D3A3230447D
+I[2023-05-15|12:51:41.557] committed state                              module=state height=525 num_txs=0 app_hash=A20074CA16BB77AC120081F1893921C135D210196488D00D7F52E1769247457A
+I[2023-05-15|12:51:41.558] indexed block exents                         module=txindex height=525
+I[2023-05-15|12:51:41.559] minted coins from module account             module=x/bank amount=205991963TRM from=mint
+I[2023-05-15|12:51:41.559] executed block                               module=state height=526 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.561] commit synced                                module=server commit=436F6D6D697449447B5B383720353520323231203233372031303020313434203138322031373720372036352032333020313838203737203133362032323320343220383020363520313231203139322032333620323332203234203132352031343620323132203130203135392032303020353920313539203131305D3A3230457D
+I[2023-05-15|12:51:41.561] committed state                              module=state height=526 num_txs=0 app_hash=5737DDED6490B6B10741E6BC4D88DF2A504179C0ECE8187D92D40A9FC83B9F6E
+I[2023-05-15|12:51:41.563] indexed block exents                         module=txindex height=526
+I[2023-05-15|12:51:41.563] minted coins from module account             module=x/bank amount=205992000TRM from=mint
+I[2023-05-15|12:51:41.564] executed block                               module=state height=527 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.566] commit synced                                module=server commit=436F6D6D697449447B5B3230372038352031383320313135203130352032333420373920313238203131342031333720313238203139392032343120313638203230372033322033362032323020323131203333203231352031383020343720313235203230342031373120353320313131203234302038332034372039375D3A3230467D
+I[2023-05-15|12:51:41.566] committed state                              module=state height=527 num_txs=0 app_hash=CF55B77369EA4F80728980C7F1A8CF2024DCD321D7B42F7DCCAB356FF0532F61
+I[2023-05-15|12:51:41.567] indexed block exents                         module=txindex height=527
+I[2023-05-15|12:51:41.568] minted coins from module account             module=x/bank amount=205992037TRM from=mint
+I[2023-05-15|12:51:41.568] executed block                               module=state height=528 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.571] commit synced                                module=server commit=436F6D6D697449447B5B323230203233322031343120323531203630203233302032203135302031373120313534203730203338203139342031323420323138203938203531203234392038382032343620383720323138203338203134352031303620323435203133382036322031303820313933203637203136365D3A3231307D
+I[2023-05-15|12:51:41.571] committed state                              module=state height=528 num_txs=0 app_hash=DCE88DFB3CE60296AB9A4626C27CDA6233F958F657DA26916AF58A3E6CC143A6
+I[2023-05-15|12:51:41.572] indexed block exents                         module=txindex height=528
+I[2023-05-15|12:51:41.573] minted coins from module account             module=x/bank amount=205992074TRM from=mint
+I[2023-05-15|12:51:41.573] executed block                               module=state height=529 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.575] commit synced                                module=server commit=436F6D6D697449447B5B3131312032353520313733203137382032312036352031303820363720323130203634203434203138332032322032353520313138203133352032333820313932203936203433203132322031322037392031373020383520353320323534203137302034312031363220313536203132345D3A3231317D
+I[2023-05-15|12:51:41.575] committed state                              module=state height=529 num_txs=0 app_hash=6FFFADB215416C43D2402CB716FF7687EEC0602B7A0C4FAA5535FEAA29A29C7C
+I[2023-05-15|12:51:41.576] indexed block exents                         module=txindex height=529
+I[2023-05-15|12:51:41.577] minted coins from module account             module=x/bank amount=205992111TRM from=mint
+I[2023-05-15|12:51:41.577] executed block                               module=state height=530 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.580] commit synced                                module=server commit=436F6D6D697449447B5B37372031203134203335203132352031372036362031363620363720333320313430203135342033342032323320343020313720323332203433203137392032322031353320313139203232352031353320313933203136342031393920313231203433203231312033342033315D3A3231327D
+I[2023-05-15|12:51:41.580] committed state                              module=state height=530 num_txs=0 app_hash=4D010E237D1142A643218C9A22DF2811E82BB3169977E199C1A4C7792BD3221F
+I[2023-05-15|12:51:41.581] indexed block exents                         module=txindex height=530
+I[2023-05-15|12:51:41.582] minted coins from module account             module=x/bank amount=205992148TRM from=mint
+I[2023-05-15|12:51:41.583] executed block                               module=state height=531 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.585] commit synced                                module=server commit=436F6D6D697449447B5B393220313739203539203134352032333120313738203130342034392032333520343320323920323720323431203731203230362032323120323038203532203339203631203137362031343920373320343320353220333120343120353020343520323033203230302036345D3A3231337D
+I[2023-05-15|12:51:41.585] committed state                              module=state height=531 num_txs=0 app_hash=5CB33B91E7B26831EB2B1D1BF147CEDDD034273DB095492B341F29322DCBC840
+I[2023-05-15|12:51:41.586] indexed block exents                         module=txindex height=531
+I[2023-05-15|12:51:41.587] minted coins from module account             module=x/bank amount=205992185TRM from=mint
+I[2023-05-15|12:51:41.587] executed block                               module=state height=532 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.590] commit synced                                module=server commit=436F6D6D697449447B5B31383520313538203230322032203337203139203133352033332032343420313531203635203133352036362032323020313439203131302035322038342038342035332032353520323231203434203235322037362031383120313034203230203138332031383620313234203133385D3A3231347D
+I[2023-05-15|12:51:41.590] committed state                              module=state height=532 num_txs=0 app_hash=B99ECA0225138721F497418742DC956E34545435FFDD2CFC4CB56814B7BA7C8A
+I[2023-05-15|12:51:41.591] indexed block exents                         module=txindex height=532
+I[2023-05-15|12:51:41.592] minted coins from module account             module=x/bank amount=205992221TRM from=mint
+I[2023-05-15|12:51:41.592] executed block                               module=state height=533 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.594] commit synced                                module=server commit=436F6D6D697449447B5B3833203433203139362039302032313820323333203139322032303620313030203239203230312031363920313530203131203134302039332035392031392031333020313337203230352031393020333020313732203132312032353220393720323237203135203320313230203131315D3A3231357D
+I[2023-05-15|12:51:41.594] committed state                              module=state height=533 num_txs=0 app_hash=532BC45ADAE9C0CE641DC9A9960B8C5D3B138289CDBE1EAC79FC61E30F03786F
+I[2023-05-15|12:51:41.595] indexed block exents                         module=txindex height=533
+I[2023-05-15|12:51:41.596] minted coins from module account             module=x/bank amount=205992258TRM from=mint
+I[2023-05-15|12:51:41.596] executed block                               module=state height=534 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.599] commit synced                                module=server commit=436F6D6D697449447B5B342032333620313034203132352031323320363320313633203232302031383920323237203139362032333420313434203937203130372039332032333120373720313339203238203139382032343720323532203135392038203137382038352034382032343220313032203232382035305D3A3231367D
+I[2023-05-15|12:51:41.599] committed state                              module=state height=534 num_txs=0 app_hash=04EC687D7B3FA3DCBDE3C4EA90616B5DE74D8B1CC6F7FC9F08B25530F266E432
+I[2023-05-15|12:51:41.600] indexed block exents                         module=txindex height=534
+I[2023-05-15|12:51:41.601] minted coins from module account             module=x/bank amount=205992295TRM from=mint
+I[2023-05-15|12:51:41.601] executed block                               module=state height=535 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.603] commit synced                                module=server commit=436F6D6D697449447B5B313034203132362037392032312031353620323238203230203333203235203139392032323820363120313532203136312033312031323820323139203139362031343520313232203135372031313720313736203139382031353820313320343420313331203835203020362034355D3A3231377D
+I[2023-05-15|12:51:41.603] committed state                              module=state height=535 num_txs=0 app_hash=687E4F159CE4142119C7E43D98A11F80DBC4917A9D75B0C69E0D2C835500062D
+I[2023-05-15|12:51:41.604] indexed block exents                         module=txindex height=535
+I[2023-05-15|12:51:41.605] minted coins from module account             module=x/bank amount=205992332TRM from=mint
+I[2023-05-15|12:51:41.605] executed block                               module=state height=536 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.608] commit synced                                module=server commit=436F6D6D697449447B5B3136312031393120313139203720373520313431203136342031373920313133203132352033203235352031373720393920313236203234342034382031313320313739203230302031333020313930203635203133203234322039372031323520313635203131203134342038203133375D3A3231387D
+I[2023-05-15|12:51:41.608] committed state                              module=state height=536 num_txs=0 app_hash=A1BF77074B8DA4B3717D03FFB1637EF43071B3C882BE410DF2617DA50B900889
+I[2023-05-15|12:51:41.609] indexed block exents                         module=txindex height=536
+I[2023-05-15|12:51:41.610] minted coins from module account             module=x/bank amount=205992369TRM from=mint
+I[2023-05-15|12:51:41.610] executed block                               module=state height=537 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.612] commit synced                                module=server commit=436F6D6D697449447B5B3739203235312031393720313332203831203135362031323020313120313534203132342031303720313432203932203232372032343820313831203134322039352039352031393220313520313932203235332031343020313535203230203135312036312031373720383620313837203233315D3A3231397D
+I[2023-05-15|12:51:41.612] committed state                              module=state height=537 num_txs=0 app_hash=4FFBC584519C780B9A7C6B8E5CE3F8B58E5F5FC00FC0FD8C9B14973DB156BBE7
+I[2023-05-15|12:51:41.613] indexed block exents                         module=txindex height=537
+I[2023-05-15|12:51:41.614] minted coins from module account             module=x/bank amount=205992406TRM from=mint
+I[2023-05-15|12:51:41.615] executed block                               module=state height=538 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.617] commit synced                                module=server commit=436F6D6D697449447B5B322032343720313137203131312037382035362031332031333220313735203135312031353920313737203139312031333720313138203134312031303720323130203932203132392032333420313536203833203139362032313720323320323231203233332031373720313139203133322034345D3A3231417D
+I[2023-05-15|12:51:41.617] committed state                              module=state height=538 num_txs=0 app_hash=02F7756F4E380D84AF979FB1BF89768D6BD25C81EA9C53C4D917DDE9B177842C
+I[2023-05-15|12:51:41.618] indexed block exents                         module=txindex height=538
+I[2023-05-15|12:51:41.619] minted coins from module account             module=x/bank amount=205992443TRM from=mint
+I[2023-05-15|12:51:41.619] executed block                               module=state height=539 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.622] commit synced                                module=server commit=436F6D6D697449447B5B33322032353520333920313233203338203237203234312031373920363020393620383420313537203530203232372035392032353320383820313133203933203130352033382031342032343020313333203134372032303920313331203132372031373620313220313938203230385D3A3231427D
+I[2023-05-15|12:51:41.622] committed state                              module=state height=539 num_txs=0 app_hash=20FF277B261BF1B33C60549D32E33BFD58715D69260EF08593D1837FB00CC6D0
+I[2023-05-15|12:51:41.623] indexed block exents                         module=txindex height=539
+I[2023-05-15|12:51:41.624] minted coins from module account             module=x/bank amount=205992480TRM from=mint
+I[2023-05-15|12:51:41.624] executed block                               module=state height=540 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.627] commit synced                                module=server commit=436F6D6D697449447B5B3230392031302038392031313220363120343420393720373420313530203431203333203232392032382031363220323438203820323120313236203133322036382031363320363520323531203734203339203131362031353720363120313920343320313833203139325D3A3231437D
+I[2023-05-15|12:51:41.627] committed state                              module=state height=540 num_txs=0 app_hash=D10A59703D2C614A962921E51CA2F808157E8444A341FB4A27749D3D132BB7C0
+I[2023-05-15|12:51:41.628] indexed block exents                         module=txindex height=540
+I[2023-05-15|12:51:41.629] minted coins from module account             module=x/bank amount=205992516TRM from=mint
+I[2023-05-15|12:51:41.629] executed block                               module=state height=541 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.632] commit synced                                module=server commit=436F6D6D697449447B5B3639203132372036382031353920313933203137332031393320313333203634203131392032343020323332203234362031323020313230203534203135332032313820323335203132372032353020313134203534203120323235203135203135302036372031393720333820322036315D3A3231447D
+I[2023-05-15|12:51:41.632] committed state                              module=state height=541 num_txs=0 app_hash=457F449FC1ADC1854077F0E8F678783699DAEB7FFA723601E10F9643C526023D
+I[2023-05-15|12:51:41.633] indexed block exents                         module=txindex height=541
+I[2023-05-15|12:51:41.633] minted coins from module account             module=x/bank amount=205992553TRM from=mint
+I[2023-05-15|12:51:41.634] executed block                               module=state height=542 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.636] commit synced                                module=server commit=436F6D6D697449447B5B323620313820323020323720313235203233392031302037203132392031383220383020343820393020313735203234342031343720323039203137382031393720323035203232203132322032333320323432203233312031343220313731203133372031353620313830203936203132385D3A3231457D
+I[2023-05-15|12:51:41.636] committed state                              module=state height=542 num_txs=0 app_hash=1A12141B7DEF0A0781B650305AAFF493D1B2C5CD167AE9F2E78EAB899CB46080
+I[2023-05-15|12:51:41.638] indexed block exents                         module=txindex height=542
+I[2023-05-15|12:51:41.638] minted coins from module account             module=x/bank amount=205992590TRM from=mint
+I[2023-05-15|12:51:41.639] executed block                               module=state height=543 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.641] commit synced                                module=server commit=436F6D6D697449447B5B39382031343820383520323335203130372031303820313835203231312031373920313634203339203232312037332031343820313634203139302031303120313020313720313539203136362032343520343420313639203837203138322031343720362031393820313733203335203234375D3A3231467D
+I[2023-05-15|12:51:41.641] committed state                              module=state height=543 num_txs=0 app_hash=629455EB6B6CB9D3B3A427DD4994A4BE650A119FA6F52CA957B69306C6AD23F7
+I[2023-05-15|12:51:41.642] indexed block exents                         module=txindex height=543
+I[2023-05-15|12:51:41.643] minted coins from module account             module=x/bank amount=205992627TRM from=mint
+I[2023-05-15|12:51:41.643] executed block                               module=state height=544 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.646] commit synced                                module=server commit=436F6D6D697449447B5B31333120313137203233332033312038382036312031313120383820323320363120383720323235203520353520323130203234372032313520313833203231312032353220313133203134342032342032322033322032323920333320383720313030203539203137203136325D3A3232307D
+I[2023-05-15|12:51:41.646] committed state                              module=state height=544 num_txs=0 app_hash=8375E91F583D6F58173D57E10537D2F7D7B7D3FC7190181620E52157643B11A2
+I[2023-05-15|12:51:41.647] indexed block exents                         module=txindex height=544
+I[2023-05-15|12:51:41.648] minted coins from module account             module=x/bank amount=205992664TRM from=mint
+I[2023-05-15|12:51:41.648] executed block                               module=state height=545 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.651] commit synced                                module=server commit=436F6D6D697449447B5B353020323435203230382031353820323034203634203136372031333520313837203134332039332032333720313534203920323030203133352037382031353820323338203431203730203138203539203734203134312033302032333220363720363220313930203638203131355D3A3232317D
+I[2023-05-15|12:51:41.651] committed state                              module=state height=545 num_txs=0 app_hash=32F5D09ECC40A787BB8F5DED9A09C8874E9EEE2946123B4A8D1EE8433EBE4473
+I[2023-05-15|12:51:41.651] Block Sync Rate                              module=blockchain height=546 max_peer_height=248288 blocks/s=1.1079726708015005
+I[2023-05-15|12:51:41.652] indexed block exents                         module=txindex height=545
+I[2023-05-15|12:51:41.652] minted coins from module account             module=x/bank amount=205992701TRM from=mint
+I[2023-05-15|12:51:41.653] executed block                               module=state height=546 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.655] commit synced                                module=server commit=436F6D6D697449447B5B3136322032322031343420363520313136203631203530203230342031342031383920323337203134392031373620323136203135312031383320313934203139302032313220373720323237203232382033352038352031393220323038203231302031323920313432203131372039322038305D3A3232327D
+I[2023-05-15|12:51:41.655] committed state                              module=state height=546 num_txs=0 app_hash=A2169041743D32CC0EBDED95B0D897B7C2BED44DE3E42355C0D0D2818E755C50
+I[2023-05-15|12:51:41.656] indexed block exents                         module=txindex height=546
+I[2023-05-15|12:51:41.657] minted coins from module account             module=x/bank amount=205992738TRM from=mint
+I[2023-05-15|12:51:41.657] executed block                               module=state height=547 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.660] commit synced                                module=server commit=436F6D6D697449447B5B313039203230382033342031372036332031363820393120343320343220393820363720383420313239203431203136382031393720383520323520323136203130372039392032323020393120323436203637203731203139392031383520313934203130302032322039315D3A3232337D
+I[2023-05-15|12:51:41.660] committed state                              module=state height=547 num_txs=0 app_hash=6DD022113FA85B2B2A6243548129A8C55519D86B63DC5BF64347C7B9C264165B
+I[2023-05-15|12:51:41.661] indexed block exents                         module=txindex height=547
+I[2023-05-15|12:51:41.662] minted coins from module account             module=x/bank amount=205992775TRM from=mint
+I[2023-05-15|12:51:41.662] executed block                               module=state height=548 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.664] commit synced                                module=server commit=436F6D6D697449447B5B32322037312031363520323920313630203139382031313520323230203437203636203432203533203136382031343620343520313039203230372032313520343320363620323338203936203232352032333820323020323037203135332039362031343420313035203837203135395D3A3232347D
+I[2023-05-15|12:51:41.664] committed state                              module=state height=548 num_txs=0 app_hash=1647A51DA0C673DC2F422A35A8922D6DCFD72B42EE60E1EE14CF99609069579F
+I[2023-05-15|12:51:41.665] indexed block exents                         module=txindex height=548
+I[2023-05-15|12:51:41.666] minted coins from module account             module=x/bank amount=205992811TRM from=mint
+I[2023-05-15|12:51:41.666] executed block                               module=state height=549 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.669] commit synced                                module=server commit=436F6D6D697449447B5B35392031393820343220393620343920313030203134312035322031313920313731203235342031383820322031383420373120393620313830203131352032303420323533203133203231342031323120313531203136322032303520313734203432203231382031343220313232203133315D3A3232357D
+I[2023-05-15|12:51:41.669] committed state                              module=state height=549 num_txs=0 app_hash=3BC62A6031648D3477ABFEBC02B84760B473CCFD0DD67997A2CDAE2ADA8E7A83
+I[2023-05-15|12:51:41.670] indexed block exents                         module=txindex height=549
+I[2023-05-15|12:51:41.671] minted coins from module account             module=x/bank amount=205992848TRM from=mint
+I[2023-05-15|12:51:41.671] executed block                               module=state height=550 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.674] commit synced                                module=server commit=436F6D6D697449447B5B3834203220323238203137362032343320333120313236203133302032203136322031383620323036203133302032313520313937203732203233203237203131312034302036342031362031373820373920323335203131382039332036392032362031393120313839203134325D3A3232367D
+I[2023-05-15|12:51:41.674] committed state                              module=state height=550 num_txs=0 app_hash=5402E4B0F31F7E8202A2BACE82D7C548171B6F284010B24FEB765D451ABFBD8E
+I[2023-05-15|12:51:41.675] indexed block exents                         module=txindex height=550
+I[2023-05-15|12:51:41.676] minted coins from module account             module=x/bank amount=205992885TRM from=mint
+I[2023-05-15|12:51:41.676] executed block                               module=state height=551 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.679] commit synced                                module=server commit=436F6D6D697449447B5B343820333020313933203238203131352032343720333520313320323533203633203235203536203130392035302032353420313839203139302034203734203536203136322032323720323620313420332031393220353220313833203137392032313720313139203232315D3A3232377D
+I[2023-05-15|12:51:41.679] committed state                              module=state height=551 num_txs=0 app_hash=301EC11C73F7230DFD3F19386D32FEBDBE044A38A2E31A0E03C034B7B3D977DD
+I[2023-05-15|12:51:41.680] indexed block exents                         module=txindex height=551
+I[2023-05-15|12:51:41.681] minted coins from module account             module=x/bank amount=205992922TRM from=mint
+I[2023-05-15|12:51:41.681] executed block                               module=state height=552 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.684] commit synced                                module=server commit=436F6D6D697449447B5B313932203933203633203136322032333620313534203139302031392032382031343920323533203133352031373920343920313234203134362032312031303420313236203738203132372031353320313535203231362031303020373520313434203133362031333620313533203432203233345D3A3232387D
+I[2023-05-15|12:51:41.684] committed state                              module=state height=552 num_txs=0 app_hash=C05D3FA2EC9ABE131C95FD87B3317C9215687E4E7F999BD8644B908888992AEA
+I[2023-05-15|12:51:41.685] indexed block exents                         module=txindex height=552
+I[2023-05-15|12:51:41.686] minted coins from module account             module=x/bank amount=205992959TRM from=mint
+I[2023-05-15|12:51:41.686] executed block                               module=state height=553 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.688] commit synced                                module=server commit=436F6D6D697449447B5B3830203234342039312032343920363220333420313836203136372031363120313931203138382032343520363720313539203234392031313120313735203134362032343020383320313437203138352031383420313737203137322032332035322032333520313230203732203333203138345D3A3232397D
+I[2023-05-15|12:51:41.688] committed state                              module=state height=553 num_txs=0 app_hash=50F45BF93E22BAA7A1BFBCF5439FF96FAF92F05393B9B8B1AC1734EB784821B8
+I[2023-05-15|12:51:41.690] indexed block exents                         module=txindex height=553
+I[2023-05-15|12:51:41.690] minted coins from module account             module=x/bank amount=205992996TRM from=mint
+I[2023-05-15|12:51:41.691] executed block                               module=state height=554 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.693] commit synced                                module=server commit=436F6D6D697449447B5B3133342037322031373520323534203233322031303220313835203937203137342032343220313536203931203938203133372031333520373120313237203235342032313720313533203130362039342032353220353220313133203131372032343120313833203131392031323220323136203235325D3A3232417D
+I[2023-05-15|12:51:41.693] committed state                              module=state height=554 num_txs=0 app_hash=8648AFFEE866B961AEF29C5B628987477FFED9996A5EFC347175F1B7777AD8FC
+I[2023-05-15|12:51:41.694] indexed block exents                         module=txindex height=554
+I[2023-05-15|12:51:41.695] minted coins from module account             module=x/bank amount=205993033TRM from=mint
+I[2023-05-15|12:51:41.695] executed block                               module=state height=555 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.699] commit synced                                module=server commit=436F6D6D697449447B5B34352038332031383920313830203130302032333120353520313736203232302036203134382031323720313520313937203737203539203138342031363520313133203233352036342032382032392034302039362038362031373820323034203137312032333420323339203137365D3A3232427D
+I[2023-05-15|12:51:41.699] committed state                              module=state height=555 num_txs=0 app_hash=2D53BDB464E737B0DC06947F0FC54D3BB8A571EB401C1D286056B2CCABEAEFB0
+I[2023-05-15|12:51:41.700] indexed block exents                         module=txindex height=555
+I[2023-05-15|12:51:41.701] minted coins from module account             module=x/bank amount=205993070TRM from=mint
+I[2023-05-15|12:51:41.702] executed block                               module=state height=556 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.704] commit synced                                module=server commit=436F6D6D697449447B5B353020313239203139392031383420323238203136382036392031383720313538203139342033302036382031363720313433203736203130372039352032362031323820373820323433203437203136322031323620353020313920313437203736203638203335203132312035315D3A3232437D
+I[2023-05-15|12:51:41.704] committed state                              module=state height=556 num_txs=0 app_hash=3281C7B8E4A845BB9EC21E44A78F4C6B5F1A804EF32FA27E3213934C44237933
+I[2023-05-15|12:51:41.706] indexed block exents                         module=txindex height=556
+I[2023-05-15|12:51:41.706] minted coins from module account             module=x/bank amount=205993107TRM from=mint
+I[2023-05-15|12:51:41.707] executed block                               module=state height=557 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.709] commit synced                                module=server commit=436F6D6D697449447B5B31303720313631203839203235312033302031313220353020313630203139352038322032353520343320383920313931203133203138382039362031353620313436203737203137382038312032333620353020363320313338203237203233332032313520373120313739203235355D3A3232447D
+I[2023-05-15|12:51:41.709] committed state                              module=state height=557 num_txs=0 app_hash=6BA159FB1E7032A0C352FF2B59BF0DBC609C924DB251EC323F8A1BE9D747B3FF
+I[2023-05-15|12:51:41.710] indexed block exents                         module=txindex height=557
+I[2023-05-15|12:51:41.711] minted coins from module account             module=x/bank amount=205993143TRM from=mint
+I[2023-05-15|12:51:41.711] executed block                               module=state height=558 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.714] commit synced                                module=server commit=436F6D6D697449447B5B31353720313837203136312034312031313720352036372036203131342031373120313836203230332035382032343120313331203135342033342032333920353820373720373420343420333920323720313131203630203136372031323720393020323330203232352033305D3A3232457D
+I[2023-05-15|12:51:41.714] committed state                              module=state height=558 num_txs=0 app_hash=9DBBA1297505430672ABBACB3AF1839A22EF3A4D4A2C271B6F3CA77F5AE6E11E
+I[2023-05-15|12:51:41.715] indexed block exents                         module=txindex height=558
+I[2023-05-15|12:51:41.716] minted coins from module account             module=x/bank amount=205993180TRM from=mint
+I[2023-05-15|12:51:41.716] executed block                               module=state height=559 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.719] commit synced                                module=server commit=436F6D6D697449447B5B313337203234203336203830203632203135203235203937203232312032313720313320323438203830203438203230372032303620313338203830203138392034362032353120313030203937203534203134332032313220313530203234382031353420373320313632203138335D3A3232467D
+I[2023-05-15|12:51:41.719] committed state                              module=state height=559 num_txs=0 app_hash=891824503E0F1961DDD90DF85030CFCE8A50BD2EFB6461368FD496F89A49A2B7
+I[2023-05-15|12:51:41.720] indexed block exents                         module=txindex height=559
+I[2023-05-15|12:51:41.721] minted coins from module account             module=x/bank amount=205993217TRM from=mint
+I[2023-05-15|12:51:41.721] executed block                               module=state height=560 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.724] commit synced                                module=server commit=436F6D6D697449447B5B313538203134203131382034302032313820313637203231332031343820313220323032203139203134362031343020373020313538203533203231372036332033382035302032382031353220313331203135203233322031313220323131203138203138302032323920323130203234375D3A3233307D
+I[2023-05-15|12:51:41.724] committed state                              module=state height=560 num_txs=0 app_hash=9E0E7628DAA7D5940CCA13928C469E35D93F26321C98830FE870D312B4E5D2F7
+I[2023-05-15|12:51:41.726] indexed block exents                         module=txindex height=560
+I[2023-05-15|12:51:41.726] minted coins from module account             module=x/bank amount=205993254TRM from=mint
+I[2023-05-15|12:51:41.727] executed block                               module=state height=561 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.729] commit synced                                module=server commit=436F6D6D697449447B5B323437203634203733203231332032392038392035302031363620313135203235302032353320333120383320313231203132362031363320313337203132382031313520323139203232312031383820323320333220313930203232322036342034372031343520313139203335203230345D3A3233317D
+I[2023-05-15|12:51:41.729] committed state                              module=state height=561 num_txs=0 app_hash=F74049D51D5932A673FAFD1F53797EA3898073DBDDBC1720BEDE402F917723CC
+I[2023-05-15|12:51:41.730] indexed block exents                         module=txindex height=561
+I[2023-05-15|12:51:41.731] minted coins from module account             module=x/bank amount=205993291TRM from=mint
+I[2023-05-15|12:51:41.731] executed block                               module=state height=562 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.734] commit synced                                module=server commit=436F6D6D697449447B5B3233203133352036352031333520323431203130382035392032333620313031203232312032303020313330203136392032343020373720323433203233203234312038312032313020313636203634203234302031303220313138203936203230203932203230352031383120383220325D3A3233327D
+I[2023-05-15|12:51:41.734] committed state                              module=state height=562 num_txs=0 app_hash=17874187F16C3BEC65DDC882A9F04DF317F151D2A640F0667660145CCDB55202
+I[2023-05-15|12:51:41.735] indexed block exents                         module=txindex height=562
+I[2023-05-15|12:51:41.736] minted coins from module account             module=x/bank amount=205993328TRM from=mint
+I[2023-05-15|12:51:41.736] executed block                               module=state height=563 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.738] commit synced                                module=server commit=436F6D6D697449447B5B313333203133322032343120363720313736203137382034372032362036342037312031303020373820313733203735203136382032323420313236203139322034382031323020383020363320313036203139382031373020323237203231302037372032333720313934203337203132395D3A3233337D
+I[2023-05-15|12:51:41.738] committed state                              module=state height=563 num_txs=0 app_hash=8584F143B0B22F1A4047644EAD4BA8E07EC03078503F6AC6AAE3D24DEDC22581
+I[2023-05-15|12:51:41.740] indexed block exents                         module=txindex height=563
+I[2023-05-15|12:51:41.740] minted coins from module account             module=x/bank amount=205993365TRM from=mint
+I[2023-05-15|12:51:41.741] executed block                               module=state height=564 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.743] commit synced                                module=server commit=436F6D6D697449447B5B31323720373920313235203820323331203133302031303220313530203233302037322031313320323139203230203831203735203333203130392038352032372032303620313733203134312031363320323239203431203232203130372032303020332031383520313836203130385D3A3233347D
+I[2023-05-15|12:51:41.743] committed state                              module=state height=564 num_txs=0 app_hash=7F4F7D08E7826696E64871DB14514B216D551BCEAD8DA3E529166BC803B9BA6C
+I[2023-05-15|12:51:41.744] indexed block exents                         module=txindex height=564
+I[2023-05-15|12:51:41.745] minted coins from module account             module=x/bank amount=205993402TRM from=mint
+I[2023-05-15|12:51:41.745] executed block                               module=state height=565 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.748] commit synced                                module=server commit=436F6D6D697449447B5B31312031343320313820323231203139332039302036362032342032323520313135203233382031373120313737203131332039203130312037392031343820313633203639203231322034332032343620323138203731203434203233332031373420323431203636203130302037355D3A3233357D
+I[2023-05-15|12:51:41.748] committed state                              module=state height=565 num_txs=0 app_hash=0B8F12DDC15A4218E173EEABB17109654F94A345D42BF6DA472CE9AEF142644B
+I[2023-05-15|12:51:41.749] indexed block exents                         module=txindex height=565
+I[2023-05-15|12:51:41.750] minted coins from module account             module=x/bank amount=205993438TRM from=mint
+I[2023-05-15|12:51:41.750] executed block                               module=state height=566 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.752] commit synced                                module=server commit=436F6D6D697449447B5B3020313831203637203233372031333620343120343420323038203832203730203236203833203736203136203232382032323720313238203431203130342031333220343220313132203136392031383320323230203439203137362031353920313133203120323232203134345D3A3233367D
+I[2023-05-15|12:51:41.752] committed state                              module=state height=566 num_txs=0 app_hash=00B543ED88292CD052461A534C10E4E3802968842A70A9B7DC31B09F7101DE90
+I[2023-05-15|12:51:41.754] indexed block exents                         module=txindex height=566
+I[2023-05-15|12:51:41.754] minted coins from module account             module=x/bank amount=205993475TRM from=mint
+I[2023-05-15|12:51:41.755] executed block                               module=state height=567 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.757] commit synced                                module=server commit=436F6D6D697449447B5B3237203231362034392031373220353420313937203136203132342032353420323138203820313330203135203137312038392034302037392032313320313432203137332032333720353220313820323435203433203134203837203132372032343620333220313831203235345D3A3233377D
+I[2023-05-15|12:51:41.757] committed state                              module=state height=567 num_txs=0 app_hash=1BD831AC36C5107CFEDA08820FAB59284FD58EADED3412F52B0E577FF620B5FE
+I[2023-05-15|12:51:41.758] indexed block exents                         module=txindex height=567
+I[2023-05-15|12:51:41.759] minted coins from module account             module=x/bank amount=205993512TRM from=mint
+I[2023-05-15|12:51:41.759] executed block                               module=state height=568 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.762] commit synced                                module=server commit=436F6D6D697449447B5B3720313034203236203235203639203332203634203535203134342031393720323130203134332032333920313931203230332039312032303420313035203133302038332037203137302034372038342036302031383320313139203233382031303620373320323235203135365D3A3233387D
+I[2023-05-15|12:51:41.762] committed state                              module=state height=568 num_txs=0 app_hash=07681A194520403790C5D28FEFBFCB5BCC69825307AA2F543CB777EE6A49E19C
+I[2023-05-15|12:51:41.763] indexed block exents                         module=txindex height=568
+I[2023-05-15|12:51:41.763] minted coins from module account             module=x/bank amount=205993549TRM from=mint
+I[2023-05-15|12:51:41.764] executed block                               module=state height=569 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.766] commit synced                                module=server commit=436F6D6D697449447B5B3139382031333420313533203534203135372032303020363520313337203637203134362032392038352031373020313136203234322032313420313839203136322032343220353420323335203134382031332034332032323120313336203133342032353320322033322033352035355D3A3233397D
+I[2023-05-15|12:51:41.766] committed state                              module=state height=569 num_txs=0 app_hash=C68699369DC8418943921D55AA74F2D6BDA2F236EB940D2BDD8886FD02202337
+I[2023-05-15|12:51:41.767] indexed block exents                         module=txindex height=569
+I[2023-05-15|12:51:41.768] minted coins from module account             module=x/bank amount=205993586TRM from=mint
+I[2023-05-15|12:51:41.768] executed block                               module=state height=570 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.771] commit synced                                module=server commit=436F6D6D697449447B5B3233362032372031323420313930203330203830203134392031313320323439203739203235342031353720373220313020333820323134203239203135342039332039332032333220323039203139302032303520343820313937203631203020343620323720323235203136325D3A3233417D
+I[2023-05-15|12:51:41.771] committed state                              module=state height=570 num_txs=0 app_hash=EC1B7CBE1E509571F94FFE9D480A26D61D9A5D5DE8D1BECD30C53D002E1BE1A2
+I[2023-05-15|12:51:41.772] indexed block exents                         module=txindex height=570
+I[2023-05-15|12:51:41.773] minted coins from module account             module=x/bank amount=205993623TRM from=mint
+I[2023-05-15|12:51:41.774] executed block                               module=state height=571 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.776] commit synced                                module=server commit=436F6D6D697449447B5B3235342031353420313433203134312032303620323430203137322032333020323235203537203335203234382032343620373520313431203638203732203133382032303420393520323036203830203233302031353120323620383220313238203633203232362031393220313339203133395D3A3233427D
+I[2023-05-15|12:51:41.776] committed state                              module=state height=571 num_txs=0 app_hash=FE9A8F8DCEF0ACE6E13923F8F64B8D44488ACC5FCE50E6971A52803FE2C08B8B
+I[2023-05-15|12:51:41.777] indexed block exents                         module=txindex height=571
+I[2023-05-15|12:51:41.778] minted coins from module account             module=x/bank amount=205993660TRM from=mint
+I[2023-05-15|12:51:41.778] executed block                               module=state height=572 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.780] commit synced                                module=server commit=436F6D6D697449447B5B3920373720313033203131372036392032333320333120323439203131372031313820343820323131203533203530203231312031353520383620313534203937203532203237203137332033352031343820313133203636203233322032343120313936203130392036332031335D3A3233437D
+I[2023-05-15|12:51:41.780] committed state                              module=state height=572 num_txs=0 app_hash=094D677545E91FF9757630D33532D39B569A61341BAD23947142E8F1C46D3F0D
+I[2023-05-15|12:51:41.782] indexed block exents                         module=txindex height=572
+I[2023-05-15|12:51:41.782] minted coins from module account             module=x/bank amount=205993697TRM from=mint
+I[2023-05-15|12:51:41.783] executed block                               module=state height=573 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.785] commit synced                                module=server commit=436F6D6D697449447B5B363720333520313332203137322031313520373820313136203131392036302031362031323920323138203138382032323120313833203437203333203431203234302032322031323820383620313639203839203136382031313220313337203136332031333420383220323233203135315D3A3233447D
+I[2023-05-15|12:51:41.785] committed state                              module=state height=573 num_txs=0 app_hash=432384AC734E74773C1081DABCDDB72F2129F0168056A959A87089A38652DF97
+I[2023-05-15|12:51:41.786] indexed block exents                         module=txindex height=573
+I[2023-05-15|12:51:41.787] minted coins from module account             module=x/bank amount=205993733TRM from=mint
+I[2023-05-15|12:51:41.787] executed block                               module=state height=574 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.790] commit synced                                module=server commit=436F6D6D697449447B5B353620333420323033203134352032333820313931203534203231342036392033392031373220393720302031343320313037203739203134312037322031333120313720373020313034203439203738203734203132342032302032303720313635203230392034203131325D3A3233457D
+I[2023-05-15|12:51:41.790] committed state                              module=state height=574 num_txs=0 app_hash=3822CB91EEBF36D64527AC61008F6B4F8D4883114668314E4A7C14CFA5D10470
+I[2023-05-15|12:51:41.791] indexed block exents                         module=txindex height=574
+I[2023-05-15|12:51:41.792] minted coins from module account             module=x/bank amount=205993770TRM from=mint
+I[2023-05-15|12:51:41.792] executed block                               module=state height=575 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.794] commit synced                                module=server commit=436F6D6D697449447B5B383320323033203139203231352037342032303820323433203439203233352031323120363320353620393220313636203139362031333320323031203132342038332032333620313839203130342031313020313020313935203832203232392035203435203639203632203232315D3A3233467D
+I[2023-05-15|12:51:41.794] committed state                              module=state height=575 num_txs=0 app_hash=53CB13D74AD0F331EB793F385CA6C485C97C53ECBD686E0AC352E5052D453EDD
+I[2023-05-15|12:51:41.795] indexed block exents                         module=txindex height=575
+I[2023-05-15|12:51:41.796] minted coins from module account             module=x/bank amount=205993807TRM from=mint
+I[2023-05-15|12:51:41.796] executed block                               module=state height=576 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.799] commit synced                                module=server commit=436F6D6D697449447B5B3232382037342031323520323439203235312035392032323320353120313120313733203136352030203235302031203230302032362032313720343620313337203934203133203838203132372031303820313139203139302032303320393420353020323439203133332035395D3A3234307D
+I[2023-05-15|12:51:41.799] committed state                              module=state height=576 num_txs=0 app_hash=E44A7DF9FB3BDF330BADA500FA01C81AD92E895E0D587F6C77BECB5E32F9853B
+I[2023-05-15|12:51:41.800] indexed block exents                         module=txindex height=576
+I[2023-05-15|12:51:41.801] minted coins from module account             module=x/bank amount=205993844TRM from=mint
+I[2023-05-15|12:51:41.801] executed block                               module=state height=577 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.803] commit synced                                module=server commit=436F6D6D697449447B5B313437203132372032323620313732203234392034203532203130392032313320393320353120362037302036352032343720353920333220313432203233203137352039362031333920323430203231203232302032353320383120393220313639203731203734203230385D3A3234317D
+I[2023-05-15|12:51:41.803] committed state                              module=state height=577 num_txs=0 app_hash=937FE2ACF904346DD55D33064641F73B208E17AF608BF015DCFD515CA9474AD0
+I[2023-05-15|12:51:41.805] indexed block exents                         module=txindex height=577
+I[2023-05-15|12:51:41.805] minted coins from module account             module=x/bank amount=205993881TRM from=mint
+I[2023-05-15|12:51:41.806] executed block                               module=state height=578 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.808] commit synced                                module=server commit=436F6D6D697449447B5B38312038322032353320353920313935203433203120313631203934203230342032353420323032203538203136352035322032313520353720313020323532203231322032333420323231203830203138322034362032313220393220323039203234302032303720313035203135315D3A3234327D
+I[2023-05-15|12:51:41.808] committed state                              module=state height=578 num_txs=0 app_hash=5152FD3BC32B01A15ECCFECA3AA534D7390AFCD4EADD50B62ED45CD1F0CF6997
+I[2023-05-15|12:51:41.809] indexed block exents                         module=txindex height=578
+I[2023-05-15|12:51:41.810] minted coins from module account             module=x/bank amount=205993918TRM from=mint
+I[2023-05-15|12:51:41.810] executed block                               module=state height=579 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.813] commit synced                                module=server commit=436F6D6D697449447B5B3832203131332031353420313720313833203134322031393820323531203134352031303120323431203620323230203332203432203133312031373220313632203134312031363620313931203539203438203136342031383920343420373420373720313632203234352032303120335D3A3234337D
+I[2023-05-15|12:51:41.813] committed state                              module=state height=579 num_txs=0 app_hash=52719A11B78EC6FB9165F106DC202A83ACA28DA6BF3B30A4BD2C4A4DA2F5C903
+I[2023-05-15|12:51:41.814] indexed block exents                         module=txindex height=579
+I[2023-05-15|12:51:41.814] minted coins from module account             module=x/bank amount=205993955TRM from=mint
+I[2023-05-15|12:51:41.815] executed block                               module=state height=580 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.818] commit synced                                module=server commit=436F6D6D697449447B5B363720313430203233382032372031343420393620313532203631203334203232302032303620323234203636203235342031382035362031312038332032343020313231203231342039362037352031383120323232203237203133322035372039372031343420323132203131365D3A3234347D
+I[2023-05-15|12:51:41.818] committed state                              module=state height=580 num_txs=0 app_hash=438CEE1B9060983D22DCCEE042FE12380B53F079D6604BB5DE1B84396190D474
+I[2023-05-15|12:51:41.819] indexed block exents                         module=txindex height=580
+I[2023-05-15|12:51:41.819] minted coins from module account             module=x/bank amount=205993992TRM from=mint
+I[2023-05-15|12:51:41.820] executed block                               module=state height=581 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.822] commit synced                                module=server commit=436F6D6D697449447B5B313730203230203132392032323620313030203234332031353920313632203220313832203130362031383420393020313331203133382031303320363820383120313834203234332032303720323238203235312031333020313230203131203130352036372031343120313231203139322033305D3A3234357D
+I[2023-05-15|12:51:41.822] committed state                              module=state height=581 num_txs=0 app_hash=AA1481E264F39FA202B66AB85A838A674451B8F3CFE4FB82780B69438D79C01E
+I[2023-05-15|12:51:41.823] indexed block exents                         module=txindex height=581
+I[2023-05-15|12:51:41.824] minted coins from module account             module=x/bank amount=205994028TRM from=mint
+I[2023-05-15|12:51:41.824] executed block                               module=state height=582 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.827] commit synced                                module=server commit=436F6D6D697449447B5B38362037342037302034362032343620313720313430203831203839203638203131362038332031342033332031393220353220313232203231332031392037322032353120332039382037392031313920363020323037203230372031373920323333203135332037375D3A3234367D
+I[2023-05-15|12:51:41.827] committed state                              module=state height=582 num_txs=0 app_hash=564A462EF6118C51594474530E21C0347AD51348FB03624F773CCFCFB3E9994D
+I[2023-05-15|12:51:41.828] indexed block exents                         module=txindex height=582
+I[2023-05-15|12:51:41.829] minted coins from module account             module=x/bank amount=205994065TRM from=mint
+I[2023-05-15|12:51:41.829] executed block                               module=state height=583 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.831] commit synced                                module=server commit=436F6D6D697449447B5B3631203635203231203933203131332031393420313037203131392031333720343620323020323130203132352031343720313020353520383020313238203131362032333520313020313739203231302036352039372031303420313031203136352032323220313435203232382031315D3A3234377D
+I[2023-05-15|12:51:41.831] committed state                              module=state height=583 num_txs=0 app_hash=3D41155D71C26B77892E14D27D930A37508074EB0AB3D241616865A5DE91E40B
+I[2023-05-15|12:51:41.833] indexed block exents                         module=txindex height=583
+I[2023-05-15|12:51:41.833] minted coins from module account             module=x/bank amount=205994102TRM from=mint
+I[2023-05-15|12:51:41.834] executed block                               module=state height=584 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.836] commit synced                                module=server commit=436F6D6D697449447B5B3138382032313320313720323136203137302037203138332031363420323239203132352031373820313938203937203638203535203230382031313020323134203931203234302032312032333420323433203132203136332032313520313338203133352033362039332031383920305D3A3234387D
+I[2023-05-15|12:51:41.836] committed state                              module=state height=584 num_txs=0 app_hash=BCD511D8AA07B7A4E57DB2C6614437D06ED65BF015EAF30CA3D78A87245DBD00
+I[2023-05-15|12:51:41.837] indexed block exents                         module=txindex height=584
+I[2023-05-15|12:51:41.838] minted coins from module account             module=x/bank amount=205994139TRM from=mint
+I[2023-05-15|12:51:41.838] executed block                               module=state height=585 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.841] commit synced                                module=server commit=436F6D6D697449447B5B3833203234322032303320313031203234342033372034312037342039322031313720313735203939203731203231302033332031393220393620323139203232372031302031333320373620313620383820323139203620313233203131382031353020313233203130352035395D3A3234397D
+I[2023-05-15|12:51:41.841] committed state                              module=state height=585 num_txs=0 app_hash=53F2CB65F425294A5C75AF6347D221C060DBE30A854C1058DB067B76967B693B
+I[2023-05-15|12:51:41.842] indexed block exents                         module=txindex height=585
+I[2023-05-15|12:51:41.843] minted coins from module account             module=x/bank amount=205994176TRM from=mint
+I[2023-05-15|12:51:41.843] executed block                               module=state height=586 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.845] commit synced                                module=server commit=436F6D6D697449447B5B3233312031373620323531203734203535203233392038203131332037362032343020313134203234362036203139382037352031393220323131203132342031333520313832203535203138302032332031342031363420313434203138312037362039322031372037203232385D3A3234417D
+I[2023-05-15|12:51:41.845] committed state                              module=state height=586 num_txs=0 app_hash=E7B0FB4A37EF08714CF072F606C64BC0D37C87B637B4170EA490B54C5C1107E4
+I[2023-05-15|12:51:41.846] indexed block exents                         module=txindex height=586
+I[2023-05-15|12:51:41.847] minted coins from module account             module=x/bank amount=205994213TRM from=mint
+I[2023-05-15|12:51:41.847] executed block                               module=state height=587 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.850] commit synced                                module=server commit=436F6D6D697449447B5B3534203236203132322031383320333420323132203232312032343620313037203134382035312031323720313534203833203536203233372031333220323132203233312038302035392039312032353320313036203731203133302037392031382037332032313020313535203138315D3A3234427D
+I[2023-05-15|12:51:41.850] committed state                              module=state height=587 num_txs=0 app_hash=361A7AB722D4DDF66B94337F9A5338ED84D4E7503B5BFD6A47824F1249D29BB5
+I[2023-05-15|12:51:41.851] indexed block exents                         module=txindex height=587
+I[2023-05-15|12:51:41.852] minted coins from module account             module=x/bank amount=205994250TRM from=mint
+I[2023-05-15|12:51:41.852] executed block                               module=state height=588 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.854] commit synced                                module=server commit=436F6D6D697449447B5B32303820313536203138203235302037322036203635203138382032303820313738203136203833203130322031303420363520313733203232312036382036352039332031373620313735203233372034382031323920313732203231203135332031303620313836203139203137325D3A3234437D
+I[2023-05-15|12:51:41.854] committed state                              module=state height=588 num_txs=0 app_hash=D09C12FA480641BCD0B21053666841ADDD44415DB0AFED3081AC15996ABA13AC
+I[2023-05-15|12:51:41.856] indexed block exents                         module=txindex height=588
+I[2023-05-15|12:51:41.856] minted coins from module account             module=x/bank amount=205994287TRM from=mint
+I[2023-05-15|12:51:41.857] executed block                               module=state height=589 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.859] commit synced                                module=server commit=436F6D6D697449447B5B393720323338203137332032323720313530203131392034352032333120323031203239203738203133312036342032333520313539203835203130342038382031373820323132203130372035203130302036362031382031303320313837203834203936203136203239203132385D3A3234447D
+I[2023-05-15|12:51:41.859] committed state                              module=state height=589 num_txs=0 app_hash=61EEADE396772DE7C91D4E8340EB9F556858B2D46B0564421267BB5460101D80
+I[2023-05-15|12:51:41.861] indexed block exents                         module=txindex height=589
+I[2023-05-15|12:51:41.861] minted coins from module account             module=x/bank amount=205994323TRM from=mint
+I[2023-05-15|12:51:41.862] executed block                               module=state height=590 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.865] commit synced                                module=server commit=436F6D6D697449447B5B353820313132203232312031373020343720313431203230352038372032333820313620383520312037332032323620313530203133302032352035203132392032352032303420323434203131392033312032323620323236203535203138332034312032323320313538203232355D3A3234457D
+I[2023-05-15|12:51:41.865] committed state                              module=state height=590 num_txs=0 app_hash=3A70DDAA2F8DCD57EE10550149E2968219058119CCF4771FE2E237B729DF9EE1
+I[2023-05-15|12:51:41.866] indexed block exents                         module=txindex height=590
+I[2023-05-15|12:51:41.867] minted coins from module account             module=x/bank amount=205994360TRM from=mint
+I[2023-05-15|12:51:41.867] executed block                               module=state height=591 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.870] commit synced                                module=server commit=436F6D6D697449447B5B33302032303220313835203534203139372032323820333020313220383420313134203139332031343020323434203130203232203334203234312032303920373520313832203233352038362031363320323032203734203137362032342039203130382032203930203136345D3A3234467D
+I[2023-05-15|12:51:41.870] committed state                              module=state height=591 num_txs=0 app_hash=1ECAB936C5E41E0C5472C18CF40A1622F1D14BB6EB56A3CA4AB018096C025AA4
+I[2023-05-15|12:51:41.872] indexed block exents                         module=txindex height=591
+I[2023-05-15|12:51:41.872] minted coins from module account             module=x/bank amount=205994397TRM from=mint
+I[2023-05-15|12:51:41.873] executed block                               module=state height=592 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.876] commit synced                                module=server commit=436F6D6D697449447B5B313530203530203235312032362032302032343620393620343820323232203135302039322031333520323130203335203539203232392031363220353920313620353520313039203230302032343020363520313736203231312036322032343220373220373120313630203234305D3A3235307D
+I[2023-05-15|12:51:41.876] committed state                              module=state height=592 num_txs=0 app_hash=9632FB1A14F66030DE965C87D2233BE5A23B10376DC8F041B0D33EF24847A0F0
+I[2023-05-15|12:51:41.877] indexed block exents                         module=txindex height=592
+I[2023-05-15|12:51:41.878] minted coins from module account             module=x/bank amount=205994434TRM from=mint
+I[2023-05-15|12:51:41.878] executed block                               module=state height=593 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.880] commit synced                                module=server commit=436F6D6D697449447B5B3232362031353820313720313631203631203530203131382031383220323433203620373720323230203139302031373320323534203134342037322031333720313534203131382035332035352032343320313020323134203233352037302037302031363020323335203131352037325D3A3235317D
+I[2023-05-15|12:51:41.880] committed state                              module=state height=593 num_txs=0 app_hash=E29E11A13D3276B6F3064DDCBEADFE9048899A763537F30AD6EB4646A0EB7348
+I[2023-05-15|12:51:41.882] indexed block exents                         module=txindex height=593
+I[2023-05-15|12:51:41.882] minted coins from module account             module=x/bank amount=205994471TRM from=mint
+I[2023-05-15|12:51:41.883] executed block                               module=state height=594 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.885] commit synced                                module=server commit=436F6D6D697449447B5B31363520313738203136352034302035382031353320323620313539203130312036342039362036302032303620353320313334203230372031343820313439203132302031393520313931203232322036203138322033332032302032343320323920393120323531203532203137345D3A3235327D
+I[2023-05-15|12:51:41.885] committed state                              module=state height=594 num_txs=0 app_hash=A5B2A5283A991A9F6540603CCE3586CF949578C3BFDE06B62114F31D5BFB34AE
+I[2023-05-15|12:51:41.886] indexed block exents                         module=txindex height=594
+I[2023-05-15|12:51:41.887] minted coins from module account             module=x/bank amount=205994508TRM from=mint
+I[2023-05-15|12:51:41.887] executed block                               module=state height=595 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.890] commit synced                                module=server commit=436F6D6D697449447B5B3433203133352039362031313120323534203135312032353220313633203236203334203233203234362031393920383420313633203233372032353520373320383220323532203232332031393920313520353820343820373520313432203231362032333820313130203939203233395D3A3235337D
+I[2023-05-15|12:51:41.890] committed state                              module=state height=595 num_txs=0 app_hash=2B87606FFE97FCA31A2217F6C754A3EDFF4952FCDFC70F3A304B8ED8EE6E63EF
+I[2023-05-15|12:51:41.891] indexed block exents                         module=txindex height=595
+I[2023-05-15|12:51:41.892] minted coins from module account             module=x/bank amount=205994545TRM from=mint
+I[2023-05-15|12:51:41.892] executed block                               module=state height=596 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.895] commit synced                                module=server commit=436F6D6D697449447B5B31313420323020313736203538203939203138372039312031333020313131203139382031313720313639203232332036372037352033203235342032343920313833203534203232312034312031353720313132203230382032343020393820323034203235302035203135302031395D3A3235347D
+I[2023-05-15|12:51:41.895] committed state                              module=state height=596 num_txs=0 app_hash=7214B03A63BB5B826FC675A9DF434B03FEF9B736DD299D70D0F062CCFA059613
+I[2023-05-15|12:51:41.896] indexed block exents                         module=txindex height=596
+I[2023-05-15|12:51:41.897] minted coins from module account             module=x/bank amount=205994582TRM from=mint
+I[2023-05-15|12:51:41.897] executed block                               module=state height=597 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.899] commit synced                                module=server commit=436F6D6D697449447B5B33332033352037312034312031342036322031373120313434203235312031353620313030203939203131372034332031363420323434203130302032303620343220313534203732203437203131392031302032323520313120393720313439203520333820313330203132365D3A3235357D
+I[2023-05-15|12:51:41.899] committed state                              module=state height=597 num_txs=0 app_hash=212347290E3EAB90FB9C6463752BA4F464CE2A9A482F770AE10B61950526827E
+I[2023-05-15|12:51:41.901] indexed block exents                         module=txindex height=597
+I[2023-05-15|12:51:41.901] minted coins from module account             module=x/bank amount=205994618TRM from=mint
+I[2023-05-15|12:51:41.902] executed block                               module=state height=598 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.904] commit synced                                module=server commit=436F6D6D697449447B5B3230392032313620323438203238203236203234392032343820313731203136342031383620313534203436203333203138312031313920313134203131312032313620352033382032372032313520313035203531203236203331203837203134203737203235312032342035385D3A3235367D
+I[2023-05-15|12:51:41.904] committed state                              module=state height=598 num_txs=0 app_hash=D1D8F81C1AF9F8ABA4BA9A2E21B577726FD805261BD769331A1F570E4DFB183A
+I[2023-05-15|12:51:41.905] indexed block exents                         module=txindex height=598
+I[2023-05-15|12:51:41.906] minted coins from module account             module=x/bank amount=205994655TRM from=mint
+I[2023-05-15|12:51:41.906] executed block                               module=state height=599 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.909] commit synced                                module=server commit=436F6D6D697449447B5B3131342032313520313320343220373220313930203135203133352031353420363420332031373320313030203234362031313420313934203537203634203932203939203130312035382032333120373320313233203137203132332032353220323535203134382036332031315D3A3235377D
+I[2023-05-15|12:51:41.909] committed state                              module=state height=599 num_txs=0 app_hash=72D70D2A48BE0F879A4003AD64F672C239405C63653AE7497B117BFCFF943F0B
+I[2023-05-15|12:51:41.910] indexed block exents                         module=txindex height=599
+I[2023-05-15|12:51:41.911] minted coins from module account             module=x/bank amount=205994692TRM from=mint
+I[2023-05-15|12:51:41.911] executed block                               module=state height=600 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.914] commit synced                                module=server commit=436F6D6D697449447B5B323030203231372033322036352035302031343720323432203132332039203233203133352033382033372034352034322037392031313720313432203639203135342030203730203932203136312032323020313735203239203734203839203230322038322035345D3A3235387D
+I[2023-05-15|12:51:41.914] committed state                              module=state height=600 num_txs=0 app_hash=C8D920413293F27B09178726252D2A4F758E459A00465CA1DCAF1D4A59CA5236
+I[2023-05-15|12:51:41.915] indexed block exents                         module=txindex height=600
+I[2023-05-15|12:51:41.916] minted coins from module account             module=x/bank amount=205994729TRM from=mint
+I[2023-05-15|12:51:41.916] executed block                               module=state height=601 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.918] commit synced                                module=server commit=436F6D6D697449447B5B323139203139352031382032303120383220313334203133302031323920313934203139392032303820323530203134332031373320323036203637203137382031313320383220313331203130203735203137352031373920323535203332203132392031313920312032303620313630203234355D3A3235397D
+I[2023-05-15|12:51:41.919] committed state                              module=state height=601 num_txs=0 app_hash=DBC312C952868281C2C7D0FA8FADCE43B27152830A4BAFB3FF20817701CEA0F5
+I[2023-05-15|12:51:41.920] indexed block exents                         module=txindex height=601
+I[2023-05-15|12:51:41.920] minted coins from module account             module=x/bank amount=205994766TRM from=mint
+I[2023-05-15|12:51:41.921] executed block                               module=state height=602 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.923] commit synced                                module=server commit=436F6D6D697449447B5B31383020323320393020393720313439203132312036392032343720313935203233362032322031203234382032333320373020313430203536203232302031343320393720373820323030203931203331203130342034392036322035372031383520313637203232372039325D3A3235417D
+I[2023-05-15|12:51:41.923] committed state                              module=state height=602 num_txs=0 app_hash=B4175A61957945F7C3EC1601F8E9468C38DC8F614EC85B1F68313E39B9A7E35C
+I[2023-05-15|12:51:41.924] indexed block exents                         module=txindex height=602
+I[2023-05-15|12:51:41.925] minted coins from module account             module=x/bank amount=205994803TRM from=mint
+I[2023-05-15|12:51:41.925] executed block                               module=state height=603 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.928] commit synced                                module=server commit=436F6D6D697449447B5B3735203633203734203134302031393720323430203231312031323120313038203937203231332033392039362036392031393720323033203133322032313720313831203137372033372032343720313135203135203232203233312031343520323020313334203633203231332032335D3A3235427D
+I[2023-05-15|12:51:41.928] committed state                              module=state height=603 num_txs=0 app_hash=4B3F4A8CC5F0D3796C61D5276045C5CB84D9B5B125F7730F16E79114863FD517
+I[2023-05-15|12:51:41.929] indexed block exents                         module=txindex height=603
+I[2023-05-15|12:51:41.930] minted coins from module account             module=x/bank amount=205994840TRM from=mint
+I[2023-05-15|12:51:41.930] executed block                               module=state height=604 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.932] commit synced                                module=server commit=436F6D6D697449447B5B393520343220313133203639203230302033352038382034392032343820313033203232372031303120313720313830203234342031372032303420313731203634203133352032323720393620313231203137302032343020313931203233312031303120323335203835203231332034395D3A3235437D
+I[2023-05-15|12:51:41.933] committed state                              module=state height=604 num_txs=0 app_hash=5F2A7145C8235831F867E36511B4F411CCAB4087E36079AAF0BFE765EB55D531
+I[2023-05-15|12:51:41.934] indexed block exents                         module=txindex height=604
+I[2023-05-15|12:51:41.935] minted coins from module account             module=x/bank amount=205994877TRM from=mint
+I[2023-05-15|12:51:41.936] executed block                               module=state height=605 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.938] commit synced                                module=server commit=436F6D6D697449447B5B3538203237203137372038382031392031383820353220383820313339203139322031373420323520333320353120363620393820313834203133382038372039392039332032323220313038203220333920313934203935203232362035382031363820313237203137395D3A3235447D
+I[2023-05-15|12:51:41.938] committed state                              module=state height=605 num_txs=0 app_hash=3A1BB15813BC34588BC0AE1921334262B88A57635DDE6C0227C25FE23AA87FB3
+I[2023-05-15|12:51:41.939] indexed block exents                         module=txindex height=605
+I[2023-05-15|12:51:41.940] minted coins from module account             module=x/bank amount=205994914TRM from=mint
+I[2023-05-15|12:51:41.941] executed block                               module=state height=606 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.943] commit synced                                module=server commit=436F6D6D697449447B5B393020313336203233342032353420313635203331203139312031343220323236203335203139362031323420363020373520323239203132332038382032353520323235203135352032353220323430203536203534203235332031313320313936203020332032392035203133325D3A3235457D
+I[2023-05-15|12:51:41.943] committed state                              module=state height=606 num_txs=0 app_hash=5A88EAFEA51FBF8EE223C47C3C4BE57B58FFE19BFCF03836FD71C400031D0584
+I[2023-05-15|12:51:41.944] indexed block exents                         module=txindex height=606
+I[2023-05-15|12:51:41.945] minted coins from module account             module=x/bank amount=205994950TRM from=mint
+I[2023-05-15|12:51:41.945] executed block                               module=state height=607 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.948] commit synced                                module=server commit=436F6D6D697449447B5B32303020313831203137312031383820313820323432203539203820323137203134203133392031383820313734203235352031343520383720323532203136372031373520323236203139203020313736203131302031343420313830203133203920313933203232322038392031335D3A3235467D
+I[2023-05-15|12:51:41.948] committed state                              module=state height=607 num_txs=0 app_hash=C8B5ABBC12F23B08D90E8BBCAEFF9157FCA7AFE21300B06E90B40D09C1DE590D
+I[2023-05-15|12:51:41.949] indexed block exents                         module=txindex height=607
+I[2023-05-15|12:51:41.950] minted coins from module account             module=x/bank amount=205994987TRM from=mint
+I[2023-05-15|12:51:41.950] executed block                               module=state height=608 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.953] commit synced                                module=server commit=436F6D6D697449447B5B32323520313134203131342032303120313833203533203138322038382037203130392031373020323230203235312031343920323720363120313133203136203634203135342031313920383720313939203131352039322037372032333020323231203136342032372030203138385D3A3236307D
+I[2023-05-15|12:51:41.953] committed state                              module=state height=608 num_txs=0 app_hash=E17272C9B735B658076DAADCFB951B3D7110409A7757C7735C4DE6DDA41B00BC
+I[2023-05-15|12:51:41.954] indexed block exents                         module=txindex height=608
+I[2023-05-15|12:51:41.955] minted coins from module account             module=x/bank amount=205995024TRM from=mint
+I[2023-05-15|12:51:41.955] executed block                               module=state height=609 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.958] commit synced                                module=server commit=436F6D6D697449447B5B31303420323531203232382033362032333920383620313930203639203835203132352031383920373720353920313935203136352032303320313338203233372032313020323337203134352034352032333320323139203134322031393820343820323333203136352031373220313430203134325D3A3236317D
+I[2023-05-15|12:51:41.958] committed state                              module=state height=609 num_txs=0 app_hash=68FBE424EF56BE45557DBD4D3BC3A5CB8AEDD2ED912DE9DB8EC630E9A5AC8C8E
+I[2023-05-15|12:51:41.959] indexed block exents                         module=txindex height=609
+I[2023-05-15|12:51:41.959] minted coins from module account             module=x/bank amount=205995061TRM from=mint
+I[2023-05-15|12:51:41.960] executed block                               module=state height=610 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.963] commit synced                                module=server commit=436F6D6D697449447B5B313239203139322038372031313620323037203233372033302032382032323020323239203831203132352031343520313634203233362031343920323020323431203230332031313220373520323031203135302031333420313835203230342031303420383820333620313931203131392034335D3A3236327D
+I[2023-05-15|12:51:41.963] committed state                              module=state height=610 num_txs=0 app_hash=81C05774CFED1E1CDCE5517D91A4EC9514F1CB704BC99686B9CC685824BF772B
+I[2023-05-15|12:51:41.964] indexed block exents                         module=txindex height=610
+I[2023-05-15|12:51:41.964] minted coins from module account             module=x/bank amount=205995098TRM from=mint
+I[2023-05-15|12:51:41.965] executed block                               module=state height=611 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.967] commit synced                                module=server commit=436F6D6D697449447B5B343820323138203334203136203139372031353120313736203134342032343620323338203232322031383520313730203132372036312031313620313139203137312032333320323233203620323430203736203136342039352034382031343920313339203832203230302032312039325D3A3236337D
+I[2023-05-15|12:51:41.967] committed state                              module=state height=611 num_txs=0 app_hash=30DA2210C597B090F6EEDEB9AA7F3D7477ABE9DF06F04CA45F30958B52C8155C
+I[2023-05-15|12:51:41.969] indexed block exents                         module=txindex height=611
+I[2023-05-15|12:51:41.969] minted coins from module account             module=x/bank amount=205995135TRM from=mint
+I[2023-05-15|12:51:41.970] executed block                               module=state height=612 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.972] commit synced                                module=server commit=436F6D6D697449447B5B36362031343720313739203135203131312033342039342036312032313520382032343320313639203232342033392031383720383420313734203234302037392037382031393520313039203235332032353320373820332031343420352031333120313835203431203234355D3A3236347D
+I[2023-05-15|12:51:41.972] committed state                              module=state height=612 num_txs=0 app_hash=4293B30F6F225E3DD708F3A9E027BB54AEF04F4EC36DFDFD4E03900583B929F5
+I[2023-05-15|12:51:41.973] indexed block exents                         module=txindex height=612
+I[2023-05-15|12:51:41.974] minted coins from module account             module=x/bank amount=205995172TRM from=mint
+I[2023-05-15|12:51:41.974] executed block                               module=state height=613 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.976] commit synced                                module=server commit=436F6D6D697449447B5B3137322032323420313137203134302039203235342031343420343420323535203131372037342030203236203130302031322039332031333920313230203232352036352036382031393820363320323435203234302031363220313836203137302032323820313234203137302036345D3A3236357D
+I[2023-05-15|12:51:41.976] committed state                              module=state height=613 num_txs=0 app_hash=ACE0758C09FE902CFF754A001A640C5D8B78E14144C63FF5F0A2BAAAE47CAA40
+I[2023-05-15|12:51:41.978] indexed block exents                         module=txindex height=613
+I[2023-05-15|12:51:41.978] minted coins from module account             module=x/bank amount=205995209TRM from=mint
+I[2023-05-15|12:51:41.979] executed block                               module=state height=614 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.981] commit synced                                module=server commit=436F6D6D697449447B5B31353520313237203834203134312031383020323336203235352036322039322031323520313831203233342031362032203632203130302031333520323030203130302031343820323439203439203137203230203135392031313720343520363820323820323420362038335D3A3236367D
+I[2023-05-15|12:51:41.981] committed state                              module=state height=614 num_txs=0 app_hash=9B7F548DB4ECFF3E5C7DB5EA10023E6487C86494F93111149F752D441C180653
+I[2023-05-15|12:51:41.982] indexed block exents                         module=txindex height=614
+I[2023-05-15|12:51:41.983] minted coins from module account             module=x/bank amount=205995245TRM from=mint
+I[2023-05-15|12:51:41.984] executed block                               module=state height=615 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.987] commit synced                                module=server commit=436F6D6D697449447B5B313534203538203234382032332031312038322032312032353520323439203320323431203230372032303320323133203838203433203233372036302031323020353920323231203920313630203638203137352031312030203332203538203130382038392031355D3A3236377D
+I[2023-05-15|12:51:41.987] committed state                              module=state height=615 num_txs=0 app_hash=9A3AF8170B5215FFF903F1CFCBD5582BED3C783BDD09A044AF0B00203A6C590F
+I[2023-05-15|12:51:41.988] indexed block exents                         module=txindex height=615
+I[2023-05-15|12:51:41.989] minted coins from module account             module=x/bank amount=205995282TRM from=mint
+I[2023-05-15|12:51:41.989] executed block                               module=state height=616 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.992] commit synced                                module=server commit=436F6D6D697449447B5B3132392038342032323920312031333020343920333020353420333220373220323134203235312031362031392031383920313235203231332031333520313433203137312032313920313431203130322031312031383520363620313233203134332031343920323237203233372031355D3A3236387D
+I[2023-05-15|12:51:41.992] committed state                              module=state height=616 num_txs=0 app_hash=8154E50182311E362048D6FB1013BD7DD5878FABDB8D660BB9427B8F95E3ED0F
+I[2023-05-15|12:51:41.993] indexed block exents                         module=txindex height=616
+I[2023-05-15|12:51:41.994] minted coins from module account             module=x/bank amount=205995319TRM from=mint
+I[2023-05-15|12:51:41.994] executed block                               module=state height=617 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:41.996] commit synced                                module=server commit=436F6D6D697449447B5B313133203234382035342037312033342031333020323438203535203139203135352031303220313537203636203630203837203136332031303020313533203132332031312034372032303720313030203133382031313820323035203134332035362031352031323120323038203234315D3A3236397D
+I[2023-05-15|12:51:41.996] committed state                              module=state height=617 num_txs=0 app_hash=71F836472282F837139B669D423C57A364997B0B2FCF648A76CD8F380F79D0F1
+I[2023-05-15|12:51:41.997] indexed block exents                         module=txindex height=617
+I[2023-05-15|12:51:41.998] minted coins from module account             module=x/bank amount=205995356TRM from=mint
+I[2023-05-15|12:51:41.998] executed block                               module=state height=618 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.001] commit synced                                module=server commit=436F6D6D697449447B5B31393920353620313637203330203130203230392035302031323420383820313834203737203130372031323920313734203233322031313120333920333920323033203132352031343320363720313739203131372039302035382035332031343820363120313139203431203230325D3A3236417D
+I[2023-05-15|12:51:42.001] committed state                              module=state height=618 num_txs=0 app_hash=C738A71E0AD1327C58B84D6B81AEE86F2727CB7D8F43B3755A3A35943D7729CA
+I[2023-05-15|12:51:42.002] indexed block exents                         module=txindex height=618
+I[2023-05-15|12:51:42.003] minted coins from module account             module=x/bank amount=205995393TRM from=mint
+I[2023-05-15|12:51:42.003] executed block                               module=state height=619 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.006] commit synced                                module=server commit=436F6D6D697449447B5B313636203134203234362034392032313620383420382031323220373320323236203836203233322035342031363120313031203139362031323920323234203537203632203139302031393820323820393420313838203736203231362031363420373520313236203137302031325D3A3236427D
+I[2023-05-15|12:51:42.006] committed state                              module=state height=619 num_txs=0 app_hash=A60EF631D854087A49E256E836A165C481E0393EBEC61C5EBC4CD8A44B7EAA0C
+I[2023-05-15|12:51:42.007] indexed block exents                         module=txindex height=619
+I[2023-05-15|12:51:42.007] minted coins from module account             module=x/bank amount=205995430TRM from=mint
+I[2023-05-15|12:51:42.008] executed block                               module=state height=620 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.011] commit synced                                module=server commit=436F6D6D697449447B5B333820393820363020333720323034203337203234382031373820313335203132352033342032323620323030203134332031313620373520343820333520323220352031343320333720323438203231302032343120353620313835203533203631203230312034332039385D3A3236437D
+I[2023-05-15|12:51:42.011] committed state                              module=state height=620 num_txs=0 app_hash=26623C25CC25F8B2877D22E2C88F744B302316058F25F8D2F138B9353DC92B62
+I[2023-05-15|12:51:42.012] indexed block exents                         module=txindex height=620
+I[2023-05-15|12:51:42.013] minted coins from module account             module=x/bank amount=205995467TRM from=mint
+I[2023-05-15|12:51:42.013] executed block                               module=state height=621 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.015] commit synced                                module=server commit=436F6D6D697449447B5B313034203638203130372031353420323034203231382039302032323020323334203932203337203132302031332036312031323920343420323139203233203233322032333520313835203130332036332032313920323235203235352031393720313739203231372031383820313539203233395D3A3236447D
+I[2023-05-15|12:51:42.015] committed state                              module=state height=621 num_txs=0 app_hash=68446B9ACCDA5ADCEA5C25780D3D812CDB17E8EBB9673FDBE1FFC5B3D9BC9FEF
+I[2023-05-15|12:51:42.017] indexed block exents                         module=txindex height=621
+I[2023-05-15|12:51:42.017] minted coins from module account             module=x/bank amount=205995504TRM from=mint
+I[2023-05-15|12:51:42.018] executed block                               module=state height=622 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.020] commit synced                                module=server commit=436F6D6D697449447B5B32313020313536203730203131392032313220313239203139382031353320353020313034203539203231312035392033203132332032323820343520323530203431203139203833203838203931203120313436203333203130372039342032343120323238203336203139315D3A3236457D
+I[2023-05-15|12:51:42.020] committed state                              module=state height=622 num_txs=0 app_hash=D29C4677D481C69932683BD33B037BE42DFA291353585B0192216B5EF1E424BF
+I[2023-05-15|12:51:42.021] indexed block exents                         module=txindex height=622
+I[2023-05-15|12:51:42.022] minted coins from module account             module=x/bank amount=205995540TRM from=mint
+I[2023-05-15|12:51:42.022] executed block                               module=state height=623 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.025] commit synced                                module=server commit=436F6D6D697449447B5B31393820313735203235342031363020323233203135362038382032323720323339203137362032323120313632203131332031373020313532203235302039312031393020313731203233332033392031373220323136203536203135322032313620383720383820383520313637203131392033325D3A3236467D
+I[2023-05-15|12:51:42.025] committed state                              module=state height=623 num_txs=0 app_hash=C6AFFEA0DF9C58E3EFB0DDA271AA98FA5BBEABE927ACD83898D8575855A77720
+I[2023-05-15|12:51:42.026] indexed block exents                         module=txindex height=623
+I[2023-05-15|12:51:42.027] minted coins from module account             module=x/bank amount=205995577TRM from=mint
+I[2023-05-15|12:51:42.027] executed block                               module=state height=624 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.029] commit synced                                module=server commit=436F6D6D697449447B5B31353520373820393220313234203131372034342032323420333520343320363620313330203436203235342031302034372032303020323420363920313831203135322031352032313820343120333820313132203438203132362032343020313538203134362035312035385D3A3237307D
+I[2023-05-15|12:51:42.029] committed state                              module=state height=624 num_txs=0 app_hash=9B4E5C7C752CE0232B42822EFE0A2FC81845B5980FDA292670307EF09E92333A
+I[2023-05-15|12:51:42.030] indexed block exents                         module=txindex height=624
+I[2023-05-15|12:51:42.031] minted coins from module account             module=x/bank amount=205995614TRM from=mint
+I[2023-05-15|12:51:42.031] executed block                               module=state height=625 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.034] commit synced                                module=server commit=436F6D6D697449447B5B3134372031313020373920393920323431203139372031313820313536203137352031373620313032203932203139352039382032343220363220313034203136362031323320313520323530203138312032343120313233203835203938203235302032362032343920353220313734203234325D3A3237317D
+I[2023-05-15|12:51:42.034] committed state                              module=state height=625 num_txs=0 app_hash=936E4F63F1C5769CAFB0665CC362F23E68A67B0FFAB5F17B5562FA1AF934AEF2
+I[2023-05-15|12:51:42.035] indexed block exents                         module=txindex height=625
+I[2023-05-15|12:51:42.036] minted coins from module account             module=x/bank amount=205995651TRM from=mint
+I[2023-05-15|12:51:42.036] executed block                               module=state height=626 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.038] commit synced                                module=server commit=436F6D6D697449447B5B3320323320313037203235332031353620383020313933203136382031363420313133203138302032372036322031393120323330203231362034362035342031353520323236203137372032323420323331203136372031363120323232203233392033392031353320313438203935203139345D3A3237327D
+I[2023-05-15|12:51:42.038] committed state                              module=state height=626 num_txs=0 app_hash=03176BFD9C50C1A8A471B41B3EBFE6D82E369BE2B1E0E7A7A1DEEF2799945FC2
+I[2023-05-15|12:51:42.040] indexed block exents                         module=txindex height=626
+I[2023-05-15|12:51:42.040] minted coins from module account             module=x/bank amount=205995688TRM from=mint
+I[2023-05-15|12:51:42.041] executed block                               module=state height=627 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.049] commit synced                                module=server commit=436F6D6D697449447B5B37342032392035312037332039302036332031343920323437203230302033332031362031373020313736203137382031323620323234203135392032303320383720393120313737203020323920313536203130362038322034352031353020333320343720313231203230325D3A3237337D
+I[2023-05-15|12:51:42.049] committed state                              module=state height=627 num_txs=0 app_hash=4A1D33495A3F95F7C82110AAB0B27EE09FCB575BB1001D9C6A522D96212F79CA
+I[2023-05-15|12:51:42.050] indexed block exents                         module=txindex height=627
+I[2023-05-15|12:51:42.051] minted coins from module account             module=x/bank amount=205995725TRM from=mint
+I[2023-05-15|12:51:42.051] executed block                               module=state height=628 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.054] commit synced                                module=server commit=436F6D6D697449447B5B373420393020363020363120393820313637203135342032323920343320313236203139332032303320313437203131362032323620323130203139382031353520323137203132203536203234332035322031203136352031373020313338203739203136372032353420392031315D3A3237347D
+I[2023-05-15|12:51:42.054] committed state                              module=state height=628 num_txs=0 app_hash=4A5A3C3D62A79AE52B7EC1CB9374E2D2C69BD90C38F33401A5AA8A4FA7FE090B
+I[2023-05-15|12:51:42.055] indexed block exents                         module=txindex height=628
+I[2023-05-15|12:51:42.055] minted coins from module account             module=x/bank amount=205995762TRM from=mint
+I[2023-05-15|12:51:42.056] executed block                               module=state height=629 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.058] commit synced                                module=server commit=436F6D6D697449447B5B31393520323332203130342031383420343720373520323137203133312031303120323120333220393620313039203432203136392031353420393420383020323134203937203232362031363720313339203837203131352031343620323235203230392031322033362034352033305D3A3237357D
+I[2023-05-15|12:51:42.058] committed state                              module=state height=629 num_txs=0 app_hash=C3E868B82F4BD983651520606D2AA99A5E50D661E2A78B577392E1D10C242D1E
+I[2023-05-15|12:51:42.059] indexed block exents                         module=txindex height=629
+I[2023-05-15|12:51:42.060] minted coins from module account             module=x/bank amount=205995799TRM from=mint
+I[2023-05-15|12:51:42.060] executed block                               module=state height=630 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.063] commit synced                                module=server commit=436F6D6D697449447B5B32343120353320313930203438203438203134382032362032343320393920353820313532203138312033372031323220313337203130362031333420352032353520313538203133203633203739203137342031393620343820323320373620353820373920313233203139385D3A3237367D
+I[2023-05-15|12:51:42.063] committed state                              module=state height=630 num_txs=0 app_hash=F135BE3030941AF3633A98B5257A896A8605FF9E0D3F4FAEC430174C3A4F7BC6
+I[2023-05-15|12:51:42.064] indexed block exents                         module=txindex height=630
+I[2023-05-15|12:51:42.065] minted coins from module account             module=x/bank amount=205995835TRM from=mint
+I[2023-05-15|12:51:42.065] executed block                               module=state height=631 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.068] commit synced                                module=server commit=436F6D6D697449447B5B3232352031373920323033203233382039392031323620313031203137312031353120323320313937203633203233302031313320312031353620313239203135203736203131362038382031342031382031383220323034203339203230302035362032333320323220313136203136315D3A3237377D
+I[2023-05-15|12:51:42.068] committed state                              module=state height=631 num_txs=0 app_hash=E1B3CBEE637E65AB9717C53FE671019C810F4C74580E12B6CC27C838E91674A1
+I[2023-05-15|12:51:42.069] indexed block exents                         module=txindex height=631
+I[2023-05-15|12:51:42.069] minted coins from module account             module=x/bank amount=205995872TRM from=mint
+I[2023-05-15|12:51:42.070] executed block                               module=state height=632 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.072] commit synced                                module=server commit=436F6D6D697449447B5B3333203236203631203136322032343420323531203937203234312032323820313135203138203130322035382031343420323032203737203233362036322031353720323436203230352037372039332031353620323433203632203232332032323520313620323038203935203231335D3A3237387D
+I[2023-05-15|12:51:42.072] committed state                              module=state height=632 num_txs=0 app_hash=211A3DA2F4FB61F1E47312663A90CA4DEC3E9DF6CD4D5D9CF33EDFE110D05FD5
+I[2023-05-15|12:51:42.073] indexed block exents                         module=txindex height=632
+I[2023-05-15|12:51:42.074] minted coins from module account             module=x/bank amount=205995909TRM from=mint
+I[2023-05-15|12:51:42.074] executed block                               module=state height=633 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.077] commit synced                                module=server commit=436F6D6D697449447B5B3233332031363820323235203135392031333220313239203134203837203230362038342032313620363020313538203230392038382036352037372032303220313537203738203132352036332037352031323120322031363320313937203136372032343720323520313530203231365D3A3237397D
+I[2023-05-15|12:51:42.077] committed state                              module=state height=633 num_txs=0 app_hash=E9A8E19F84810E57CE54D83C9ED158414DCA9D4E7D3F4B7902A3C5A7F71996D8
+I[2023-05-15|12:51:42.078] indexed block exents                         module=txindex height=633
+I[2023-05-15|12:51:42.079] minted coins from module account             module=x/bank amount=205995946TRM from=mint
+I[2023-05-15|12:51:42.079] executed block                               module=state height=634 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.081] commit synced                                module=server commit=436F6D6D697449447B5B323138203133392038372031363620313736203933203620323137203335203639203137392031333920373420333320313135203135322032353320313036203132322032342032333120313933203136352038312036392032333820353520323133203139302032333220313438203135325D3A3237417D
+I[2023-05-15|12:51:42.081] committed state                              module=state height=634 num_txs=0 app_hash=DA8B57A6B05D06D92345B38B4A217398FD6A7A18E7C1A55145EE37D5BEE89498
+I[2023-05-15|12:51:42.083] indexed block exents                         module=txindex height=634
+I[2023-05-15|12:51:42.083] minted coins from module account             module=x/bank amount=205995983TRM from=mint
+I[2023-05-15|12:51:42.084] executed block                               module=state height=635 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.086] commit synced                                module=server commit=436F6D6D697449447B5B393320313037203230352031373820382032353420323036203135302033392031323120313536203330203133392031323220313235203231203235312032392031393320313732203234302031343320363520313833203530203231302031363420313220313837203830203133302033385D3A3237427D
+I[2023-05-15|12:51:42.086] committed state                              module=state height=635 num_txs=0 app_hash=5D6BCDB208FECE9627799C1E8B7A7D15FB1DC1ACF08F41B732D2A40CBB508226
+I[2023-05-15|12:51:42.087] indexed block exents                         module=txindex height=635
+I[2023-05-15|12:51:42.088] minted coins from module account             module=x/bank amount=205996020TRM from=mint
+I[2023-05-15|12:51:42.088] executed block                               module=state height=636 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.091] commit synced                                module=server commit=436F6D6D697449447B5B323032203439203136332032353120383620313831203731203132352031353720313532203137352033392031333020313535203233362031313920363620363120333420323333203137372032382031363720313530203230203136302032303120323133203137372032333920313235203233325D3A3237437D
+I[2023-05-15|12:51:42.091] committed state                              module=state height=636 num_txs=0 app_hash=CA31A3FB56B5477D9D98AF27829BEC77423D22E9B11CA79614A0C9D5B1EF7DE8
+I[2023-05-15|12:51:42.092] indexed block exents                         module=txindex height=636
+I[2023-05-15|12:51:42.092] minted coins from module account             module=x/bank amount=205996057TRM from=mint
+I[2023-05-15|12:51:42.093] executed block                               module=state height=637 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.095] commit synced                                module=server commit=436F6D6D697449447B5B3234302035372031373020313831203938203138322032303720383320312031313920323334203134342034392038382031363620313420343020323420383620362032333920313231203232332031382032353520313230203532203132392031353720363820323139203135335D3A3237447D
+I[2023-05-15|12:51:42.095] committed state                              module=state height=637 num_txs=0 app_hash=F039AAB562B6CF530177EA903158A60E28185606EF79DF12FF7834819D44DB99
+I[2023-05-15|12:51:42.096] indexed block exents                         module=txindex height=637
+I[2023-05-15|12:51:42.097] minted coins from module account             module=x/bank amount=205996094TRM from=mint
+I[2023-05-15|12:51:42.097] executed block                               module=state height=638 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.100] commit synced                                module=server commit=436F6D6D697449447B5B3230302031342032313220393920313034203134352031363220313930203235342032303520323431203234382038203132322032353020323232203320383120313220323035203931203831203520313334203737203231352033362031303220313537203132203731203139375D3A3237457D
+I[2023-05-15|12:51:42.100] committed state                              module=state height=638 num_txs=0 app_hash=C80ED4636891A2BEFECDF1F8087AFADE03510CCD5B5105864DD724669D0C47C5
+I[2023-05-15|12:51:42.101] indexed block exents                         module=txindex height=638
+I[2023-05-15|12:51:42.101] minted coins from module account             module=x/bank amount=205996130TRM from=mint
+I[2023-05-15|12:51:42.102] executed block                               module=state height=639 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.104] commit synced                                module=server commit=436F6D6D697449447B5B393420313136203838203232362031343820393020313536203138352034372037322031363120323038203836203330203136203133372033322035203233332034332031373820313832203535203339203935203134203137312034302032353120323230203139342035345D3A3237467D
+I[2023-05-15|12:51:42.104] committed state                              module=state height=639 num_txs=0 app_hash=5E7458E2945A9CB92F48A1D0561E10892005E92BB2B637275F0EAB28FBDCC236
+I[2023-05-15|12:51:42.105] indexed block exents                         module=txindex height=639
+I[2023-05-15|12:51:42.106] minted coins from module account             module=x/bank amount=205996167TRM from=mint
+I[2023-05-15|12:51:42.106] executed block                               module=state height=640 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.109] commit synced                                module=server commit=436F6D6D697449447B5B35302035352032343920323133203820343220323534203135392032353020383920353020353620313634203137332033203137302031393020313832203133203330203732203834203234322032303320313532203138392031333120313020343620313135203733203134375D3A3238307D
+I[2023-05-15|12:51:42.109] committed state                              module=state height=640 num_txs=0 app_hash=3237F9D5082AFE9FFA593238A4AD03AABEB60D1E4854F2CB98BD830A2E734993
+I[2023-05-15|12:51:42.110] indexed block exents                         module=txindex height=640
+I[2023-05-15|12:51:42.111] minted coins from module account             module=x/bank amount=205996204TRM from=mint
+I[2023-05-15|12:51:42.111] executed block                               module=state height=641 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.114] commit synced                                module=server commit=436F6D6D697449447B5B323534203136342032353120323030203130392031393220313430203231342031313020313634203233203139203020313420313838203130392033322039322032303620313539203432203139302031303820313634203535203132203731203738203131392032333820323131203136365D3A3238317D
+I[2023-05-15|12:51:42.114] committed state                              module=state height=641 num_txs=0 app_hash=FEA4FBC86DC08CD66EA41713000EBC6D205CCE9F2ABE6CA4370C474E77EED3A6
+I[2023-05-15|12:51:42.115] indexed block exents                         module=txindex height=641
+I[2023-05-15|12:51:42.115] minted coins from module account             module=x/bank amount=205996241TRM from=mint
+I[2023-05-15|12:51:42.116] executed block                               module=state height=642 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.118] commit synced                                module=server commit=436F6D6D697449447B5B3232322032313720383320323338203834203131392032303120323532203231342031383720323337203437203434203720363320373220353720313239203132203233352033382035352038372031353420313120313138203133382037362032342031393220313532203139385D3A3238327D
+I[2023-05-15|12:51:42.118] committed state                              module=state height=642 num_txs=0 app_hash=DED953EE5477C9FCD6BBED2F2C073F4839810CEB2637579A0B768A4C18C098C6
+I[2023-05-15|12:51:42.119] indexed block exents                         module=txindex height=642
+I[2023-05-15|12:51:42.120] minted coins from module account             module=x/bank amount=205996278TRM from=mint
+I[2023-05-15|12:51:42.120] executed block                               module=state height=643 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:42.123] commit synced                                module=server commit=436F6D6D697449447B5B313733203331203231382031353320313432203231382037203236203132332031353020323037203134392031393220393820323035203935203136332031343020333920333620313438203233203230332031343020323439203133203539203720343020323237203833203136325D3A3238337D
+I[2023-05-15|12:51:42.123] committed state                              module=state height=643 num_txs=0 app_hash=AD1FDA998EDA071A7B96CF95C062CD5FA38C27249417CB8CF90D3B0728E353A2
+I[2023-05-15|12:51:42.124] indexed block exents                         module=txindex height=643
+I[2023-05-15|12:51:42.125] minted coins from module account             module=x/bank amount=205996315TRM from=mint
+I[2023-05-15|12:51:42.125] executed block                               module=state height=644 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:51.685] starting node with ABCI Tendermint in-process module=server 
+I[2023-05-15|12:51:51.697] service start                                module=proxy msg="Starting multiAppConn service" impl=multiAppConn
+I[2023-05-15|12:51:51.697] service start                                module=abci-client connection=query msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:51.697] service start                                module=abci-client connection=snapshot msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:51.697] service start                                module=abci-client connection=mempool msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:51.697] service start                                module=abci-client connection=consensus msg="Starting localClient service" impl=localClient
+I[2023-05-15|12:51:51.697] service start                                module=events msg="Starting EventBus service" impl=EventBus
+I[2023-05-15|12:51:51.697] service start                                module=pubsub msg="Starting PubSub service" impl=PubSub
+I[2023-05-15|12:51:51.705] service start                                module=txindex msg="Starting IndexerService service" impl=IndexerService
+I[2023-05-15|12:51:51.705] ABCI Handshake App Info                      module=consensus height=643 hash=AD1FDA998EDA071A7B96CF95C062CD5FA38C27249417CB8CF90D3B0728E353A2 software-version=0.1.0-6-g27367e6 protocol-version=0
+I[2023-05-15|12:51:51.705] ABCI Replay Blocks                           module=consensus appHeight=643 storeHeight=644 stateHeight=643
+I[2023-05-15|12:51:51.705] Replay last block using real app             module=consensus 
+I[2023-05-15|12:51:51.706] minted coins from module account             module=x/bank amount=205996315TRM from=mint
+I[2023-05-15|12:51:51.706] executed block                               module=consensus height=644 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:51.710] commit synced                                module=server commit=436F6D6D697449447B5B31353220313437203636203230332032303020313932203538203136372032303620343620333020363620323330203735203731203136382032333420323120343020313037203137322031333320323130203433203133372031312038372032353120353520383020313334203230375D3A3238347D
+I[2023-05-15|12:51:51.710] committed state                              module=consensus height=644 num_txs=0 app_hash=989342CBC8C03AA7CE2E1E42E64B47A8EA15286BAC85D22B890B57FB375086CF
+I[2023-05-15|12:51:51.711] Completed ABCI Handshake - CometBFT and App are synced module=consensus appHeight=643 appHash=AD1FDA998EDA071A7B96CF95C062CD5FA38C27249417CB8CF90D3B0728E353A2
+I[2023-05-15|12:51:51.711] Version info                                 module=server tendermint_version=0.37.0 abci=1.0.0 block=11 p2p=8 commit_hash=
+I[2023-05-15|12:51:51.711] This node is not a validator                 module=consensus addr=545E4EC16AC4BCD15F4B6421D9687209F0D45A10 pubKey=PubKeyEd25519{69BE24D7C675AA89E0B344C9423236F0F893C40F53139FDA2A4B8620E8A4FD6A}
+I[2023-05-15|12:51:51.712] indexed block exents                         module=txindex height=644
+I[2023-05-15|12:51:51.716] P2P Node ID                                  module=p2p ID=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec file=/home/emrahmersinli/.milumd/config/node_key.json
+I[2023-05-15|12:51:51.716] Adding persistent peers                      module=p2p addrs=[596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656]
+I[2023-05-15|12:51:51.716] Adding unconditional peer ids                module=p2p ids=[]
+I[2023-05-15|12:51:51.716] Add our address to book                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json addr=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec@0.0.0.0:26656
+I[2023-05-15|12:51:51.716] service start                                module=server msg="Starting Node service" impl=Node
+I[2023-05-15|12:51:51.717] service start                                module=p2p msg="Starting P2P Switch service" impl="P2P Switch"
+I[2023-05-15|12:51:51.717] service start                                module=blockchain msg="Starting Reactor service" impl=Reactor
+I[2023-05-15|12:51:51.717] service start                                module=blockchain msg="Starting BlockPool service" impl=BlockPool
+I[2023-05-15|12:51:51.717] service start                                module=consensus msg="Starting Consensus service" impl=ConsensusReactor
+I[2023-05-15|12:51:51.717] Reactor                                      module=consensus waitSync=true
+I[2023-05-15|12:51:51.717] service start                                module=evidence msg="Starting Evidence service" impl=Evidence
+I[2023-05-15|12:51:51.717] service start                                module=statesync msg="Starting StateSync service" impl=StateSync
+I[2023-05-15|12:51:51.717] service start                                module=pex msg="Starting PEX service" impl=PEX
+I[2023-05-15|12:51:51.717] service start                                module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json msg="Starting AddrBook service" impl=AddrBook
+I[2023-05-15|12:51:51.717] Saving AddrBook to file                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json size=1
+I[2023-05-15|12:51:51.718] serve                                        module=rpc-server msg="Starting RPC HTTP server on 127.0.0.1:26657"
+I[2023-05-15|12:51:51.718] Ensure peers                                 module=pex numOutPeers=0 numInPeers=0 numDialing=0 numToDial=10
+I[2023-05-15|12:51:51.718] Starting pprof server                        module=server laddr=localhost:6060
+I[2023-05-15|12:51:51.861] service start                                module=p2p peer=596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656 msg="Starting Peer service" impl="Peer{MConn{134.209.247.1:26656} 596e12519eee4779bfff4b25e0f4dd4ddd41f257 out}"
+I[2023-05-15|12:51:51.861] service start                                module=p2p peer=596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656 msg="Starting MConnection service" impl=MConn{134.209.247.1:26656}
+I[2023-05-15|12:51:53.350] minted coins from module account             module=x/bank amount=205996352TRM from=mint
+I[2023-05-15|12:51:53.350] executed block                               module=state height=645 num_valid_txs=0 num_invalid_txs=0
+I[2023-05-15|12:51:53.353] commit synced                                module=server commit=436F6D6D697449447B5B313339203231392031362031343620363720373820313937203733203731203231372031353920393020313239203137392038312031303520313639203434203135312032323520313736203133392038372031392031303420333520313720323520313137203232372034392033385D3A3238357D
+I[2023-05-15|12:51:53.353] committed state                              module=state height=645 num_txs=0 app_hash=8BDB1092434EC54947D99F5A81B35169A92C97E1B08B57136823111975E33126
+I[2023-05-15|12:51:53.354] indexed block exents                         module=txindex height=645
