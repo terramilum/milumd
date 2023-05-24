@@ -1,0 +1,14 @@
+syntax = "proto3";
+package milumd.rental;
+
+import "gogoproto/gogo.proto";
+import "milumd/rental/params.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "milumd/x/rental/types";
+
+// GenesisState defines the rental module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
