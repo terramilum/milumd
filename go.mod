@@ -1,4 +1,4 @@
-module milumd
+module mirumd
 
 go 1.19
 

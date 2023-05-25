@@ -34,8 +34,8 @@ import (
 	"github.com/spf13/viper"
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 
-	"milumd/app"
-	"milumd/app/params"
+	"mirumd/app"
+	"mirumd/app/params"
 
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
@@ -57,7 +57,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 
 	rootCmd := &cobra.Command{
 		Use:   version.AppName,
-		Short: "Start milumd node",
+		Short: "Start mirumd node",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			// set the default command outputs
 			cmd.SetOut(cmd.OutOrStdout())

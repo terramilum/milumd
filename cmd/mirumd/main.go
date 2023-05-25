@@ -6,8 +6,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 
-	"milumd/app"
-	"milumd/cmd/milumd/cmd"
+	"mirumd/app"
+	"mirumd/cmd/mirumd/cmd"
 )
 
 func main() {

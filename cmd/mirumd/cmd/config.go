@@ -4,7 +4,7 @@ import (
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"milumd/app"
+	"mirumd/app"
 )
 
 func initSDKConfig() {

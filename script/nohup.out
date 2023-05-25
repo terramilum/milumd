@@ -16,23 +16,23 @@ I[2023-05-15|12:51:32.622] Completed ABCI Handshake - CometBFT and App are synce
 I[2023-05-15|12:51:32.622] Version info                                 module=server tendermint_version=0.37.0 abci=1.0.0 block=11 p2p=8 commit_hash=
 I[2023-05-15|12:51:32.622] This node is not a validator                 module=consensus addr=545E4EC16AC4BCD15F4B6421D9687209F0D45A10 pubKey=PubKeyEd25519{69BE24D7C675AA89E0B344C9423236F0F893C40F53139FDA2A4B8620E8A4FD6A}
 I[2023-05-15|12:51:32.623] indexed block exents                         module=txindex height=445
-I[2023-05-15|12:51:32.625] P2P Node ID                                  module=p2p ID=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec file=/home/emrahmersinli/.milumd/config/node_key.json
+I[2023-05-15|12:51:32.625] P2P Node ID                                  module=p2p ID=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec file=/home/emrahmersinli/.mirumd/config/node_key.json
 I[2023-05-15|12:51:32.625] Adding persistent peers                      module=p2p addrs=[596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656]
 I[2023-05-15|12:51:32.625] Adding unconditional peer ids                module=p2p ids=[]
-I[2023-05-15|12:51:32.625] Add our address to book                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json addr=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec@0.0.0.0:26656
+I[2023-05-15|12:51:32.625] Add our address to book                      module=p2p book=/home/emrahmersinli/.mirumd/config/addrbook.json addr=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec@0.0.0.0:26656
 I[2023-05-15|12:51:32.625] service start                                module=server msg="Starting Node service" impl=Node
 I[2023-05-15|12:51:32.625] Starting pprof server                        module=server laddr=localhost:6060
 I[2023-05-15|12:51:32.626] service start                                module=p2p msg="Starting P2P Switch service" impl="P2P Switch"
 I[2023-05-15|12:51:32.626] service start                                module=statesync msg="Starting StateSync service" impl=StateSync
 I[2023-05-15|12:51:32.626] service start                                module=pex msg="Starting PEX service" impl=PEX
 I[2023-05-15|12:51:32.626] serve                                        module=rpc-server msg="Starting RPC HTTP server on 127.0.0.1:26657"
-I[2023-05-15|12:51:32.626] service start                                module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json msg="Starting AddrBook service" impl=AddrBook
+I[2023-05-15|12:51:32.626] service start                                module=p2p book=/home/emrahmersinli/.mirumd/config/addrbook.json msg="Starting AddrBook service" impl=AddrBook
 I[2023-05-15|12:51:32.626] service start                                module=blockchain msg="Starting Reactor service" impl=Reactor
 I[2023-05-15|12:51:32.626] service start                                module=blockchain msg="Starting BlockPool service" impl=BlockPool
 I[2023-05-15|12:51:32.626] service start                                module=consensus msg="Starting Consensus service" impl=ConsensusReactor
 I[2023-05-15|12:51:32.626] Reactor                                      module=consensus waitSync=true
 I[2023-05-15|12:51:32.626] service start                                module=evidence msg="Starting Evidence service" impl=Evidence
-I[2023-05-15|12:51:32.626] Saving AddrBook to file                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json size=1
+I[2023-05-15|12:51:32.626] Saving AddrBook to file                      module=p2p book=/home/emrahmersinli/.mirumd/config/addrbook.json size=1
 I[2023-05-15|12:51:32.626] Ensure peers                                 module=pex numOutPeers=0 numInPeers=0 numDialing=0 numToDial=10
 I[2023-05-15|12:51:32.770] service start                                module=p2p peer=596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656 msg="Starting Peer service" impl="Peer{MConn{134.209.247.1:26656} 596e12519eee4779bfff4b25e0f4dd4ddd41f257 out}"
 I[2023-05-15|12:51:32.770] service start                                module=p2p peer=596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656 msg="Starting MConnection service" impl=MConn{134.209.247.1:26656}
@@ -1049,10 +1049,10 @@ I[2023-05-15|12:51:51.711] Completed ABCI Handshake - CometBFT and App are synce
 I[2023-05-15|12:51:51.711] Version info                                 module=server tendermint_version=0.37.0 abci=1.0.0 block=11 p2p=8 commit_hash=
 I[2023-05-15|12:51:51.711] This node is not a validator                 module=consensus addr=545E4EC16AC4BCD15F4B6421D9687209F0D45A10 pubKey=PubKeyEd25519{69BE24D7C675AA89E0B344C9423236F0F893C40F53139FDA2A4B8620E8A4FD6A}
 I[2023-05-15|12:51:51.712] indexed block exents                         module=txindex height=644
-I[2023-05-15|12:51:51.716] P2P Node ID                                  module=p2p ID=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec file=/home/emrahmersinli/.milumd/config/node_key.json
+I[2023-05-15|12:51:51.716] P2P Node ID                                  module=p2p ID=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec file=/home/emrahmersinli/.mirumd/config/node_key.json
 I[2023-05-15|12:51:51.716] Adding persistent peers                      module=p2p addrs=[596e12519eee4779bfff4b25e0f4dd4ddd41f257@134.209.247.1:26656]
 I[2023-05-15|12:51:51.716] Adding unconditional peer ids                module=p2p ids=[]
-I[2023-05-15|12:51:51.716] Add our address to book                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json addr=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec@0.0.0.0:26656
+I[2023-05-15|12:51:51.716] Add our address to book                      module=p2p book=/home/emrahmersinli/.mirumd/config/addrbook.json addr=508d8af0d7557bd5a75dfb9d9d8819e26e2600ec@0.0.0.0:26656
 I[2023-05-15|12:51:51.716] service start                                module=server msg="Starting Node service" impl=Node
 I[2023-05-15|12:51:51.717] service start                                module=p2p msg="Starting P2P Switch service" impl="P2P Switch"
 I[2023-05-15|12:51:51.717] service start                                module=blockchain msg="Starting Reactor service" impl=Reactor
@@ -1062,8 +1062,8 @@ I[2023-05-15|12:51:51.717] Reactor                                      module=c
 I[2023-05-15|12:51:51.717] service start                                module=evidence msg="Starting Evidence service" impl=Evidence
 I[2023-05-15|12:51:51.717] service start                                module=statesync msg="Starting StateSync service" impl=StateSync
 I[2023-05-15|12:51:51.717] service start                                module=pex msg="Starting PEX service" impl=PEX
-I[2023-05-15|12:51:51.717] service start                                module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json msg="Starting AddrBook service" impl=AddrBook
-I[2023-05-15|12:51:51.717] Saving AddrBook to file                      module=p2p book=/home/emrahmersinli/.milumd/config/addrbook.json size=1
+I[2023-05-15|12:51:51.717] service start                                module=p2p book=/home/emrahmersinli/.mirumd/config/addrbook.json msg="Starting AddrBook service" impl=AddrBook
+I[2023-05-15|12:51:51.717] Saving AddrBook to file                      module=p2p book=/home/emrahmersinli/.mirumd/config/addrbook.json size=1
 I[2023-05-15|12:51:51.718] serve                                        module=rpc-server msg="Starting RPC HTTP server on 127.0.0.1:26657"
 I[2023-05-15|12:51:51.718] Ensure peers                                 module=pex numOutPeers=0 numInPeers=0 numDialing=0 numToDial=10
 I[2023-05-15|12:51:51.718] Starting pprof server                        module=server laddr=localhost:6060
