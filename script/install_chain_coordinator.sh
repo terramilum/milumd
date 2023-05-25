@@ -4,7 +4,7 @@
 PASSWORD=${PASSWORD:-12345678}
 STAKE=${STAKE_TOKEN:-TRM}
 FEE=${FEE_TOKEN:-uTRM}
-CHAIN_ID=${CHAIN_ID:-terramilum-testnet}
+CHAIN_ID=${CHAIN_ID:-terramirum-testnet}
 MONIKER=${MONIKER:-node001}
 FILENAME=${FILENAME:-"$HOME"/.milumd/config/genesis.json}
 CONFIG=${CONFIG:-"$HOME"/.milumd/config/config.toml}
