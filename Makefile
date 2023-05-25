@@ -12,7 +12,7 @@ SIMAPP = ./app
 DOCKER := $(shell which docker)
 BUF_IMAGE=bufbuild/buf@sha256:9dc5d6645f8f8a2d5aaafc8957fbbb5ea64eada98a84cb09654e8f49d6f73b3e
 DOCKER_BUF := $(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace $(BUF_IMAGE)
-HTTPS_GIT := https://github.com/terramirum/milumd.git
+HTTPS_GIT := https://github.com/terramirum/mirumd.git
 
 export GO111MODULE = on
 
@@ -56,10 +56,10 @@ build_tags_comma_sep := $(subst $(empty),$(comma),$(build_tags))
 # process linker flags
 
 ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=trm \
-		  -X github.com/cosmos/cosmos-sdk/version.AppName=milumd\
+		  -X github.com/cosmos/cosmos-sdk/version.AppName=mirumd\
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
-		  -X github.com/terramirum/milumd/app.Bech32Prefix=trm \
+		  -X github.com/terramirum/mirumd/app.Bech32Prefix=trm \
 		  -X github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)
 
 ifeq ($(WITH_CLEVELDB),yes)
@@ -77,15 +77,15 @@ all: install lint test
 
 build: go.sum
 ifeq ($(OS),Windows_NT)
-	$(error milumd server not supported. Use "make build-windows-client" for client)
+	$(error mirumd server not supported. Use "make build-windows-client" for client)
 	exit 1
 else
-	rm -rf $(BINDIR)/milumd
-	go build -mod=readonly $(BUILD_FLAGS) -o build/milumd -o $(BINDIR)/milumd ./cmd/milumd
+	rm -rf $(BINDIR)/mirumd
+	go build -mod=readonly $(BUILD_FLAGS) -o build/mirumd -o $(BINDIR)/mirumd ./cmd/mirumd
 endif 
 
 install: go.sum
-	go install -mod=readonly $(BUILD_FLAGS) ./cmd/milumd
+	go install -mod=readonly $(BUILD_FLAGS) ./cmd/mirumd
 
 ########################################
 ### Tools & dependencies
@@ -101,7 +101,7 @@ go.sum: go.mod
 draw-deps:
 	@# requires brew install graphviz or apt-get install graphviz
 	go get github.com/RobotsAndPencils/goviz
-	@goviz -i ./cmd/milumd -d 2 | dot -Tpng -o dependency-graph.png
+	@goviz -i ./cmd/mirumd -d 2 | dot -Tpng -o dependency-graph.png
 
 clean:
 	rm -rf snapcraft-local.yaml build/
@@ -147,7 +147,7 @@ lint:
 format:
 	find . -name '*.go' -type f -not -path "./vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs gofmt -w -s
 	find . -name '*.go' -type f -not -path "./vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs misspell -w
-	find . -name '*.go' -type f -not -path "./vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs goimports -w -local github.com/terramirum/milumd
+	find . -name '*.go' -type f -not -path "./vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs goimports -w -local github.com/terramirum/mirumd
 
 
 ###############################################################################

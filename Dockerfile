@@ -1,5 +1,5 @@
-# docker build . -t cosmtrm/milumd:latest
-# docker run --rm -it cosmtrm/milumd:latest /bin/sh
+# docker build . -t cosmtrm/mirumd:latest
+# docker run --rm -it cosmtrm/mirumd:latest /bin/sh
 FROM golang:1.19-alpine3.15 AS go-builder
 ARG arch=x86_64
 
@@ -18,12 +18,12 @@ COPY . /code/
 # force it to use static lib (from above) not standard libgo_cosmtrm.so file
 RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LINK_STATICALLY=true make build
 RUN echo "Ensuring binary is statically linked ..." \
-  && (file /code/build/milumd | grep "statically linked")
+  && (file /code/build/mirumd | grep "statically linked")
 
 # --------------------------------------------------------
 FROM alpine:3.15
 
-COPY --from=go-builder /code/build/milumd /usr/bin/milumd
+COPY --from=go-builder /code/build/mirumd /usr/bin/mirumd
 
 COPY docker/* /opt/
 RUN chmod +x /opt/*.sh
@@ -37,4 +37,4 @@ EXPOSE 26656
 # tendermint rpc
 EXPOSE 26657
 
-CMD ["/usr/bin/milumd", "version"]
+CMD ["/usr/bin/mirumd", "version"]

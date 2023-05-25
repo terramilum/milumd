@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"milumd/app"
+	"mirumd/app"
 
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 

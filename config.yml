@@ -1,6 +1,6 @@
 version: 1
 build:
-  binary: milumd
+  binary: mirumd
 accounts:
 - name: main
   coins:
@@ -28,4 +28,4 @@ genesis:
 validators:
 - name: main
   bonded: 100000000000trm
-  home: $HOME/.milumd
+  home: $HOME/.mirumd

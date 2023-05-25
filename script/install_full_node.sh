@@ -8,12 +8,12 @@ CHAIN_ID=${CHAIN_ID:-terramirum-testnet}
 # should be changed. If no changes, you can change it at config.toml file with moniker name.
 MONIKER=${MONIKER:-node002}
 # configuration file names. no need to change
-FILENAME=${FILENAME:-"$HOME"/.milumd/config/genesis.json}
-CONFIG=${CONFIG:-"$HOME"/.milumd/config/config.toml}  
+FILENAME=${FILENAME:-"$HOME"/.mirumd/config/genesis.json}
+CONFIG=${CONFIG:-"$HOME"/.mirumd/config/config.toml}  
 
-rm -rf ~/.milumd
+rm -rf ~/.mirumd
 
-milumd init --chain-id "$CHAIN_ID" "$MONIKER"
+mirumd init --chain-id "$CHAIN_ID" "$MONIKER"
 
 rm -rf "$HOME"/networks
 
@@ -51,10 +51,10 @@ echo "1. Execute create_wallet.sh to create wallet. Please backup your mnemonic 
 echo "2. Execute create_validator.sh to become validator node."
 
 echo "After chain start and being syched, then stop the program."
-echo 'Use "nohup milumd start &" to run process at background. '
+echo 'Use "nohup mirumd start &" to run process at background. '
 echo "Enjoy !!!!!!!!!"
 
 sleep 5
 
-milumd start
+mirumd start
 

@@ -6,12 +6,12 @@ STAKE=${STAKE_TOKEN:-TRM}
 FEE=${FEE_TOKEN:-uTRM}
 CHAIN_ID=${CHAIN_ID:-terramirum-testnet}
 MONIKER=${MONIKER:-node001}
-FILENAME=${FILENAME:-"$HOME"/.milumd/config/genesis.json}
-CONFIG=${CONFIG:-"$HOME"/.milumd/config/config.toml}
+FILENAME=${FILENAME:-"$HOME"/.mirumd/config/genesis.json}
+CONFIG=${CONFIG:-"$HOME"/.mirumd/config/config.toml}
 
-rm -rf ~/.milumd
+rm -rf ~/.mirumd
 
-milumd init --chain-id "$CHAIN_ID" "$MONIKER"
+mirumd init --chain-id "$CHAIN_ID" "$MONIKER"
 # staking/governance token is hardcoded in config, change this
 sed -i "s/\"stake\"/\"$STAKE\"/" $FILENAME
 # this is essential for sub-1s block times (or header times go crazy)
@@ -26,15 +26,15 @@ fi
 sed -i 's/timeout_commit = "5s"/timeout_commit = "1s"/' $CONFIG
 
 
-if ! milumd keys show validator; then
-   (echo "$PASSWORD"; echo "$PASSWORD") | milumd keys add validator 
+if ! mirumd keys show validator; then
+   (echo "$PASSWORD"; echo "$PASSWORD") | mirumd keys add validator 
 fi
 # hardcode the validator account for this instance
-echo "$PASSWORD" | milumd genesis add-genesis-account validator "10000000000000000$STAKE"
+echo "$PASSWORD" | mirumd genesis add-genesis-account validator "10000000000000000$STAKE"
 
 # submit a genesis validator tx
 ## Workraround for https://github.com/cosmos/cosmos-sdk/issues/8251
-(echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | milumd genesis gentx validator "100000000000$STAKE" --chain-id="$CHAIN_ID" --amount="100000000000$STAKE"
+(echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | mirumd genesis gentx validator "100000000000$STAKE" --chain-id="$CHAIN_ID" --amount="100000000000$STAKE"
 ## should be:
-# (echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | milumd gentx validator "100000000000$STAKE" --chain-id="$CHAIN_ID"
-milumd genesis collect-gentxs
+# (echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | mirumd gentx validator "100000000000$STAKE" --chain-id="$CHAIN_ID"
+mirumd genesis collect-gentxs
