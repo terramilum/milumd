@@ -24,7 +24,7 @@ genesis:
     staking:
       params:
         bond_denom: trm
-  chain_id: terramilum-testnet
+  chain_id: terramirum-testnet
 validators:
 - name: main
   bonded: 100000000000trm

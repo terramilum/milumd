@@ -3,7 +3,7 @@
 PASSWORD=${PASSWORD:-12345678} 
 # chain id to replace genesis file with existing one.
 # must be correct chain id equal to gitup folder name under networks repository.
-CHAIN_ID=${CHAIN_ID:-terramilum-testnet}
+CHAIN_ID=${CHAIN_ID:-terramirum-testnet}
 # give any key name for full node name. This will be visible at block explorer as a validator name. 
 # should be changed. If no changes, you can change it at config.toml file with moniker name.
 MONIKER=${MONIKER:-node002}
@@ -17,7 +17,7 @@ milumd init --chain-id "$CHAIN_ID" "$MONIKER"
 
 rm -rf "$HOME"/networks
 
-git clone https://github.com/terramilum/networks.git "$HOME"/networks
+git clone https://github.com/terramirum/networks.git "$HOME"/networks
 
 SOURCE_GENESIS="$HOME"/networks/"$CHAIN_ID"/genesis.json
 
