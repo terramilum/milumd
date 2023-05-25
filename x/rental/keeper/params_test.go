@@ -3,9 +3,10 @@ package keeper_test
 import (
 	"testing"
 
+	testkeeper "mirumd/testutil/keeper"
+	"mirumd/x/rental/types"
+
 	"github.com/stretchr/testify/require"
-	testkeeper "milumd/testutil/keeper"
-	"milumd/x/rental/types"
 )
 
 func TestGetParams(t *testing.T) {

@@ -3,8 +3,9 @@ package keeper
 import (
 	"context"
 
+	"mirumd/x/rental/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"milumd/x/rental/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"milumd/x/rental/types"
+	"mirumd/x/rental/types"
 )
 
 type msgServer struct {

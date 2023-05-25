@@ -3,10 +3,11 @@ package keeper_test
 import (
 	"testing"
 
+	testkeeper "mirumd/testutil/keeper"
+	"mirumd/x/rental/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
-	testkeeper 	"milumd/testutil/keeper"
-	"milumd/x/rental/types"
 )
 
 func TestParamsQuery(t *testing.T) {

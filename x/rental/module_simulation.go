@@ -3,9 +3,9 @@ package rental
 import (
 	"math/rand"
 
-	"milumd/testutil/sample"
-	rentalsimulation "milumd/x/rental/simulation"
-	"milumd/x/rental/types"
+	"mirumd/testutil/sample"
+	rentalsimulation "mirumd/x/rental/simulation"
+	"mirumd/x/rental/types"
 
 	simappparams "cosmossdk.io/simapp/params"
 	"github.com/cosmos/cosmos-sdk/baseapp"

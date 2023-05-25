@@ -3,8 +3,8 @@ package keeper
 import (
 	"testing"
 
-	"milumd/x/rental/keeper"
-	"milumd/x/rental/types"
+	"mirumd/x/rental/keeper"
+	"mirumd/x/rental/types"
 
 	dbm "github.com/cometbft/cometbft-db"
 	"github.com/cometbft/cometbft/libs/log"
