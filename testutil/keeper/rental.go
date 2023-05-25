@@ -5,6 +5,10 @@ import (
 
 	"milumd/x/rental/keeper"
 	"milumd/x/rental/types"
+
+	dbm "github.com/cometbft/cometbft-db"
+	"github.com/cometbft/cometbft/libs/log"
+	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/store"
@@ -12,16 +16,13 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	typesparams "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/stretchr/testify/require"
-	"github.com/tendermint/tendermint/libs/log"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmdb "github.com/tendermint/tm-db"
 )
 
 func RentalKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 	storeKey := sdk.NewKVStoreKey(types.StoreKey)
 	memStoreKey := storetypes.NewMemoryStoreKey(types.MemStoreKey)
 
-	db := tmdb.NewMemDB()
+	db := dbm.NewMemDB()
 	stateStore := store.NewCommitMultiStore(db)
 	stateStore.MountStoreWithDB(storeKey, storetypes.StoreTypeIAVL, db)
 	stateStore.MountStoreWithDB(memStoreKey, storetypes.StoreTypeMemory, nil)
@@ -37,14 +38,13 @@ func RentalKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 		"RentalParams",
 	)
 	k := keeper.NewKeeper(
-	    cdc,
-	    storeKey,
-	    memStoreKey,
-	    paramsSubspace, 
+		cdc,
+		storeKey,
+		memStoreKey,
+		paramsSubspace,
 	)
 
 	ctx := sdk.NewContext(stateStore, tmproto.Header{}, false, log.NewNopLogger())
-
 	// Initialize params
 	k.SetParams(ctx, types.DefaultParams())
 

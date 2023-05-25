@@ -6,7 +6,6 @@ require (
 	github.com/CosmWasm/wasmd v0.40.0-rc.1
 	github.com/cosmos/cosmos-proto v1.0.0-beta.2 // indirect
 	github.com/cosmos/cosmos-sdk v0.47.1
-
 	github.com/cosmos/gogogateway v1.2.0 // indirect
 	github.com/cosmos/gogoproto v1.4.8 // indirect
 	github.com/cosmos/iavl v0.20.0 // indirect
@@ -26,13 +25,14 @@ require (
 	github.com/stretchr/testify v1.8.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d // indirect
 	google.golang.org/genproto v0.0.0-20230223222841-637eb2293923 // indirect
-	google.golang.org/grpc v1.54.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
+	google.golang.org/grpc v1.54.0
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
 	cosmossdk.io/api v0.3.1
 	cosmossdk.io/errors v1.0.0-beta.7
+	cosmossdk.io/simapp v0.0.0-20230224204036-a6adb0821462
 	cosmossdk.io/tools/rosetta v0.2.1
 	github.com/cometbft/cometbft v0.37.0
 	github.com/cometbft/cometbft-db v0.7.0
