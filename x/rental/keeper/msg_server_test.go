@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	keepertest "mirumd/testutil/keeper"
-	"mirumd/x/rental/keeper"
-	"mirumd/x/rental/types"
+	keepertest "github.com/terramirum/mirumd/testutil/keeper"
+	"github.com/terramirum/mirumd/x/rental/keeper"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

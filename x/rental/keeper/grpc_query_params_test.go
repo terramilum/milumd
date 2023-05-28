@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"testing"
 
-	testkeeper "mirumd/testutil/keeper"
-	"mirumd/x/rental/types"
+	testkeeper "github.com/terramirum/mirumd/testutil/keeper"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"

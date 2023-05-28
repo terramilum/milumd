@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"mirumd/x/rental/types"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	"github.com/stretchr/testify/require"
 )

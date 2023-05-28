@@ -3,7 +3,7 @@ package keeper
 import (
 	"fmt"
 
-	"mirumd/x/rental/types"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"

@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"mirumd/x/rental/types"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"google.golang.org/grpc/codes"

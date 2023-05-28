@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"mirumd/x/rental/types"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

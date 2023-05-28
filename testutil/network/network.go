@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"mirumd/app"
+	"github.com/terramirum/mirumd/app"
 
 	"github.com/CosmWasm/wasmd/x/wasm"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"

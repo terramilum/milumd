@@ -3,9 +3,9 @@ package rental
 import (
 	"math/rand"
 
-	"mirumd/testutil/sample"
-	rentalsimulation "mirumd/x/rental/simulation"
-	"mirumd/x/rental/types"
+	"github.com/terramirum/mirumd/testutil/sample"
+	rentalsimulation "github.com/terramirum/mirumd/x/rental/simulation"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	simappparams "cosmossdk.io/simapp/params"
 	"github.com/cosmos/cosmos-sdk/baseapp"

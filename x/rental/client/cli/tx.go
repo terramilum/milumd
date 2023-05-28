@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	// "github.com/cosmos/cosmos-sdk/client/flags"
-	"mirumd/x/rental/types"
+	"github.com/terramirum/mirumd/x/rental/types"
 )
 
 var (

@@ -12,9 +12,9 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"mirumd/x/rental/client/cli"
-	"mirumd/x/rental/keeper"
-	"mirumd/x/rental/types"
+	"github.com/terramirum/mirumd/x/rental/client/cli"
+	"github.com/terramirum/mirumd/x/rental/keeper"
+	"github.com/terramirum/mirumd/x/rental/types"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"

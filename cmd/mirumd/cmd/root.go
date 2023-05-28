@@ -34,8 +34,8 @@ import (
 	"github.com/spf13/viper"
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 
-	"mirumd/app"
-	"mirumd/app/params"
+	"github.com/terramirum/mirumd/app"
+	"github.com/terramirum/mirumd/app/params"
 
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
