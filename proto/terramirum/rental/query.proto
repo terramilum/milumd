@@ -15,7 +15,7 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/mirumd/rental/params";
   }
-  // this line is used by starport scaffolding # 2
+  // this line is used by starport scaffolding # 2 
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -28,3 +28,4 @@ message QueryParamsResponse {
 }
 
 // this line is used by starport scaffolding # 3
+

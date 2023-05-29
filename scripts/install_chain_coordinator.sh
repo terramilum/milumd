@@ -4,7 +4,7 @@
 PASSWORD=${PASSWORD:-12345678}
 STAKE=${STAKE_TOKEN:-TRM}
 FEE=${FEE_TOKEN:-uTRM}
-CHAIN_ID=${CHAIN_ID:-terramirum-testnet}
+CHAIN_ID=${CHAIN_ID:-terramirum-localnet}
 MONIKER=${MONIKER:-node001}
 FILENAME=${FILENAME:-"$HOME"/.mirumd/config/genesis.json}
 CONFIG=${CONFIG:-"$HOME"/.mirumd/config/config.toml}
