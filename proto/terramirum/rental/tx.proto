@@ -15,9 +15,9 @@ service Msg {
   // Save an nft class
   rpc DeployNft(MsgDeployNftRequest) returns (MsgDeployNftResponse);
   rpc MintNft(MsgMintNftRequest) returns (MsgMintNftResponse);
-  rpc BurnNft(MsgDeployNftRequest) returns (MsgDeployNftResponse);
-  rpc RentNftMint(MsgRentNftRequest) returns (MsgDeployNftResponse);
-  rpc RentNftBurn(MsgDeployNftRequest) returns (MsgDeployNftResponse);
+  rpc BurnNft(MsgBurnNftRequest) returns (MsgBurnNftResponse);
+  rpc RentNftMint(MsgRentNftRequest) returns (MsgRentNftResponse);
+  rpc RentNftBurn(MsgRentNftRequest) returns (MsgRentNftResponse);
   rpc NftAccess(MsgAccessNftRequest) returns (MsgAccessNftResponse);
 } 
 
@@ -45,7 +45,8 @@ message MsgMintNftRequest {
 
   string ContractOwner = 1;
   string ClassId = 2;
-  string Uri = 3;
+  string NftId = 3;
+  string Uri = 4;
 }
 
 message MsgMintNftResponse {
@@ -57,7 +58,8 @@ message MsgBurnNftRequest {
 
   string ContractOwner = 1;
   string ClassId = 2;
-  string Uri = 3;
+  string NftId = 3;
+  string Uri = 4;
 }
 
 message MsgBurnNftResponse {
@@ -73,7 +75,8 @@ message MsgRentNftRequest {
   string Renter = 4;
   int64 StartDateUnix = 5;
   int64 EndDateUnix = 6;
-}
+} 
+ 
 
 message MsgRentNftResponse {}
 
