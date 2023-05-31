@@ -71,8 +71,8 @@ message MsgRentNftRequest {
   string ClassId = 2;
   string NftId = 3;
   string Renter = 4;
-  google.protobuf.Timestamp StartDate = 5;
-  google.protobuf.Timestamp EndDate = 6;
+  int64 StartDateUnix = 5;
+  int64 EndDateUnix = 6;
 }
 
 message MsgRentNftResponse {}

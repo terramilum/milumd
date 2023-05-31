@@ -14,7 +14,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/store"
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	typesparams "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/stretchr/testify/require"
 )
 
@@ -31,17 +30,19 @@ func RentalKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 	registry := codectypes.NewInterfaceRegistry()
 	cdc := codec.NewProtoCodec(registry)
 
-	paramsSubspace := typesparams.NewSubspace(cdc,
-		types.Amino,
-		storeKey,
-		memStoreKey,
-		"RentalParams",
-	)
+	//nftKeeper := nftkeeper.NewKeeper(storeKey, cdc)
+	// paramsSubspace := typesparams.NewSubspace(cdc,
+	// 	types.Amino,
+	// 	storeKey,
+	// 	memStoreKey,
+	// 	"RentalParams",
+	// )
+
 	k := keeper.NewKeeper(
 		cdc,
 		storeKey,
 		memStoreKey,
-		paramsSubspace,
+		nil,
 	)
 
 	ctx := sdk.NewContext(stateStore, tmproto.Header{}, false, log.NewNopLogger())
