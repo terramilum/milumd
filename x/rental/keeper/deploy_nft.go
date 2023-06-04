@@ -2,6 +2,7 @@ package keeper
 
 import (
 	context "context"
+	"errors"
 
 	"crypto/rand"
 	"encoding/base64"
@@ -39,8 +40,17 @@ func (k Keeper) DeployNft(context context.Context, deployNftRequest *types.MsgDe
 		return nil, err
 	}
 
+	getClass, exists := k.nftKeeper.GetClass(ctx, class.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	if !exists {
+		return nil, errors.New(fmt.Sprintf("Class not exist %s", class.Id))
+	}
+
 	return &types.MsgDeployNftResponse{
-		ClassId: classId,
+		ClassId: getClass.Id,
 	}, nil
 }
 

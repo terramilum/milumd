@@ -38,7 +38,8 @@ type MsgDeployNftRequest struct {
 	Symbol string `protobuf:"bytes,3,opt,name=Symbol,proto3" json:"Symbol,omitempty"`
 	// description is a brief description of nft classification. Optional
 	Description string `protobuf:"bytes,4,opt,name=Description,proto3" json:"Description,omitempty"`
-	// uri for the class metadata stored off chain. It can define schema for Class and NFT `Data` attributes. Optional
+	// uri for the class metadata stored off chain. It can define schema for Class
+	// and NFT `Data` attributes. Optional
 	Uri string `protobuf:"bytes,5,opt,name=Uri,proto3" json:"Uri,omitempty"`
 }
 
@@ -378,7 +379,7 @@ func (m *MsgBurnNftResponse) GetNftId() string {
 	return ""
 }
 
-type MsgRentNftRequest struct {
+type MsgMintRentRequest struct {
 	ContractOwner string `protobuf:"bytes,1,opt,name=ContractOwner,proto3" json:"ContractOwner,omitempty"`
 	ClassId       string `protobuf:"bytes,2,opt,name=ClassId,proto3" json:"ClassId,omitempty"`
 	NftId         string `protobuf:"bytes,3,opt,name=NftId,proto3" json:"NftId,omitempty"`
@@ -387,18 +388,18 @@ type MsgRentNftRequest struct {
 	EndDateUnix   int64  `protobuf:"varint,6,opt,name=EndDateUnix,proto3" json:"EndDateUnix,omitempty"`
 }
 
-func (m *MsgRentNftRequest) Reset()         { *m = MsgRentNftRequest{} }
-func (m *MsgRentNftRequest) String() string { return proto.CompactTextString(m) }
-func (*MsgRentNftRequest) ProtoMessage()    {}
-func (*MsgRentNftRequest) Descriptor() ([]byte, []int) {
+func (m *MsgMintRentRequest) Reset()         { *m = MsgMintRentRequest{} }
+func (m *MsgMintRentRequest) String() string { return proto.CompactTextString(m) }
+func (*MsgMintRentRequest) ProtoMessage()    {}
+func (*MsgMintRentRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_11560e601854eaa0, []int{6}
 }
-func (m *MsgRentNftRequest) XXX_Unmarshal(b []byte) error {
+func (m *MsgMintRentRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgRentNftRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgMintRentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgRentNftRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgMintRentRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -408,75 +409,75 @@ func (m *MsgRentNftRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
-func (m *MsgRentNftRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgRentNftRequest.Merge(m, src)
+func (m *MsgMintRentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgMintRentRequest.Merge(m, src)
 }
-func (m *MsgRentNftRequest) XXX_Size() int {
+func (m *MsgMintRentRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgRentNftRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgRentNftRequest.DiscardUnknown(m)
+func (m *MsgMintRentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgMintRentRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgRentNftRequest proto.InternalMessageInfo
+var xxx_messageInfo_MsgMintRentRequest proto.InternalMessageInfo
 
-func (m *MsgRentNftRequest) GetContractOwner() string {
+func (m *MsgMintRentRequest) GetContractOwner() string {
 	if m != nil {
 		return m.ContractOwner
 	}
 	return ""
 }
 
-func (m *MsgRentNftRequest) GetClassId() string {
+func (m *MsgMintRentRequest) GetClassId() string {
 	if m != nil {
 		return m.ClassId
 	}
 	return ""
 }
 
-func (m *MsgRentNftRequest) GetNftId() string {
+func (m *MsgMintRentRequest) GetNftId() string {
 	if m != nil {
 		return m.NftId
 	}
 	return ""
 }
 
-func (m *MsgRentNftRequest) GetRenter() string {
+func (m *MsgMintRentRequest) GetRenter() string {
 	if m != nil {
 		return m.Renter
 	}
 	return ""
 }
 
-func (m *MsgRentNftRequest) GetStartDateUnix() int64 {
+func (m *MsgMintRentRequest) GetStartDateUnix() int64 {
 	if m != nil {
 		return m.StartDateUnix
 	}
 	return 0
 }
 
-func (m *MsgRentNftRequest) GetEndDateUnix() int64 {
+func (m *MsgMintRentRequest) GetEndDateUnix() int64 {
 	if m != nil {
 		return m.EndDateUnix
 	}
 	return 0
 }
 
-type MsgRentNftResponse struct {
+type MsgMintRentResponse struct {
 }
 
-func (m *MsgRentNftResponse) Reset()         { *m = MsgRentNftResponse{} }
-func (m *MsgRentNftResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgRentNftResponse) ProtoMessage()    {}
-func (*MsgRentNftResponse) Descriptor() ([]byte, []int) {
+func (m *MsgMintRentResponse) Reset()         { *m = MsgMintRentResponse{} }
+func (m *MsgMintRentResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgMintRentResponse) ProtoMessage()    {}
+func (*MsgMintRentResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_11560e601854eaa0, []int{7}
 }
-func (m *MsgRentNftResponse) XXX_Unmarshal(b []byte) error {
+func (m *MsgMintRentResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgRentNftResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgMintRentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgRentNftResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgMintRentResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -486,17 +487,137 @@ func (m *MsgRentNftResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *MsgRentNftResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgRentNftResponse.Merge(m, src)
+func (m *MsgMintRentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgMintRentResponse.Merge(m, src)
 }
-func (m *MsgRentNftResponse) XXX_Size() int {
+func (m *MsgMintRentResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgRentNftResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgRentNftResponse.DiscardUnknown(m)
+func (m *MsgMintRentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgMintRentResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgRentNftResponse proto.InternalMessageInfo
+var xxx_messageInfo_MsgMintRentResponse proto.InternalMessageInfo
+
+type MsgBurnRentRequest struct {
+	ContractOwner string `protobuf:"bytes,1,opt,name=ContractOwner,proto3" json:"ContractOwner,omitempty"`
+	ClassId       string `protobuf:"bytes,2,opt,name=ClassId,proto3" json:"ClassId,omitempty"`
+	NftId         string `protobuf:"bytes,3,opt,name=NftId,proto3" json:"NftId,omitempty"`
+	Renter        string `protobuf:"bytes,4,opt,name=Renter,proto3" json:"Renter,omitempty"`
+	StartDateUnix int64  `protobuf:"varint,5,opt,name=StartDateUnix,proto3" json:"StartDateUnix,omitempty"`
+	EndDateUnix   int64  `protobuf:"varint,6,opt,name=EndDateUnix,proto3" json:"EndDateUnix,omitempty"`
+}
+
+func (m *MsgBurnRentRequest) Reset()         { *m = MsgBurnRentRequest{} }
+func (m *MsgBurnRentRequest) String() string { return proto.CompactTextString(m) }
+func (*MsgBurnRentRequest) ProtoMessage()    {}
+func (*MsgBurnRentRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_11560e601854eaa0, []int{8}
+}
+func (m *MsgBurnRentRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgBurnRentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgBurnRentRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgBurnRentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgBurnRentRequest.Merge(m, src)
+}
+func (m *MsgBurnRentRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgBurnRentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgBurnRentRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgBurnRentRequest proto.InternalMessageInfo
+
+func (m *MsgBurnRentRequest) GetContractOwner() string {
+	if m != nil {
+		return m.ContractOwner
+	}
+	return ""
+}
+
+func (m *MsgBurnRentRequest) GetClassId() string {
+	if m != nil {
+		return m.ClassId
+	}
+	return ""
+}
+
+func (m *MsgBurnRentRequest) GetNftId() string {
+	if m != nil {
+		return m.NftId
+	}
+	return ""
+}
+
+func (m *MsgBurnRentRequest) GetRenter() string {
+	if m != nil {
+		return m.Renter
+	}
+	return ""
+}
+
+func (m *MsgBurnRentRequest) GetStartDateUnix() int64 {
+	if m != nil {
+		return m.StartDateUnix
+	}
+	return 0
+}
+
+func (m *MsgBurnRentRequest) GetEndDateUnix() int64 {
+	if m != nil {
+		return m.EndDateUnix
+	}
+	return 0
+}
+
+type MsgBurnRentResponse struct {
+}
+
+func (m *MsgBurnRentResponse) Reset()         { *m = MsgBurnRentResponse{} }
+func (m *MsgBurnRentResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgBurnRentResponse) ProtoMessage()    {}
+func (*MsgBurnRentResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_11560e601854eaa0, []int{9}
+}
+func (m *MsgBurnRentResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgBurnRentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgBurnRentResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgBurnRentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgBurnRentResponse.Merge(m, src)
+}
+func (m *MsgBurnRentResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgBurnRentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgBurnRentResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgBurnRentResponse proto.InternalMessageInfo
 
 type MsgAccessNftRequest struct {
 	// contract ofner of the class
@@ -510,7 +631,7 @@ func (m *MsgAccessNftRequest) Reset()         { *m = MsgAccessNftRequest{} }
 func (m *MsgAccessNftRequest) String() string { return proto.CompactTextString(m) }
 func (*MsgAccessNftRequest) ProtoMessage()    {}
 func (*MsgAccessNftRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_11560e601854eaa0, []int{8}
+	return fileDescriptor_11560e601854eaa0, []int{10}
 }
 func (m *MsgAccessNftRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -568,7 +689,7 @@ func (m *MsgAccessNftResponse) Reset()         { *m = MsgAccessNftResponse{} }
 func (m *MsgAccessNftResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgAccessNftResponse) ProtoMessage()    {}
 func (*MsgAccessNftResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_11560e601854eaa0, []int{9}
+	return fileDescriptor_11560e601854eaa0, []int{11}
 }
 func (m *MsgAccessNftResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -611,8 +732,10 @@ func init() {
 	proto.RegisterType((*MsgMintNftResponse)(nil), "terramirum.rental.MsgMintNftResponse")
 	proto.RegisterType((*MsgBurnNftRequest)(nil), "terramirum.rental.MsgBurnNftRequest")
 	proto.RegisterType((*MsgBurnNftResponse)(nil), "terramirum.rental.MsgBurnNftResponse")
-	proto.RegisterType((*MsgRentNftRequest)(nil), "terramirum.rental.MsgRentNftRequest")
-	proto.RegisterType((*MsgRentNftResponse)(nil), "terramirum.rental.MsgRentNftResponse")
+	proto.RegisterType((*MsgMintRentRequest)(nil), "terramirum.rental.MsgMintRentRequest")
+	proto.RegisterType((*MsgMintRentResponse)(nil), "terramirum.rental.MsgMintRentResponse")
+	proto.RegisterType((*MsgBurnRentRequest)(nil), "terramirum.rental.MsgBurnRentRequest")
+	proto.RegisterType((*MsgBurnRentResponse)(nil), "terramirum.rental.MsgBurnRentResponse")
 	proto.RegisterType((*MsgAccessNftRequest)(nil), "terramirum.rental.MsgAccessNftRequest")
 	proto.RegisterType((*MsgAccessNftResponse)(nil), "terramirum.rental.MsgAccessNftResponse")
 }
@@ -620,44 +743,45 @@ func init() {
 func init() { proto.RegisterFile("terramirum/rental/tx.proto", fileDescriptor_11560e601854eaa0) }
 
 var fileDescriptor_11560e601854eaa0 = []byte{
-	// 588 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x55, 0xcd, 0x6e, 0xd3, 0x40,
-	0x10, 0x8e, 0xf3, 0x57, 0x32, 0x11, 0x12, 0x5d, 0xa2, 0x62, 0x59, 0xc8, 0x54, 0x51, 0xf9, 0x51,
-	0x90, 0x62, 0xfe, 0x4e, 0xbd, 0xd1, 0xa6, 0x12, 0x3d, 0x24, 0x48, 0xa9, 0xca, 0xa1, 0xea, 0xc5,
-	0x71, 0x36, 0xc6, 0xc8, 0xf6, 0x9a, 0xdd, 0x35, 0x24, 0x37, 0xc4, 0x0b, 0xc0, 0x9b, 0x90, 0xc7,
-	0xe0, 0xd8, 0x23, 0x17, 0x24, 0x94, 0x1c, 0xfa, 0x1a, 0xc8, 0xeb, 0x8d, 0x63, 0xa7, 0x71, 0xab,
-	0x4a, 0x08, 0xf5, 0x92, 0x78, 0x67, 0x66, 0xbf, 0xf9, 0x66, 0xe7, 0x9b, 0x5d, 0xd0, 0x38, 0xa6,
-	0xd4, 0xf4, 0x1c, 0x1a, 0x7a, 0x06, 0xc5, 0x3e, 0x37, 0x5d, 0x83, 0x8f, 0xdb, 0x01, 0x25, 0x9c,
-	0xa0, 0xcd, 0xa5, 0xaf, 0x1d, 0xfb, 0xb4, 0x07, 0x36, 0x21, 0xb6, 0x8b, 0x0d, 0x11, 0x30, 0x08,
-	0x47, 0x06, 0x77, 0x3c, 0xcc, 0xb8, 0xe9, 0x05, 0xf1, 0x1e, 0xed, 0x9e, 0x45, 0x98, 0x47, 0x98,
-	0xe1, 0x31, 0xdb, 0xf8, 0xf4, 0x3c, 0xfa, 0x8b, 0x1d, 0xcd, 0x1f, 0x0a, 0xdc, 0xed, 0x32, 0xbb,
-	0x83, 0x03, 0x97, 0x4c, 0x7a, 0x23, 0xde, 0xc7, 0x1f, 0x43, 0xcc, 0x38, 0xda, 0x81, 0xdb, 0xfb,
-	0xc4, 0xe7, 0xd4, 0xb4, 0xf8, 0xdb, 0xcf, 0x3e, 0xa6, 0xaa, 0xb2, 0xad, 0x3c, 0xa9, 0xf5, 0xb3,
-	0x46, 0x84, 0xa0, 0xdc, 0x33, 0x3d, 0xac, 0x16, 0x85, 0x53, 0x7c, 0xa3, 0x2d, 0xa8, 0x1e, 0x4d,
-	0xbc, 0x01, 0x71, 0xd5, 0x92, 0xb0, 0xca, 0x15, 0xda, 0x86, 0x7a, 0x07, 0x33, 0x8b, 0x3a, 0x01,
-	0x77, 0x88, 0xaf, 0x96, 0x85, 0x33, 0x6d, 0x42, 0x77, 0xa0, 0x74, 0x4c, 0x1d, 0xb5, 0x22, 0x3c,
-	0xd1, 0xe7, 0x2e, 0xfa, 0x7a, 0x3e, 0x6d, 0x65, 0x73, 0x36, 0x9f, 0x41, 0x23, 0x4b, 0x98, 0x05,
-	0xc4, 0x67, 0x18, 0xa9, 0xb0, 0xb1, 0xef, 0x9a, 0x8c, 0x1d, 0x0e, 0x25, 0xd7, 0xc5, 0xb2, 0xf9,
-	0x4d, 0x81, 0xcd, 0x2e, 0xb3, 0xbb, 0x8e, 0xcf, 0xaf, 0x5d, 0x61, 0x0a, 0xb5, 0x98, 0x41, 0x45,
-	0x0d, 0xa8, 0xf4, 0x46, 0xfc, 0x70, 0x28, 0xcb, 0x8c, 0x17, 0x8b, 0x1a, 0xca, 0x97, 0xd7, 0xd0,
-	0x02, 0x94, 0x26, 0x24, 0x2b, 0x48, 0x10, 0x8b, 0x29, 0xc4, 0x05, 0xfb, 0xbd, 0x90, 0xfa, 0x37,
-	0x8a, 0x7d, 0x42, 0xe8, 0x52, 0xf6, 0xbf, 0x63, 0xf6, 0x7d, 0xfc, 0x1f, 0xce, 0x7e, 0x0b, 0xaa,
-	0x51, 0x1e, 0x4c, 0x65, 0x01, 0x72, 0x15, 0x65, 0x3b, 0xe2, 0x26, 0xe5, 0x1d, 0x93, 0xe3, 0x63,
-	0xdf, 0x19, 0x0b, 0x85, 0x95, 0xfa, 0x59, 0x63, 0xa4, 0xcf, 0x03, 0x7f, 0x98, 0xc4, 0x54, 0x45,
-	0x4c, 0xda, 0xb4, 0xf6, 0x2c, 0x1a, 0xe2, 0x2c, 0x92, 0xf2, 0xe2, 0xb3, 0x68, 0x7e, 0x10, 0x43,
-	0xf5, 0xda, 0xb2, 0x30, 0x63, 0xa9, 0xb2, 0x97, 0x04, 0x95, 0x0c, 0xc1, 0x6b, 0x16, 0xba, 0x5b,
-	0x8f, 0x88, 0xc8, 0xcd, 0xcd, 0x57, 0x62, 0x1e, 0x52, 0xb9, 0x64, 0x3f, 0xee, 0x43, 0xed, 0x8d,
-	0xc9, 0x62, 0xbb, 0xc8, 0x77, 0xab, 0xbf, 0x34, 0xbc, 0x98, 0x96, 0xa1, 0xd4, 0x65, 0x36, 0x3a,
-	0x85, 0x5a, 0x32, 0x4a, 0xe8, 0x51, 0xfb, 0xc2, 0xd5, 0xd2, 0x5e, 0x73, 0x39, 0x68, 0x8f, 0xaf,
-	0x8c, 0x93, 0x1c, 0xde, 0xc1, 0x86, 0x14, 0x39, 0xda, 0x59, 0xbf, 0x27, 0x3b, 0x94, 0xda, 0xc3,
-	0x2b, 0xa2, 0x96, 0xb8, 0x52, 0x7e, 0x79, 0xb8, 0xd9, 0x71, 0xc9, 0xc3, 0x5d, 0xd5, 0xf0, 0x09,
-	0xd4, 0x65, 0x2b, 0xa3, 0x8c, 0x79, 0xd8, 0x59, 0x31, 0xe7, 0x61, 0xaf, 0x68, 0x22, 0x85, 0x1d,
-	0x65, 0xfd, 0xb7, 0xd8, 0xa7, 0x50, 0xeb, 0x8d, 0x78, 0xdc, 0xda, 0xbc, 0x2e, 0xae, 0xaa, 0x31,
-	0xaf, 0x8b, 0x17, 0x94, 0xa4, 0x55, 0xbe, 0x9c, 0x4f, 0x5b, 0xca, 0xde, 0xc1, 0xcf, 0x99, 0xae,
-	0x9c, 0xcd, 0x74, 0xe5, 0xcf, 0x4c, 0x57, 0xbe, 0xcf, 0xf5, 0xc2, 0xd9, 0x5c, 0x2f, 0xfc, 0x9a,
-	0xeb, 0x85, 0x93, 0xa7, 0xb6, 0xc3, 0xdf, 0x87, 0x83, 0xb6, 0x45, 0x3c, 0x23, 0xf5, 0x70, 0x89,
-	0xdf, 0xa1, 0x31, 0x4e, 0x5e, 0xb0, 0x49, 0x80, 0xd9, 0xa0, 0x2a, 0x1e, 0x9e, 0x97, 0x7f, 0x03,
-	0x00, 0x00, 0xff, 0xff, 0x03, 0x4e, 0x67, 0xca, 0xe3, 0x06, 0x00, 0x00,
+	// 608 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x55, 0xcd, 0x6e, 0x13, 0x31,
+	0x10, 0xce, 0xe6, 0xaf, 0xc4, 0x11, 0x12, 0x35, 0xa5, 0xac, 0x56, 0x68, 0xa9, 0xa2, 0x52, 0x50,
+	0x90, 0xb2, 0xfc, 0x9d, 0x7a, 0xa3, 0x4d, 0x25, 0x7a, 0x48, 0x90, 0x52, 0x95, 0x03, 0xea, 0x65,
+	0xb3, 0x71, 0x96, 0x45, 0x59, 0x7b, 0xb1, 0xbd, 0x90, 0xdc, 0x10, 0x2f, 0x00, 0x6f, 0x42, 0x0f,
+	0x3c, 0x04, 0xc7, 0x1e, 0x39, 0x21, 0x94, 0x1c, 0xfa, 0x1a, 0xc8, 0x5e, 0x67, 0x7f, 0xf2, 0x4b,
+	0x0f, 0x48, 0x88, 0x4b, 0xb2, 0x9e, 0x19, 0x7f, 0xf3, 0x7d, 0xf6, 0xcc, 0x18, 0x18, 0x1c, 0x51,
+	0x6a, 0xfb, 0x1e, 0x0d, 0x7d, 0x8b, 0x22, 0xcc, 0xed, 0x81, 0xc5, 0x87, 0x8d, 0x80, 0x12, 0x4e,
+	0xe0, 0x66, 0xe2, 0x6b, 0x44, 0x3e, 0xe3, 0xae, 0x4b, 0x88, 0x3b, 0x40, 0x96, 0x0c, 0xe8, 0x86,
+	0x7d, 0x8b, 0x7b, 0x3e, 0x62, 0xdc, 0xf6, 0x83, 0x68, 0x8f, 0x71, 0xdb, 0x21, 0xcc, 0x27, 0xcc,
+	0xf2, 0x99, 0x6b, 0xbd, 0x7f, 0x2c, 0xfe, 0x22, 0x47, 0xed, 0xab, 0x06, 0x6e, 0xb6, 0x98, 0xdb,
+	0x44, 0xc1, 0x80, 0x8c, 0xda, 0x7d, 0xde, 0x41, 0xef, 0x42, 0xc4, 0x38, 0xdc, 0x05, 0xd7, 0x0f,
+	0x09, 0xe6, 0xd4, 0x76, 0xf8, 0xcb, 0x0f, 0x18, 0x51, 0x5d, 0xdb, 0xd1, 0x1e, 0x54, 0x3a, 0x59,
+	0x23, 0x84, 0xa0, 0xd8, 0xb6, 0x7d, 0xa4, 0xe7, 0xa5, 0x53, 0x7e, 0xc3, 0x6d, 0x50, 0x3e, 0x19,
+	0xf9, 0x5d, 0x32, 0xd0, 0x0b, 0xd2, 0xaa, 0x56, 0x70, 0x07, 0x54, 0x9b, 0x88, 0x39, 0xd4, 0x0b,
+	0xb8, 0x47, 0xb0, 0x5e, 0x94, 0xce, 0xb4, 0x09, 0xde, 0x00, 0x85, 0x53, 0xea, 0xe9, 0x25, 0xe9,
+	0x11, 0x9f, 0xfb, 0xf0, 0xd3, 0xe5, 0x79, 0x3d, 0x9b, 0xb3, 0xf6, 0x08, 0x6c, 0x65, 0x09, 0xb3,
+	0x80, 0x60, 0x86, 0xa0, 0x0e, 0x36, 0x0e, 0x07, 0x36, 0x63, 0xc7, 0x3d, 0xc5, 0x75, 0xba, 0xac,
+	0x7d, 0xd6, 0xc0, 0x66, 0x8b, 0xb9, 0x2d, 0x0f, 0xf3, 0x2b, 0x2b, 0x4c, 0xa1, 0xe6, 0x33, 0xa8,
+	0x70, 0x0b, 0x94, 0xda, 0x7d, 0x7e, 0xdc, 0x53, 0x32, 0xa3, 0xc5, 0x54, 0x43, 0x71, 0xb5, 0x86,
+	0x3a, 0x80, 0x69, 0x42, 0x4a, 0x41, 0x8c, 0x98, 0x4f, 0x21, 0x4e, 0xd9, 0x1f, 0x84, 0x14, 0xff,
+	0x53, 0xec, 0x63, 0x42, 0x2b, 0xd9, 0xff, 0xd4, 0x62, 0xa9, 0x1d, 0x84, 0xff, 0x32, 0xfd, 0x6d,
+	0x50, 0x16, 0x49, 0x10, 0x55, 0x0a, 0xd4, 0x4a, 0x64, 0x3b, 0xe1, 0x36, 0xe5, 0x4d, 0x9b, 0xa3,
+	0x53, 0xec, 0x0d, 0x65, 0x89, 0x15, 0x3a, 0x59, 0xa3, 0x28, 0xd0, 0x23, 0xdc, 0x8b, 0x63, 0xca,
+	0x32, 0x26, 0x6d, 0x5a, 0x78, 0x18, 0xb7, 0x64, 0xff, 0x24, 0xfa, 0xa2, 0xd3, 0x98, 0xea, 0x16,
+	0x87, 0xf4, 0x3f, 0xeb, 0x4e, 0xf4, 0x29, 0xdd, 0x6f, 0xa5, 0xf9, 0xb9, 0xe3, 0x20, 0xc6, 0x52,
+	0xe5, 0x9a, 0x30, 0xd4, 0x32, 0x0c, 0xaf, 0xa8, 0x74, 0xbf, 0x2a, 0x98, 0xa8, 0xcd, 0xb5, 0x67,
+	0x72, 0x12, 0xa4, 0x72, 0xa9, 0x4a, 0xbc, 0x03, 0x2a, 0x2f, 0x6c, 0x16, 0xd9, 0x65, 0xbe, 0x6b,
+	0x9d, 0xc4, 0xf0, 0xe4, 0x5b, 0x11, 0x14, 0x5a, 0xcc, 0x85, 0x67, 0xa0, 0x12, 0x0f, 0x11, 0xb8,
+	0xd7, 0x98, 0x1b, 0xaa, 0x8d, 0x05, 0x63, 0xd1, 0xb8, 0xbf, 0x36, 0x4e, 0x71, 0x78, 0x05, 0x36,
+	0x54, 0x7b, 0xc3, 0xdd, 0xc5, 0x7b, 0xb2, 0xe3, 0xc8, 0xb8, 0xb7, 0x26, 0x2a, 0xc1, 0x55, 0x8d,
+	0xb7, 0x0c, 0x37, 0x3b, 0x28, 0x96, 0xe1, 0xce, 0x76, 0xef, 0x19, 0xa8, 0x8a, 0x53, 0x6d, 0xf7,
+	0xb9, 0xc8, 0x08, 0x57, 0xb0, 0x49, 0x95, 0xb3, 0xb1, 0xb7, 0x2e, 0x6c, 0x0e, 0x5d, 0xe4, 0x85,
+	0x2b, 0x38, 0xfd, 0x01, 0xfa, 0x6c, 0xcd, 0x89, 0x9b, 0x6c, 0xf7, 0x79, 0x74, 0xbd, 0xcb, 0x6e,
+	0x72, 0xb6, 0x22, 0x97, 0xdd, 0xe4, 0x5c, 0x35, 0x19, 0xa5, 0x8f, 0x97, 0xe7, 0x75, 0xed, 0xe0,
+	0xe8, 0xfb, 0xd8, 0xd4, 0x2e, 0xc6, 0xa6, 0xf6, 0x6b, 0x6c, 0x6a, 0x5f, 0x26, 0x66, 0xee, 0x62,
+	0x62, 0xe6, 0x7e, 0x4c, 0xcc, 0xdc, 0xeb, 0x87, 0xae, 0xc7, 0xdf, 0x84, 0xdd, 0x86, 0x43, 0x7c,
+	0x2b, 0xf5, 0x6c, 0xcb, 0xdf, 0x9e, 0x35, 0x8c, 0xdf, 0xef, 0x51, 0x80, 0x58, 0xb7, 0x2c, 0x9f,
+	0xdd, 0xa7, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0xc9, 0x02, 0x70, 0xdc, 0xe1, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -676,8 +800,8 @@ type MsgClient interface {
 	DeployNft(ctx context.Context, in *MsgDeployNftRequest, opts ...grpc.CallOption) (*MsgDeployNftResponse, error)
 	MintNft(ctx context.Context, in *MsgMintNftRequest, opts ...grpc.CallOption) (*MsgMintNftResponse, error)
 	BurnNft(ctx context.Context, in *MsgBurnNftRequest, opts ...grpc.CallOption) (*MsgBurnNftResponse, error)
-	RentNftMint(ctx context.Context, in *MsgRentNftRequest, opts ...grpc.CallOption) (*MsgRentNftResponse, error)
-	RentNftBurn(ctx context.Context, in *MsgRentNftRequest, opts ...grpc.CallOption) (*MsgRentNftResponse, error)
+	RentNftMint(ctx context.Context, in *MsgMintRentRequest, opts ...grpc.CallOption) (*MsgMintRentResponse, error)
+	RentNftBurn(ctx context.Context, in *MsgBurnRentRequest, opts ...grpc.CallOption) (*MsgBurnRentResponse, error)
 	NftAccess(ctx context.Context, in *MsgAccessNftRequest, opts ...grpc.CallOption) (*MsgAccessNftResponse, error)
 }
 
@@ -716,8 +840,8 @@ func (c *msgClient) BurnNft(ctx context.Context, in *MsgBurnNftRequest, opts ...
 	return out, nil
 }
 
-func (c *msgClient) RentNftMint(ctx context.Context, in *MsgRentNftRequest, opts ...grpc.CallOption) (*MsgRentNftResponse, error) {
-	out := new(MsgRentNftResponse)
+func (c *msgClient) RentNftMint(ctx context.Context, in *MsgMintRentRequest, opts ...grpc.CallOption) (*MsgMintRentResponse, error) {
+	out := new(MsgMintRentResponse)
 	err := c.cc.Invoke(ctx, "/terramirum.rental.Msg/RentNftMint", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -725,8 +849,8 @@ func (c *msgClient) RentNftMint(ctx context.Context, in *MsgRentNftRequest, opts
 	return out, nil
 }
 
-func (c *msgClient) RentNftBurn(ctx context.Context, in *MsgRentNftRequest, opts ...grpc.CallOption) (*MsgRentNftResponse, error) {
-	out := new(MsgRentNftResponse)
+func (c *msgClient) RentNftBurn(ctx context.Context, in *MsgBurnRentRequest, opts ...grpc.CallOption) (*MsgBurnRentResponse, error) {
+	out := new(MsgBurnRentResponse)
 	err := c.cc.Invoke(ctx, "/terramirum.rental.Msg/RentNftBurn", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -749,8 +873,8 @@ type MsgServer interface {
 	DeployNft(context.Context, *MsgDeployNftRequest) (*MsgDeployNftResponse, error)
 	MintNft(context.Context, *MsgMintNftRequest) (*MsgMintNftResponse, error)
 	BurnNft(context.Context, *MsgBurnNftRequest) (*MsgBurnNftResponse, error)
-	RentNftMint(context.Context, *MsgRentNftRequest) (*MsgRentNftResponse, error)
-	RentNftBurn(context.Context, *MsgRentNftRequest) (*MsgRentNftResponse, error)
+	RentNftMint(context.Context, *MsgMintRentRequest) (*MsgMintRentResponse, error)
+	RentNftBurn(context.Context, *MsgBurnRentRequest) (*MsgBurnRentResponse, error)
 	NftAccess(context.Context, *MsgAccessNftRequest) (*MsgAccessNftResponse, error)
 }
 
@@ -767,10 +891,10 @@ func (*UnimplementedMsgServer) MintNft(ctx context.Context, req *MsgMintNftReque
 func (*UnimplementedMsgServer) BurnNft(ctx context.Context, req *MsgBurnNftRequest) (*MsgBurnNftResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BurnNft not implemented")
 }
-func (*UnimplementedMsgServer) RentNftMint(ctx context.Context, req *MsgRentNftRequest) (*MsgRentNftResponse, error) {
+func (*UnimplementedMsgServer) RentNftMint(ctx context.Context, req *MsgMintRentRequest) (*MsgMintRentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RentNftMint not implemented")
 }
-func (*UnimplementedMsgServer) RentNftBurn(ctx context.Context, req *MsgRentNftRequest) (*MsgRentNftResponse, error) {
+func (*UnimplementedMsgServer) RentNftBurn(ctx context.Context, req *MsgBurnRentRequest) (*MsgBurnRentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RentNftBurn not implemented")
 }
 func (*UnimplementedMsgServer) NftAccess(ctx context.Context, req *MsgAccessNftRequest) (*MsgAccessNftResponse, error) {
@@ -836,7 +960,7 @@ func _Msg_BurnNft_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _Msg_RentNftMint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgRentNftRequest)
+	in := new(MsgMintRentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -848,13 +972,13 @@ func _Msg_RentNftMint_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: "/terramirum.rental.Msg/RentNftMint",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).RentNftMint(ctx, req.(*MsgRentNftRequest))
+		return srv.(MsgServer).RentNftMint(ctx, req.(*MsgMintRentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Msg_RentNftBurn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgRentNftRequest)
+	in := new(MsgBurnRentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -866,7 +990,7 @@ func _Msg_RentNftBurn_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: "/terramirum.rental.Msg/RentNftBurn",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).RentNftBurn(ctx, req.(*MsgRentNftRequest))
+		return srv.(MsgServer).RentNftBurn(ctx, req.(*MsgBurnRentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1172,7 +1296,7 @@ func (m *MsgBurnNftResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgRentNftRequest) Marshal() (dAtA []byte, err error) {
+func (m *MsgMintRentRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1182,12 +1306,12 @@ func (m *MsgRentNftRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgRentNftRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgMintRentRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgRentNftRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgMintRentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1233,7 +1357,7 @@ func (m *MsgRentNftRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgRentNftResponse) Marshal() (dAtA []byte, err error) {
+func (m *MsgMintRentResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1243,12 +1367,96 @@ func (m *MsgRentNftResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgRentNftResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgMintRentResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgRentNftResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgMintRentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgBurnRentRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgBurnRentRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgBurnRentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.EndDateUnix != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.EndDateUnix))
+		i--
+		dAtA[i] = 0x30
+	}
+	if m.StartDateUnix != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.StartDateUnix))
+		i--
+		dAtA[i] = 0x28
+	}
+	if len(m.Renter) > 0 {
+		i -= len(m.Renter)
+		copy(dAtA[i:], m.Renter)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Renter)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.NftId) > 0 {
+		i -= len(m.NftId)
+		copy(dAtA[i:], m.NftId)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.NftId)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.ClassId) > 0 {
+		i -= len(m.ClassId)
+		copy(dAtA[i:], m.ClassId)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ClassId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ContractOwner) > 0 {
+		i -= len(m.ContractOwner)
+		copy(dAtA[i:], m.ContractOwner)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ContractOwner)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgBurnRentResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgBurnRentResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgBurnRentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1462,7 +1670,7 @@ func (m *MsgBurnNftResponse) Size() (n int) {
 	return n
 }
 
-func (m *MsgRentNftRequest) Size() (n int) {
+func (m *MsgMintRentRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1493,7 +1701,47 @@ func (m *MsgRentNftRequest) Size() (n int) {
 	return n
 }
 
-func (m *MsgRentNftResponse) Size() (n int) {
+func (m *MsgMintRentResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgBurnRentRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.ContractOwner)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.ClassId)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.NftId)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Renter)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.StartDateUnix != 0 {
+		n += 1 + sovTx(uint64(m.StartDateUnix))
+	}
+	if m.EndDateUnix != 0 {
+		n += 1 + sovTx(uint64(m.EndDateUnix))
+	}
+	return n
+}
+
+func (m *MsgBurnRentResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -2353,7 +2601,7 @@ func (m *MsgBurnNftResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgRentNftRequest) Unmarshal(dAtA []byte) error {
+func (m *MsgMintRentRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2376,10 +2624,10 @@ func (m *MsgRentNftRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgRentNftRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgMintRentRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgRentNftRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgMintRentRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2569,7 +2817,7 @@ func (m *MsgRentNftRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgRentNftResponse) Unmarshal(dAtA []byte) error {
+func (m *MsgMintRentResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2592,10 +2840,276 @@ func (m *MsgRentNftResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgRentNftResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgMintRentResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgRentNftResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgMintRentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgBurnRentRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgBurnRentRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgBurnRentRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ContractOwner", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ContractOwner = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ClassId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ClassId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NftId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NftId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Renter", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Renter = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StartDateUnix", wireType)
+			}
+			m.StartDateUnix = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.StartDateUnix |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EndDateUnix", wireType)
+			}
+			m.EndDateUnix = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.EndDateUnix |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgBurnRentResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgBurnRentResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgBurnRentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

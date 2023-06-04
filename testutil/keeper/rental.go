@@ -29,7 +29,6 @@ func RentalKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 
 	registry := codectypes.NewInterfaceRegistry()
 	cdc := codec.NewProtoCodec(registry)
-
 	//nftKeeper := nftkeeper.NewKeeper(storeKey, cdc)
 	// paramsSubspace := typesparams.NewSubspace(cdc,
 	// 	types.Amino,

@@ -8,9 +8,7 @@ import (
 )
 
 var (
-	NftKey           = []byte{0x01}
-	ClassTotalSupply = []byte{0x02}
-	OwnerKey         = []byte{0x03}
+	RenterDates = []byte{0x01}
 
 	Delimiter   = []byte{0x00}
 	Placeholder = []byte{0x01}
@@ -19,19 +17,17 @@ var (
 // StoreKey is the store key string for nft
 const StoreKey = types.ModuleName
 
-// ownerStoreKey returns the byte representation of the nft owner
-// Items are stored with the following key: values
-// 0x04<classID><Delimiter(1 Byte)><nftID>
-func ownerStoreKey(classID, nftID string) []byte {
+func renterDatesStoreKey(classID, nftID, address string) []byte {
 	// key is of format:
 	classIDBz := UnsafeStrToBytes(classID)
 	nftIDBz := UnsafeStrToBytes(nftID)
 
-	key := make([]byte, len(OwnerKey)+len(classIDBz)+len(Delimiter)+len(nftIDBz))
-	copy(key, OwnerKey)
-	copy(key[len(OwnerKey):], classIDBz)
-	copy(key[len(OwnerKey)+len(classIDBz):], Delimiter)
-	copy(key[len(OwnerKey)+len(classIDBz)+len(Delimiter):], nftIDBz)
+	key := make([]byte, len(RenterDates)+len(classIDBz)+len(nftIDBz)+len(Delimiter)+len(address))
+	copy(key, RenterDates)
+	copy(key[len(RenterDates):], classIDBz)
+	copy(key[len(RenterDates)+len(classIDBz):], nftIDBz)
+	copy(key[len(RenterDates)+len(classIDBz)+len(nftIDBz):], Delimiter)
+	copy(key[len(RenterDates)+len(classIDBz)+len(nftIDBz)+len(Delimiter):], address)
 	return key
 }
 

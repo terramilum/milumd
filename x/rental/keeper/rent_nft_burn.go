@@ -7,6 +7,6 @@ import (
 )
 
 // RentNftBurn implements types.MsgServer
-func (k Keeper) RentNftBurn(context.Context, *types.MsgRentNftRequest) (*types.MsgRentNftResponse, error) {
-	return &types.MsgRentNftResponse{}, nil
+func (k Keeper) RentNftBurn(context.Context, *types.MsgBurnRentRequest) (*types.MsgBurnRentResponse, error) {
+	return &types.MsgBurnRentResponse{}, nil
 }

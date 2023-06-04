@@ -217,6 +217,7 @@ var (
 		groupmodule.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 		nftmodule.AppModuleBasic{},
+		rental.AppModuleBasic{},
 		consensus.AppModuleBasic{},
 		// non sdk modules
 		wasm.AppModuleBasic{},

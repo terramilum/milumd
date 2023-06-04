@@ -1,7 +1,7 @@
 syntax = "proto3";
 package terramirum.rental;
 
-import "google/protobuf/timestamp.proto"; 
+import "google/protobuf/timestamp.proto";
 import "cosmos/msg/v1/msg.proto";
 
 // this line is used by starport scaffolding # proto/tx/import
@@ -16,10 +16,10 @@ service Msg {
   rpc DeployNft(MsgDeployNftRequest) returns (MsgDeployNftResponse);
   rpc MintNft(MsgMintNftRequest) returns (MsgMintNftResponse);
   rpc BurnNft(MsgBurnNftRequest) returns (MsgBurnNftResponse);
-  rpc RentNftMint(MsgRentNftRequest) returns (MsgRentNftResponse);
-  rpc RentNftBurn(MsgRentNftRequest) returns (MsgRentNftResponse);
+  rpc RentNftMint(MsgMintRentRequest) returns (MsgMintRentResponse);
+  rpc RentNftBurn(MsgBurnRentRequest) returns (MsgBurnRentResponse);
   rpc NftAccess(MsgAccessNftRequest) returns (MsgAccessNftResponse);
-} 
+}
 
 message MsgDeployNftRequest {
   option (cosmos.msg.v1.signer) = "ContractOwner";
@@ -34,7 +34,8 @@ message MsgDeployNftRequest {
   // description is a brief description of nft classification. Optional
   string Description = 4;
 
-  // uri for the class metadata stored off chain. It can define schema for Class and NFT `Data` attributes. Optional
+  // uri for the class metadata stored off chain. It can define schema for Class
+  // and NFT `Data` attributes. Optional
   string Uri = 5;
 }
 
@@ -49,9 +50,7 @@ message MsgMintNftRequest {
   string Uri = 4;
 }
 
-message MsgMintNftResponse {
-  string NftId = 2;
-}
+message MsgMintNftResponse { string NftId = 2; }
 
 message MsgBurnNftRequest {
   option (cosmos.msg.v1.signer) = "ContractOwner";
@@ -62,23 +61,33 @@ message MsgBurnNftRequest {
   string Uri = 4;
 }
 
-message MsgBurnNftResponse {
-  string NftId = 2;
-}
+message MsgBurnNftResponse { string NftId = 2; }
 
-message MsgRentNftRequest {
+message MsgMintRentRequest {
   option (cosmos.msg.v1.signer) = "ContractOwner";
 
-  string ContractOwner = 1;  
+  string ContractOwner = 1;
   string ClassId = 2;
   string NftId = 3;
   string Renter = 4;
   int64 StartDateUnix = 5;
   int64 EndDateUnix = 6;
-} 
- 
+}
 
-message MsgRentNftResponse {}
+message MsgMintRentResponse {}
+
+message MsgBurnRentRequest {
+  option (cosmos.msg.v1.signer) = "ContractOwner";
+
+  string ContractOwner = 1;
+  string ClassId = 2;
+  string NftId = 3;
+  string Renter = 4;
+  int64 StartDateUnix = 5;
+  int64 EndDateUnix = 6;
+}
+
+message MsgBurnRentResponse {}
 
 message MsgAccessNftRequest {
   option (cosmos.msg.v1.signer) = "Renter";
@@ -89,6 +98,4 @@ message MsgAccessNftRequest {
   string NftId = 3;
 }
 
-message MsgAccessNftResponse {
-  bool HasAccess = 1;
-}
+message MsgAccessNftResponse { bool HasAccess = 1; }

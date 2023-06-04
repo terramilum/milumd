@@ -10,7 +10,7 @@ import (
 )
 
 // RentNftMint implements types.MsgServer
-func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgRentNftRequest) (*types.MsgRentNftResponse, error) {
+func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMintRentRequest) (*types.MsgMintRentResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
 
 	if !k.nftKeeper.HasClass(ctx, rentNftRequest.ClassId) {
@@ -32,5 +32,5 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgRe
 		return nil, err
 	}
 
-	return &types.MsgRentNftResponse{}, nil
+	return &types.MsgMintRentResponse{}, nil
 }
