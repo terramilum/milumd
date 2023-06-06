@@ -15,7 +15,14 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/mirumd/rental/params";
   }
-  // this line is used by starport scaffolding # 2 
+  
+  rpc Sessions(QuerySessionRequest) returns (QuerySessionResponse) {
+    option (google.api.http).get = "/mirumd/rental/session/{ClassId}/{NftId}/{Renter}";
+  }
+
+  rpc Renters(QueryRenterRequest) returns (QueryRenterResponse) {
+    option (google.api.http).get = "/mirumd/rental/access/{ClassId}/{NftId}/{SessionId}";
+  }
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -24,8 +31,34 @@ message QueryParamsRequest {}
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
   // params holds all the parameters of this module.
-  Params params = 1 [(gogoproto.nullable) = false];
+  Params params = 1 [ (gogoproto.nullable) = false ];
 }
 
 // this line is used by starport scaffolding # 3
 
+message NftRent {
+  string SessionId = 1;
+  int64 StartDate = 2;
+  int64 EndDate = 3;
+}
+
+message QuerySessionRequest {
+  string ClassId = 1;
+  string NftId = 2;
+  string Renter = 3;
+}
+
+
+message QuerySessionResponse {
+  repeated NftRent NftRent = 1;
+}
+
+message QueryRenterRequest {
+  string ClassId = 1;
+  string NftId = 2;
+  string SessionId = 3;
+}
+
+message QueryRenterResponse {
+  string Renter = 1;
+}

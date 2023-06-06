@@ -8,7 +8,10 @@ import (
 )
 
 var (
-	RenterDates = []byte{0x01}
+	RentDates       = []byte{0x01}
+	ClassContract   = []byte{0x02}
+	RentSessionId   = []byte{0x03}
+	SessionIdRenter = []byte{0x04}
 
 	Delimiter   = []byte{0x00}
 	Placeholder = []byte{0x01}
@@ -22,12 +25,52 @@ func renterDatesStoreKey(classID, nftID, address string) []byte {
 	classIDBz := UnsafeStrToBytes(classID)
 	nftIDBz := UnsafeStrToBytes(nftID)
 
-	key := make([]byte, len(RenterDates)+len(classIDBz)+len(nftIDBz)+len(Delimiter)+len(address))
-	copy(key, RenterDates)
-	copy(key[len(RenterDates):], classIDBz)
-	copy(key[len(RenterDates)+len(classIDBz):], nftIDBz)
-	copy(key[len(RenterDates)+len(classIDBz)+len(nftIDBz):], Delimiter)
-	copy(key[len(RenterDates)+len(classIDBz)+len(nftIDBz)+len(Delimiter):], address)
+	key := make([]byte, len(RentDates)+len(classIDBz)+len(nftIDBz)+len(Delimiter)+len(address))
+	copy(key, RentDates)
+	copy(key[len(RentDates):], classIDBz)
+	copy(key[len(RentDates)+len(classIDBz):], nftIDBz)
+	copy(key[len(RentDates)+len(classIDBz)+len(nftIDBz):], Delimiter)
+	copy(key[len(RentDates)+len(classIDBz)+len(nftIDBz)+len(Delimiter):], address)
+	return key
+}
+
+func nftRentDatesStoreKey(classID, nftID string) []byte {
+	// key is of format:
+	classIDBz := UnsafeStrToBytes(classID)
+	nftIDBz := UnsafeStrToBytes(nftID)
+
+	key := make([]byte, len(RentSessionId)+len(classIDBz)+len(nftIDBz))
+	copy(key, RentSessionId)
+	copy(key[len(RentSessionId):], classIDBz)
+	copy(key[len(RentSessionId)+len(classIDBz):], nftIDBz)
+	return key
+}
+
+func nftRentDatesSessionIdStoreKey(classID, nftID, sessionId string) []byte {
+	// key is of format:
+	nftId := UnsafeStrToBytes(classID + nftID)
+	sessionIdz := UnsafeStrToBytes(sessionId)
+
+	key := make([]byte, len(RentSessionId)+len(nftId)+len(Delimiter)+len(sessionIdz)+len(Delimiter))
+	copy(key, RentSessionId)
+	copy(key[len(RentSessionId):], nftId)
+	copy(key[len(RentSessionId)+len(nftId):], Delimiter)
+	copy(key[len(RentSessionId)+len(nftId)+len(Delimiter):], sessionIdz)
+	copy(key[len(RentSessionId)+len(nftId)+len(Delimiter)+len(sessionIdz):], Delimiter)
+	return key
+}
+
+func nftSessionIdRentersStoreKey(classID, nftID, sessionId string) []byte {
+	// key is of format:
+	nftId := UnsafeStrToBytes(classID + nftID)
+	sessionIdz := UnsafeStrToBytes(sessionId)
+
+	key := make([]byte, len(SessionIdRenter)+len(nftId)+len(Delimiter)+len(sessionIdz)+len(Delimiter))
+	copy(key, SessionIdRenter)
+	copy(key[len(SessionIdRenter):], nftId)
+	copy(key[len(SessionIdRenter)+len(nftId):], Delimiter)
+	copy(key[len(SessionIdRenter)+len(nftId)+len(Delimiter):], sessionIdz)
+	copy(key[len(SessionIdRenter)+len(nftId)+len(Delimiter)+len(sessionIdz):], Delimiter)
 	return key
 }
 
@@ -49,4 +92,12 @@ func UnsafeStrToBytes(s string) []byte {
 // from a map.
 func UnsafeBytesToStr(b []byte) string {
 	return *(*string)(unsafe.Pointer(&b))
+}
+
+// classStoreKey returns the byte representation of the nft class key
+func classContractAddressKey(classID string) []byte {
+	key := make([]byte, len(ClassContract)+len(classID))
+	copy(key, ClassContract)
+	copy(key[len(ClassContract):], classID)
+	return key
 }

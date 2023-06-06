@@ -8,5 +8,6 @@ option go_package = "github.com/terramirum/mirumd/x/rental/types";
 // Params defines the parameters for the module.
 message Params {
   option (gogoproto.goproto_stringer) = false;
-
+  // parameter is set to minutes Renting must start according to param.
+  int32 RentMinStartUnit = 1;
 }

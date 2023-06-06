@@ -49,6 +49,14 @@ func (k Keeper) DeployNft(context context.Context, deployNftRequest *types.MsgDe
 		return nil, errors.New(fmt.Sprintf("Class not exist %s", class.Id))
 	}
 
+	store := ctx.KVStore(k.storeKey)
+	store.Set(classContractAddressKey(class.Id), []byte(deployNftRequest.ContractOwner))
+
+	ctx.EventManager().EmitEvent(sdk.NewEvent(
+		types.EventTypeDeployNft,
+		sdk.NewAttribute(types.AttributeKeyClassId, getClass.Id),
+	))
+
 	return &types.MsgDeployNftResponse{
 		ClassId: getClass.Id,
 	}, nil

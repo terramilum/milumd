@@ -76,8 +76,8 @@ When using '--dry-run' a key name cannot be used, only a bech32 address.
 				ClassId:       args[0],
 				NftId:         args[1],
 				Renter:        renter.String(),
-				StartDateUnix: startDate,
-				EndDateUnix:   endDate,
+				StartDate:     startDate,
+				EndDate:       endDate,
 			}
 
 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
