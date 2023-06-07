@@ -4,7 +4,7 @@
 PASSWORD=${PASSWORD:-12345678}
 STAKE=${STAKE_TOKEN:-TRM}
 FEE=${FEE_TOKEN:-uTRM}
-CHAIN_ID=${CHAIN_ID:-terramirum-testnet}
+CHAIN_ID=${CHAIN_ID:-terramirum-localnet}
 MONIKER=${MONIKER:-node001}
 FILENAME=${FILENAME:-"$HOME"/.mirumd/config/genesis.json}
 CONFIG=${CONFIG:-"$HOME"/.mirumd/config/config.toml}
@@ -17,13 +17,13 @@ sed -i "s/\"stake\"/\"$STAKE\"/" $FILENAME
 # this is essential for sub-1s block times (or header times go crazy)
 if grep -F "time_iota_ms" $FILENAME
 then 
-    sed -i 's/"time_iota_ms": "1000"/"time_iota_ms": "10"/' $FILENAME
+    sed -i 's/"time_iota_ms": "1000"/"time_iota_ms": "100"/' $FILENAME
 else   
-   sed -i 's/"max_gas": "-1"/"time_iota_ms": "10"/' $FILENAME
+   sed -i 's/"max_gas": "-1"/"time_iota_ms": "100"/' $FILENAME
 fi
 
 # making 1 sec block time.
-sed -i 's/timeout_commit = "5s"/timeout_commit = "1s"/' $CONFIG
+sed -i 's/timeout_commit = "5s"/timeout_commit = "2s"/' $CONFIG
 
 
 if ! mirumd keys show validator; then

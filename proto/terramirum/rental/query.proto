@@ -1,0 +1,64 @@
+syntax = "proto3";
+package terramirum.rental;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "terramirum/rental/params.proto";
+// this line is used by starport scaffolding # 1
+
+option go_package = "github.com/terramirum/mirumd/x/rental/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/mirumd/rental/params";
+  }
+  
+  rpc Sessions(QuerySessionRequest) returns (QuerySessionResponse) {
+    option (google.api.http).get = "/mirumd/rental/session/{ClassId}/{NftId}/{Renter}";
+  }
+
+  rpc Renters(QueryRenterRequest) returns (QueryRenterResponse) {
+    option (google.api.http).get = "/mirumd/rental/access/{ClassId}/{NftId}/{SessionId}";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [ (gogoproto.nullable) = false ];
+}
+
+// this line is used by starport scaffolding # 3
+
+message NftRent {
+  string SessionId = 1;
+  int64 StartDate = 2;
+  int64 EndDate = 3;
+}
+
+message QuerySessionRequest {
+  string ClassId = 1;
+  string NftId = 2;
+  string Renter = 3;
+}
+
+
+message QuerySessionResponse {
+  repeated NftRent NftRent = 1;
+}
+
+message QueryRenterRequest {
+  string ClassId = 1;
+  string NftId = 2;
+  string SessionId = 3;
+}
+
+message QueryRenterResponse {
+  repeated string Renter = 1;
+}

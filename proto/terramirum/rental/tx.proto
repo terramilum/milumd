@@ -1,0 +1,114 @@
+syntax = "proto3";
+package terramirum.rental;
+
+import "google/protobuf/timestamp.proto";
+import "cosmos/msg/v1/msg.proto";
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/terramirum/mirumd/x/rental/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+
+  // Save an nft class
+  rpc DeployNft(MsgDeployNftRequest) returns (MsgDeployNftResponse);
+  rpc MintNft(MsgMintNftRequest) returns (MsgMintNftResponse);
+  rpc BurnNft(MsgBurnNftRequest) returns (MsgBurnNftResponse);
+  rpc RentNftMint(MsgMintRentRequest) returns (MsgMintRentResponse);
+  rpc RentNftBurn(MsgBurnRentRequest) returns (MsgBurnRentResponse);
+  rpc NftAccess(MsgAccessNftRequest) returns (MsgAccessNftResponse);
+  rpc RentNftGiveAccess(MsgRentGiveAccessRequest) returns (MsgRentGiveAccessResponse);
+}
+
+message MsgRentGiveAccessRequest {
+  option (cosmos.msg.v1.signer) = "Renter";
+  string Renter = 1;
+  string NewRenter = 2;
+  string ClassId = 3;
+  string NftId = 4;
+  string SessionId = 5; 
+}
+
+message MsgRentGiveAccessResponse {}
+
+message MsgDeployNftRequest {
+  option (cosmos.msg.v1.signer) = "ContractOwner";
+  // contract ofner of the class
+  string ContractOwner = 1;
+  // name defines the human-readable name of the NFT classification. Optional
+  string Name = 2;
+
+  // symbol is an abbreviated name for nft classification. Optional
+  string Symbol = 3;
+
+  // description is a brief description of nft classification. Optional
+  string Description = 4;
+
+  // uri for the class metadata stored off chain. It can define schema for Class
+  // and NFT `Data` attributes. Optional
+  string Uri = 5;
+}
+
+message MsgDeployNftResponse { string ClassId = 1; }
+
+message MsgMintNftRequest {
+  option (cosmos.msg.v1.signer) = "ContractOwner";
+
+  string ContractOwner = 1;
+  string Reciever = 2;
+  string ClassId = 3;
+  string NftId = 4;
+  string Uri = 5;
+}
+
+message MsgMintNftResponse { string NftId = 2; }
+
+message MsgBurnNftRequest {
+  option (cosmos.msg.v1.signer) = "ContractOwner";
+
+  string ContractOwner = 1;
+  string ClassId = 2;
+  string NftId = 3;
+  string Uri = 4;
+}
+
+message MsgBurnNftResponse { string NftId = 2; }
+
+message MsgMintRentRequest {
+  option (cosmos.msg.v1.signer) = "ContractOwner";
+
+  string ContractOwner = 1;
+  string ClassId = 2;
+  string NftId = 3;
+  string Renter = 4;
+  // YYDDDHHMM
+  int64 StartDate = 5;
+  // YYDDDHHMM
+  int64 EndDate = 6;
+}
+
+message MsgMintRentResponse {}
+
+message MsgBurnRentRequest {
+  option (cosmos.msg.v1.signer) = "ContractOwner";
+
+  string ContractOwner = 1;
+  string ClassId = 2;
+  string NftId = 3;
+  string SessionId = 4; 
+}
+
+message MsgBurnRentResponse {}
+
+message MsgAccessNftRequest {
+  option (cosmos.msg.v1.signer) = "Renter";
+  // contract ofner of the class
+  string Renter = 1;
+  // class definition to save
+  string ClassId = 2;
+  string NftId = 3;
+}
+
+message MsgAccessNftResponse { bool HasAccess = 1; }

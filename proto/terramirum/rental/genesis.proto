@@ -1,0 +1,21 @@
+syntax = "proto3";
+package terramirum.rental;
+
+import "gogoproto/gogo.proto";
+import "terramirum/rental/tx.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/terramirum/mirumd/x/rental/types";
+
+// GenesisState defines the rental module's genesis state.
+message GenesisState {
+
+  // class defines the class of the nft type.
+  repeated terramirum.rental.MsgMintRentRequest Rentals = 1;
+  repeated ClassOwner ClassOwner = 2;
+}
+
+message ClassOwner {
+  string Address = 1;
+  string ClassId = 2;
+}
