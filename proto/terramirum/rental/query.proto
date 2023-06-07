@@ -60,5 +60,5 @@ message QueryRenterRequest {
 }
 
 message QueryRenterResponse {
-  string Renter = 1;
+  repeated string Renter = 1;
 }

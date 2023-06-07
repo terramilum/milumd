@@ -14,5 +14,5 @@ var (
 	ErrNftRentMinStartDate     = sdkerrors.Register(ModuleName, 1103, "Minimum start date")
 	ErrNftRentNotAvaliableDate = sdkerrors.Register(ModuleName, 1104, "This period is not avaliable for rent.")
 	ErrNftRentAccessGive       = sdkerrors.Register(ModuleName, 1105, "Renter has not right for this session")
-	ErrNftClassOwnerTheSame    = sdkerrors.Register(ModuleName, 1105, "Class owner should be the same to mint nft.")
+	ErrNftClassOwnerTheSame    = sdkerrors.Register(ModuleName, 1106, "Class owner should be the same to mint nft.")
 )
