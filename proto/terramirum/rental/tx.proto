@@ -3,6 +3,7 @@ package terramirum.rental;
 
 import "google/protobuf/timestamp.proto";
 import "cosmos/msg/v1/msg.proto";
+import "terramirum/rental/query.proto";
 
 // this line is used by starport scaffolding # proto/tx/import
 
@@ -61,6 +62,7 @@ message MsgMintNftRequest {
   string ClassId = 3;
   string NftId = 4;
   string Uri = 5;
+  NftRentDetail NftRentDetail = 6;
 }
 
 message MsgMintNftResponse { string NftId = 2; }
@@ -83,9 +85,9 @@ message MsgMintRentRequest {
   string ClassId = 2;
   string NftId = 3;
   string Renter = 4;
-  // YYDDDHHMM
+  // YYYYMMDDHHMM
   int64 StartDate = 5;
-  // YYDDDHHMM
+  // YYYYMMDDHHMM
   int64 EndDate = 6;
 }
 

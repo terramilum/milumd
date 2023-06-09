@@ -12,6 +12,7 @@ var (
 	ClassContract   = []byte{0x02}
 	RentSessionId   = []byte{0x03}
 	SessionIdRenter = []byte{0x04}
+	ClassIdContract = []byte{0x05}
 
 	Delimiter   = []byte{0x00}
 	Placeholder = []byte{0x01}
@@ -99,5 +100,13 @@ func classContractAddressKey(classID string) []byte {
 	key := make([]byte, len(ClassContract)+len(classID))
 	copy(key, ClassContract)
 	copy(key[len(ClassContract):], classID)
+	return key
+}
+
+// classStoreKey returns the byte representation of the nft class key
+func contractAddressClassIdKey(contractAddress string) []byte {
+	key := make([]byte, len(ClassIdContract)+len(contractAddress))
+	copy(key, ClassIdContract)
+	copy(key[len(ClassIdContract):], contractAddress)
 	return key
 }

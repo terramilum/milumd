@@ -4,6 +4,7 @@ import (
 	context "context"
 	"fmt"
 
+	codec "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/nft"
@@ -26,10 +27,16 @@ func (k Keeper) MintNft(context context.Context, mintRequest *types.MsgMintNftRe
 		nftId = mintRequest.NftId
 	}
 
+	rentDetail, err := codec.NewAnyWithValue(mintRequest.NftRentDetail)
+	if err != nil {
+		return nil, err
+	}
+
 	nft := nft.NFT{
 		ClassId: mintRequest.ClassId,
 		Id:      nftId,
 		Uri:     "/" + nftId,
+		Data:    rentDetail,
 	}
 
 	reciever, err := sdk.AccAddressFromBech32(mintRequest.Reciever)

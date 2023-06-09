@@ -2,6 +2,7 @@ syntax = "proto3";
 package terramirum.rental;
 
 import "gogoproto/gogo.proto";
+import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "terramirum/rental/params.proto";
@@ -15,13 +16,23 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/mirumd/rental/params";
   }
-  
+
   rpc Sessions(QuerySessionRequest) returns (QuerySessionResponse) {
-    option (google.api.http).get = "/mirumd/rental/session/{ClassId}/{NftId}/{Renter}";
+    option (google.api.http).get =
+        "/mirumd/rental/session/{ClassId}/{NftId}/{Renter}";
   }
 
   rpc Renters(QueryRenterRequest) returns (QueryRenterResponse) {
-    option (google.api.http).get = "/mirumd/rental/access/{ClassId}/{NftId}/{SessionId}";
+    option (google.api.http).get =
+        "/mirumd/rental/access/{ClassId}/{NftId}/{SessionId}";
+  }
+
+  rpc Classes(QueryClassRequest) returns (QueryClassResponse) {
+    option (google.api.http).get = "/mirumd/rental/class/{ContractOwner}";
+  }
+
+  rpc Nfts(QueryNftRequest) returns (QueryNftResponse) {
+    option (google.api.http).get = "/mirumd/rental/nft/{ClassId}";
   }
 }
 
@@ -34,8 +45,7 @@ message QueryParamsResponse {
   Params params = 1 [ (gogoproto.nullable) = false ];
 }
 
-// this line is used by starport scaffolding # 3
-
+// this line is used by starport scaffolding #
 message NftRent {
   string SessionId = 1;
   int64 StartDate = 2;
@@ -48,10 +58,7 @@ message QuerySessionRequest {
   string Renter = 3;
 }
 
-
-message QuerySessionResponse {
-  repeated NftRent NftRent = 1;
-}
+message QuerySessionResponse { repeated NftRent NftRent = 1; }
 
 message QueryRenterRequest {
   string ClassId = 1;
@@ -59,6 +66,53 @@ message QueryRenterRequest {
   string SessionId = 3;
 }
 
-message QueryRenterResponse {
-  repeated string Renter = 1;
+message QueryRenterResponse { repeated string Renter = 1; }
+
+message QueryClassRequest { string ContractOwner = 1; }
+
+message QueryClassResponse { repeated NftClass NftClass = 1; }
+
+
+message QueryNftRequest { string ClassId = 1; }
+
+message QueryNftResponse { repeated NftDefinition NftDefinition = 1; }
+
+
+message NftClass {
+  // id defines the unique identifier of the NFT classification, similar to the
+  // contract address of ERC721
+  string id = 1;
+
+  // name defines the human-readable name of the NFT classification. Optional
+  string name = 2;
+
+  // symbol is an abbreviated name for nft classification. Optional
+  string symbol = 3;
+
+  // description is a brief description of nft classification. Optional
+  string description = 4;
+
+  // uri for the class metadata stored off chain. It can define schema for Class
+  // and NFT `Data` attributes. Optional
+  string uri = 5;
+}
+
+message NftDefinition {
+  // class_id associated with the NFT, similar to the contract address of ERC721
+  string class_id = 1;
+
+  // id is a unique identifier of the NFT
+  string id = 2;
+
+  // uri for the NFT metadata stored off chain
+  string uri = 3;
+  NftRentDetail NftRentDetail = 4;
+}
+
+message NftRentDetail {
+  string Size=1;
+  string AvatarUri=2;
+  string Type=3;
+  string Bedding=4;
+  bool Wireless=5;
 }
