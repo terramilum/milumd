@@ -32,10 +32,15 @@ func (k Keeper) MintNft(context context.Context, mintRequest *types.MsgMintNftRe
 		return nil, err
 	}
 
+	uri := "/" + nftId
+	if len(mintRequest.Uri) > 3 {
+		uri = mintRequest.Uri
+	}
+
 	nft := nft.NFT{
 		ClassId: mintRequest.ClassId,
 		Id:      nftId,
-		Uri:     "/" + nftId,
+		Uri:     uri,
 		Data:    rentDetail,
 	}
 

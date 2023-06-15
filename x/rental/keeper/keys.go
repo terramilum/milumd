@@ -1,6 +1,7 @@
 package keeper
 
 import (
+	"bytes"
 	"reflect"
 	"unsafe"
 
@@ -104,9 +105,31 @@ func classContractAddressKey(classID string) []byte {
 }
 
 // classStoreKey returns the byte representation of the nft class key
-func contractAddressClassIdKey(contractAddress string) []byte {
-	key := make([]byte, len(ClassIdContract)+len(contractAddress))
+func contractAddressClassIdKey(contractAddress, classId string) []byte {
+	key := make([]byte, len(ClassIdContract)+len(Delimiter)+len(contractAddress)+len(Delimiter)+len(classId))
 	copy(key, ClassIdContract)
-	copy(key[len(ClassIdContract):], contractAddress)
+	copy(key[len(ClassIdContract):], Delimiter)
+	copy(key[len(ClassIdContract)+len(Delimiter):], contractAddress)
+	copy(key[len(ClassIdContract)+len(Delimiter)+len(contractAddress):], Delimiter)
+	copy(key[len(ClassIdContract)+len(Delimiter)+len(contractAddress)+len(Delimiter):], classId)
 	return key
+}
+
+func contractOwnerClasseseKey(contractAddress string) []byte {
+	key := make([]byte, len(ClassIdContract)+len(Delimiter)+len(contractAddress)+len(Delimiter))
+	copy(key, ClassIdContract)
+	copy(key[len(ClassIdContract):], Delimiter)
+	copy(key[len(ClassIdContract)+len(Delimiter):], contractAddress)
+	copy(key[len(ClassIdContract)+len(Delimiter)+len(contractAddress):], Delimiter)
+	return key
+}
+
+func parseContractAddressClassIdKey(key []byte) (contractAddress, classId string) {
+	ret := bytes.Split(key, Delimiter)
+	if len(ret) != 3 {
+		panic("invalid parseContractAddressClassIdKey")
+	}
+	contractAddress = string(ret[1])
+	classId = string(ret[2])
+	return
 }

@@ -3,10 +3,7 @@ package keeper
 import (
 	context "context"
 
-	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/query"
-	"github.com/cosmos/cosmos-sdk/x/nft"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
@@ -16,12 +13,16 @@ func (k Keeper) Classes(c context.Context, req *types.QueryClassRequest) (*types
 
 	var nftClasses []*types.NftClass
 
-	classIdKey := contractAddressClassIdKey(req.ContractOwner)
-	allSessionStore := prefix.NewStore(store, classIdKey)
-	iterator := allSessionStore.Iterator(nil, nil)
+	classIdKey := contractOwnerClasseseKey(req.ContractOwner)
+	iterator := sdk.KVStorePrefixIterator(store, classIdKey)
+
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
-		classId := string(iterator.Value())
+		_, classId := parseContractAddressClassIdKey(iterator.Key())
+		val := string(iterator.Value())
+		if val != "1" {
+			continue
+		}
 		class, _ := k.nftKeeper.GetClass(ctx, classId)
 		nftClass := &types.NftClass{
 			Id:          classId,
@@ -34,44 +35,5 @@ func (k Keeper) Classes(c context.Context, req *types.QueryClassRequest) (*types
 	}
 	return &types.QueryClassResponse{
 		NftClass: nftClasses,
-	}, nil
-}
-
-func (k Keeper) Nfts(c context.Context, req *types.QueryNftRequest) (*types.QueryNftResponse, error) {
-	ctx := sdk.UnwrapSDKContext(c)
-
-	nftsRequest := &nft.QueryNFTsRequest{
-		ClassId: req.ClassId,
-		Pagination: &query.PageRequest{
-			Key:        []byte{},
-			Offset:     0,
-			Limit:      1000,
-			CountTotal: false,
-			Reverse:    false,
-		},
-	}
-
-	nfts, err := k.nftKeeper.NFTs(ctx, nftsRequest)
-	if err != nil {
-		return nil, err
-	}
-
-	var nftDefinitions []*types.NftDefinition
-	for _, v := range nfts.Nfts {
-		var rentDetail types.NftRentDetail
-		err = k.cdc.UnpackAny(v.Data, &rentDetail)
-		if err != nil {
-			return nil, err
-		}
-		nftDefinition := &types.NftDefinition{
-			ClassId:       v.ClassId,
-			Id:            v.Id,
-			Uri:           v.Uri,
-			NftRentDetail: &rentDetail,
-		}
-		nftDefinitions = append(nftDefinitions, nftDefinition)
-	}
-	return &types.QueryNftResponse{
-		NftDefinition: nftDefinitions,
 	}, nil
 }
