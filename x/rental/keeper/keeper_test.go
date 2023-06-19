@@ -11,6 +11,7 @@ import (
 	tmtime "github.com/cometbft/cometbft/types/time"
 	"github.com/golang/mock/gomock"
 	rentkeeper "github.com/terramirum/mirumd/x/rental/keeper"
+	"github.com/terramirum/mirumd/x/rental/types"
 	renttypes "github.com/terramirum/mirumd/x/rental/types"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
@@ -38,13 +39,11 @@ type TestSuite struct {
 }
 
 func (s *TestSuite) SetupTest() {
-	SetPrefixes("trm")
 	// suite setup
 	s.addrs = simtestutil.CreateIncrementalAccounts(3)
 	s.encCfg = moduletestutil.MakeTestEncodingConfig(nftmodule.AppModuleBasic{})
 
-	key := sdk.NewKVStoreKey(nft.StoreKey)
-	rentalKey := sdk.NewKVStoreKey(renttypes.StoreKey)
+	key := sdk.NewKVStoreKey(renttypes.StoreKey)
 	memKeys := sdk.NewMemoryStoreKeys("test")
 
 	testCtx := testutil.DefaultContextWithDB(s.T(), key, sdk.NewTransientStoreKey("transient_test"))
@@ -57,7 +56,7 @@ func (s *TestSuite) SetupTest() {
 	accountKeeper.EXPECT().GetModuleAddress("nft").Return(s.addrs[0]).AnyTimes()
 
 	nftKeeper := nftkeeper.NewKeeper(key, s.encCfg.Codec, accountKeeper, bankKeeper)
-	rentKeeper := rentkeeper.NewKeeper(s.encCfg.Codec, rentalKey, memKeys[renttypes.StoreKey], &nftKeeper)
+	rentKeeper := rentkeeper.NewKeeper(s.encCfg.Codec, key, memKeys[renttypes.StoreKey], &nftKeeper)
 	queryHelper := baseapp.NewQueryServerTestHelper(ctx, s.encCfg.InterfaceRegistry)
 	nft.RegisterQueryServer(queryHelper, nftKeeper)
 
@@ -68,6 +67,7 @@ func (s *TestSuite) SetupTest() {
 }
 
 func TestTestSuite(t *testing.T) {
+	SetPrefixes("trm")
 	suite.Run(t, new(TestSuite))
 }
 
@@ -89,4 +89,5 @@ func SetPrefixes(accountAddressPrefix string) {
 	ir := codectypes.NewInterfaceRegistry()
 	authtypes.RegisterInterfaces(ir)
 	codec.RegisterInterfaces(ir)
+	types.RegisterInterfaces(ir)
 }

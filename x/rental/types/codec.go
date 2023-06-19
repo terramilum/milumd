@@ -23,7 +23,10 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgAccessNftRequest{},
 	)
 
+	//registry.RegisterInterface("terramirum.rental.NftRentDetail", &NftRentDetail{})
+	registry.EnsureRegistered(&NftRentDetail{})
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
+
 }
 
 var (

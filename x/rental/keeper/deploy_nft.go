@@ -51,7 +51,7 @@ func (k Keeper) DeployNft(context context.Context, deployNftRequest *types.MsgDe
 
 	store := ctx.KVStore(k.storeKey)
 	store.Set(classContractAddressKey(class.Id), []byte(deployNftRequest.ContractOwner))
-	store.Set(contractAddressClassIdKey(deployNftRequest.ContractOwner), []byte(class.Id))
+	store.Set(contractAddressClassIdKey(deployNftRequest.ContractOwner, class.Id), []byte("1"))
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
 		types.EventTypeDeployNft,
