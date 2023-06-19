@@ -38,6 +38,11 @@ type TestSuite struct {
 	encCfg moduletestutil.TestEncodingConfig
 }
 
+func TestTestSuite(t *testing.T) {
+	SetPrefixes("trm")
+	suite.Run(t, new(TestSuite))
+}
+
 func (s *TestSuite) SetupTest() {
 	// suite setup
 	s.addrs = simtestutil.CreateIncrementalAccounts(3)
@@ -64,11 +69,6 @@ func (s *TestSuite) SetupTest() {
 	s.rentKeeper = rentKeeper
 	s.queryClient = nft.NewQueryClient(queryHelper)
 	s.ctx = ctx
-}
-
-func TestTestSuite(t *testing.T) {
-	SetPrefixes("trm")
-	suite.Run(t, new(TestSuite))
 }
 
 func SetPrefixes(accountAddressPrefix string) {

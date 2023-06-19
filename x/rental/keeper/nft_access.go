@@ -15,7 +15,7 @@ func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAc
 	store := ctx.KVStore(k.storeKey)
 
 	hasAccess := "0"
-	currentDate := k.getNowUtc()
+	currentDate := getNowUtc()
 	renterSessions := k.getRenterSessions(ctx, accessNftRequest.ClassId, accessNftRequest.NftId, accessNftRequest.Renter)
 	for _, v := range renterSessions {
 		sessionKey := store.Get(v)
@@ -43,7 +43,7 @@ func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAc
 
 func (k Keeper) getRenterSessions(ctx sdk.Context, classId, nftId, renter string) (sessionKeys [][]byte) {
 	store := ctx.KVStore(k.storeKey)
-	key := renterDatesStoreKey(classId, nftId, renter)
+	key := getStoreWithKey(KeyRentDates, classId, nftId, renter)
 	allSessionStore := prefix.NewStore(store, key)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()

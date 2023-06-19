@@ -16,7 +16,7 @@ func (k Keeper) MintNft(context context.Context, mintRequest *types.MsgMintNftRe
 	ctx := sdk.UnwrapSDKContext(context)
 
 	store := ctx.KVStore(k.storeKey)
-	contractAddress := store.Get(classContractAddressKey(mintRequest.ClassId))
+	contractAddress := store.Get(getStoreWithKey(KeyClassContract, mintRequest.ClassId))
 	if string(contractAddress) != mintRequest.ContractOwner {
 		return nil, sdkerrors.Wrap(types.ErrNftClassOwnerTheSame, "")
 	}
@@ -27,7 +27,7 @@ func (k Keeper) MintNft(context context.Context, mintRequest *types.MsgMintNftRe
 		nftId = mintRequest.NftId
 	}
 
-	rentDetail, err := codec.NewAnyWithValue(mintRequest.NftRentDetail)
+	rentDetail, err := codec.NewAnyWithValue(mintRequest.Detail)
 	if err != nil {
 		return nil, err
 	}

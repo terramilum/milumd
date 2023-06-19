@@ -12,7 +12,7 @@ func (k Keeper) RentNftBurn(context context.Context, burnRentRequest *types.MsgB
 	ctx := sdk.UnwrapSDKContext(context)
 	store := ctx.KVStore(k.storeKey)
 
-	sessionIdKey := nftRentDatesSessionIdStoreKey(burnRentRequest.ClassId, burnRentRequest.NftId, burnRentRequest.SessionId)
+	sessionIdKey := getStoreWithKey(KeyRentSessionId, burnRentRequest.ClassId, burnRentRequest.NftId, burnRentRequest.SessionId)
 	store.Delete(sessionIdKey)
 
 	k.clearSessionIdRenters(ctx, burnRentRequest.ClassId, burnRentRequest.NftId, burnRentRequest.SessionId)

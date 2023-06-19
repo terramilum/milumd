@@ -6,6 +6,7 @@ import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "terramirum/rental/params.proto";
+import "terramirum/rental/tx.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/terramirum/mirumd/x/rental/types";
@@ -106,13 +107,5 @@ message NftDefinition {
 
   // uri for the NFT metadata stored off chain
   string uri = 3;
-  NftRentDetail NftRentDetail = 4;
-}
-
-message NftRentDetail {
-  string Size=1;
-  string AvatarUri=2;
-  string Type=3;
-  string Bedding=4;
-  bool Wireless=5;
+  Detail Detail = 4;
 }

@@ -20,7 +20,7 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 		return nil, sdkerrors.Wrap(nft.ErrClassNotExists, rentNftRequest.ClassId)
 	}
 
-	if k.nftKeeper.HasNFT(ctx, rentNftRequest.ClassId, rentNftRequest.NftId) {
+	if !k.nftKeeper.HasNFT(ctx, rentNftRequest.ClassId, rentNftRequest.NftId) {
 		return nil, sdkerrors.Wrap(nft.ErrNFTExists, rentNftRequest.NftId)
 	}
 
@@ -31,7 +31,7 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 
 	params := k.GetParams(ctx)
 
-	currentDate := k.getNowUtcAddMin(params.RentMinStartUnit)
+	currentDate := getNowUtcAddMin(params.RentMinStartUnit)
 	if rentNftRequest.StartDate < currentDate {
 		sdkerrors.Wrap(types.ErrNftOwnerCanRent, fmt.Sprintf("Start Date: %d", currentDate))
 	}
@@ -41,7 +41,7 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 
 	if k.hasAvaliableSession(nftRents, rentNftRequest) {
 		sessionId := fmt.Sprintf("%d", rentNftRequest.StartDate)
-		keySession := nftRentDatesSessionIdStoreKey(rentNftRequest.ClassId, rentNftRequest.NftId, sessionId)
+		keySession := getStoreWithKey(KeyRentSessionId, rentNftRequest.ClassId, rentNftRequest.NftId, sessionId)
 		nftRent := &types.NftRent{
 			SessionId: sessionId,
 			StartDate: rentNftRequest.StartDate,
@@ -50,11 +50,11 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 		bz := k.cdc.MustMarshal(nftRent)
 		store.Set(keySession, bz)
 
-		keyRenter := renterDatesStoreKey(rentNftRequest.ClassId, rentNftRequest.NftId, rentNftRequest.Renter)
+		keyRenter := getStoreWithKey(KeyRentSessionId, rentNftRequest.ClassId, rentNftRequest.NftId, rentNftRequest.Renter)
 		store.Set(keyRenter, keySession)
 
-		rentersKey := nftSessionIdRentersStoreKey(rentNftRequest.ClassId, rentNftRequest.NftId, sessionId)
-		store.Set(rentersKey, UnsafeStrToBytes(rentNftRequest.Renter))
+		rentersKey := getStoreWithKey(KeyRentSessionId, rentNftRequest.ClassId, rentNftRequest.NftId, sessionId, rentNftRequest.Renter)
+		store.Set(rentersKey, UnsafeStrToBytes("1"))
 	} else {
 		sdkerrors.Wrap(types.ErrNftOwnerCanRent, fmt.Sprintf("Start Date: %d", currentDate))
 	}
@@ -92,7 +92,7 @@ func (k Keeper) hasAvaliableSession(nftRents []types.NftRent, rentNftRequest *ty
 
 func (k Keeper) GetSessionIdsOfNft(ctx sdk.Context, classId, nftId string) (nftRents []types.NftRent) {
 	store := ctx.KVStore(k.storeKey)
-	key := nftRentDatesStoreKey(classId, nftId)
+	key := getStoreWithKey(KeyRentDates, classId, nftId)
 	allSessionStore := prefix.NewStore(store, key)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
@@ -104,14 +104,15 @@ func (k Keeper) GetSessionIdsOfNft(ctx sdk.Context, classId, nftId string) (nftR
 	return nftRents
 }
 
+// clear old sessions.
 func (k Keeper) clearOldSession(ctx sdk.Context, classId, nftId string, nftRents []types.NftRent) {
-	currentDate := k.getNowUtc()
+	currentDate := getNowUtc()
 	store := ctx.KVStore(k.storeKey)
-	key := nftRentDatesStoreKey(classId, nftId)
+	key := getStoreWithKey(KeyRentDates, classId, nftId)
 	allSessionStore := prefix.NewStore(store, key)
 	for _, v := range nftRents {
 		if v.EndDate < currentDate {
-			sessionIdKey := nftRentDatesSessionIdStoreKey(classId, nftId, v.SessionId)
+			sessionIdKey := getStoreWithKey(KeyRentSessionId, classId, nftId, v.SessionId)
 			allSessionStore.Delete(sessionIdKey)
 
 			k.clearSessionIdRenters(ctx, classId, nftId, v.SessionId)
@@ -119,15 +120,16 @@ func (k Keeper) clearOldSession(ctx sdk.Context, classId, nftId string, nftRents
 	}
 }
 
+// clear renters given accessed by renter to session id.
 func (k Keeper) clearSessionIdRenters(ctx sdk.Context, classId, nftId, sessionId string) {
 	store := ctx.KVStore(k.storeKey)
-	key := nftSessionIdRentersStoreKey(classId, nftId, sessionId)
+	key := getStoreWithKey(KeyRentSessionId, classId, nftId, sessionId)
 	sessionIdRenters := prefix.NewStore(store, key)
 	iterator := sessionIdRenters.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
 		renter := string(iterator.Value())
-		keyRenter := renterDatesStoreKey(classId, nftId, renter)
+		keyRenter := getStoreWithKey(KeyRentDates, classId, nftId, renter)
 		store.Delete(keyRenter)
 	}
 	store.Delete(key)

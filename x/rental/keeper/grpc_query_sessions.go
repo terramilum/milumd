@@ -13,13 +13,13 @@ func (k Keeper) Sessions(context context.Context, req *types.QuerySessionRequest
 	store := ctx.KVStore(k.storeKey)
 	nftRents := []*types.NftRent{}
 
-	keyRenter := renterDatesStoreKey(req.ClassId, req.NftId, req.Renter)
+	keyRenter := getStoreWithKey(KeyRentDates, req.ClassId, req.NftId, req.Renter)
 	allSessionStore := prefix.NewStore(store, keyRenter)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
 		sessionId := iterator.Value()
-		keySession := nftRentDatesSessionIdStoreKey(req.ClassId, req.NftId, string(sessionId))
+		keySession := getStoreWithKey(KeyRentSessionId, req.ClassId, req.NftId, string(sessionId))
 		nftRentBz := store.Get(keySession)
 		var nftRent types.NftRent
 		k.cdc.MustUnmarshal(nftRentBz, &nftRent)

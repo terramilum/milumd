@@ -8,7 +8,7 @@ import (
 
 var contractAddress = "trm1fq5xzwrduvzqeccgjraakk9sql87uttdyr78e7"
 
-var request = &types.MsgDeployNftRequest{
+var deplotNftRequest = &types.MsgDeployNftRequest{
 	ContractOwner: "trm1fq5xzwrduvzqeccgjraakk9sql87uttdyr78e7",
 	Name:          "Rent House 1",
 	Symbol:        "RHT1",
@@ -18,17 +18,17 @@ var request = &types.MsgDeployNftRequest{
 
 func (s *TestSuite) TestDeployContract() {
 	require := s.Require()
-	res, err := s.rentKeeper.DeployNft(s.ctx, request)
+	res, err := s.rentKeeper.DeployNft(s.ctx, deplotNftRequest)
 	require.NoError(err)
 	fmt.Println(res)
 }
 
 func (s *TestSuite) TestGettingClasses_ContractAddress() {
 	require := s.Require()
-	res, err := s.rentKeeper.DeployNft(s.ctx, request)
+	res, err := s.rentKeeper.DeployNft(s.ctx, deplotNftRequest)
 	fmt.Println(res)
 	require.NoError(err)
-	res, err = s.rentKeeper.DeployNft(s.ctx, request)
+	res, err = s.rentKeeper.DeployNft(s.ctx, deplotNftRequest)
 	fmt.Println(res)
 	require.NoError(err)
 	req := &types.QueryClassRequest{

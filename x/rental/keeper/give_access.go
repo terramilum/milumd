@@ -14,7 +14,7 @@ func (k Keeper) RentNftGiveAccess(context context.Context, rentGiveAccessRequest
 	store := ctx.KVStore(k.storeKey)
 
 	var renters []string
-	key := nftSessionIdRentersStoreKey(rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId)
+	key := getStoreWithKey(KeyRentSessionId, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId)
 	rentersStore := prefix.NewStore(store, key)
 	iterator := rentersStore.Iterator(nil, nil)
 	defer iterator.Close()

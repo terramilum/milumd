@@ -9,16 +9,16 @@ const (
 	YYYYMMDDHHMM = "200601021504"
 )
 
-func (*Keeper) getNowUtc() int64 {
+func getNowUtc() int64 {
 	now := time.Now().UTC()
 	formatted := now.Format(YYYYMMDDHHMM)
-	d, _ := strconv.ParseInt(formatted, 10, 16)
+	d, _ := strconv.ParseInt(formatted, 10, 64)
 	return d
 }
 
-func (*Keeper) getNowUtcAddMin(addMin int32) int64 {
+func getNowUtcAddMin(addMin int32) int64 {
 	now := time.Now().Add(time.Minute * time.Duration(addMin)).UTC()
 	formatted := now.Format(YYYYMMDDHHMM)
-	d, _ := strconv.ParseInt(formatted, 10, 16)
+	d, _ := strconv.ParseInt(formatted, 10, 64)
 	return d
 }

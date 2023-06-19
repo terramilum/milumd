@@ -16,7 +16,7 @@ func (k Keeper) Renters(c context.Context, req *types.QueryRenterRequest) (*type
 		Renter: []string{},
 	}
 
-	sessionIdKey := nftSessionIdRentersStoreKey(req.ClassId, req.NftId, req.SessionId)
+	sessionIdKey := getStoreWithKey(KeyRentSessionId, req.ClassId, req.NftId, req.SessionId)
 	allSessionStore := prefix.NewStore(store, sessionIdKey)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()

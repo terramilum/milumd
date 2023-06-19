@@ -3,7 +3,6 @@ package terramirum.rental;
 
 import "google/protobuf/timestamp.proto";
 import "cosmos/msg/v1/msg.proto";
-import "terramirum/rental/query.proto";
 
 // this line is used by starport scaffolding # proto/tx/import
 
@@ -50,6 +49,8 @@ message MsgDeployNftRequest {
   // uri for the class metadata stored off chain. It can define schema for Class
   // and NFT `Data` attributes. Optional
   string Uri = 5;
+  // Any serilize Json data string
+  Detail Detail =6;
 }
 
 message MsgDeployNftResponse { string ClassId = 1; }
@@ -62,7 +63,7 @@ message MsgMintNftRequest {
   string ClassId = 3;
   string NftId = 4;
   string Uri = 5;
-  NftRentDetail NftRentDetail = 6;
+  Detail Detail = 6;
 }
 
 message MsgMintNftResponse { string NftId = 2; }
@@ -114,3 +115,7 @@ message MsgAccessNftRequest {
 }
 
 message MsgAccessNftResponse { bool HasAccess = 1; }
+
+message Detail {
+  string JsonData=1;
+}

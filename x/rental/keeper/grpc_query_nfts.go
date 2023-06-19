@@ -40,17 +40,17 @@ func (k Keeper) Nfts(c context.Context, req *types.QueryNftRequest) (*types.Quer
 
 	var nftDefinitions []*types.NftDefinition
 	for _, v := range nfts.Nfts {
-		rentDetail := &types.NftRentDetail{}
+		rentDetail := &types.Detail{}
+		err = rentDetail.Unmarshal(v.Data.Value)
+		if err != nil {
+			return nil, err
+		}
 
-		// err = k.cdc.UnpackAny(v.Data, &rentDetail)
-		// if err != nil {
-		// 	return nil, err
-		// }
 		nftDefinition := &types.NftDefinition{
-			ClassId:       v.ClassId,
-			Id:            v.Id,
-			Uri:           v.Uri,
-			NftRentDetail: rentDetail,
+			ClassId: v.ClassId,
+			Id:      v.Id,
+			Uri:     v.Uri,
+			Detail:  rentDetail,
 		}
 		nftDefinitions = append(nftDefinitions, nftDefinition)
 	}
