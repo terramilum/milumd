@@ -15,7 +15,7 @@ func ParamKeyTable() paramtypes.KeyTable {
 // NewParams creates a new Params instance
 func NewParams() Params {
 	return Params{
-		RentMinStartUnit: 30,
+		RentMinStartUnit: 1,
 	}
 }
 

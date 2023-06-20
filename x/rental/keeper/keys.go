@@ -32,25 +32,41 @@ func getStoreWithKey(keyValue []byte, params ...string) []byte {
 	return getStoreKey(newParams...)
 }
 
+func getStoreWithKeyWithDelimiter(keyValue []byte, params ...string) []byte {
+	newParams := make([][]byte, len(params)+2)
+	newParams[0] = keyValue
+	for i := 1; i < len(newParams)-1; i++ {
+		newParams[i] = UnsafeStrToBytes(params[i-1])
+	}
+	newParams[len(newParams)-1] = Delimiter
+	return getStoreKey(newParams...)
+}
+
 func getStoreKey(params ...[]byte) []byte {
 	keyLen := 0
-	for _, v := range params {
-		keyLen += len(v) + len(Delimiter)
+	for i := 0; i < len(params); i++ {
+		keyLen += len(params[i])
+		if i < len(params)-1 {
+			keyLen += len(Delimiter)
+		}
 	}
+
 	key := make([]byte, keyLen)
 	positionLen := 0
-	for _, v := range params {
-		copy(key[positionLen:], v)
-		positionLen += len(v)
-		copy(key[positionLen:], Delimiter)
-		positionLen += len(Delimiter)
+	for i := 0; i < len(params); i++ {
+		copy(key[positionLen:], params[i])
+		positionLen += len(params[i])
+		if i < len(params)-1 {
+			copy(key[positionLen:], Delimiter)
+			positionLen += len(Delimiter)
+		}
 	}
 	return key
 }
 
 func getParsedStoreKey(key []byte) []string {
 	splittedArray := bytes.Split(key, Delimiter)
-	parsed := make([]string, len(splittedArray)-1)
+	parsed := make([]string, len(splittedArray))
 	for i := 0; i < len(parsed); i++ {
 		parsed[i] = string(splittedArray[i])
 	}

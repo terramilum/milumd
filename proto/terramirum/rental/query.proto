@@ -46,13 +46,6 @@ message QueryParamsResponse {
   Params params = 1 [ (gogoproto.nullable) = false ];
 }
 
-// this line is used by starport scaffolding #
-message NftRent {
-  string SessionId = 1;
-  int64 StartDate = 2;
-  int64 EndDate = 3;
-}
-
 message QuerySessionRequest {
   string ClassId = 1;
   string NftId = 2;
@@ -73,11 +66,9 @@ message QueryClassRequest { string ContractOwner = 1; }
 
 message QueryClassResponse { repeated NftClass NftClass = 1; }
 
-
 message QueryNftRequest { string ClassId = 1; }
 
 message QueryNftResponse { repeated NftDefinition NftDefinition = 1; }
-
 
 message NftClass {
   // id defines the unique identifier of the NFT classification, similar to the

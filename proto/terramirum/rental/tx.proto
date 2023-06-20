@@ -114,7 +114,17 @@ message MsgAccessNftRequest {
   string NftId = 3;
 }
 
-message MsgAccessNftResponse { bool HasAccess = 1; }
+// this line is used by starport scaffolding #
+message NftRent {
+  string SessionId = 1;
+  int64 StartDate = 2;
+  int64 EndDate = 3;
+}
+
+message MsgAccessNftResponse { 
+  bool HasAccess = 1; 
+  repeated NftRent NftRents =2; 
+}
 
 message Detail {
   string JsonData=1;

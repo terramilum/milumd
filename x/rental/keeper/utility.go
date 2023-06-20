@@ -9,8 +9,16 @@ const (
 	YYYYMMDDHHMM = "200601021504"
 )
 
+var (
+	AdditionalMinutesToCurrentDate = 0
+)
+
+func (k *Keeper) SetAdditionalMinutesToCurrentDate(addMin int) {
+	AdditionalMinutesToCurrentDate = addMin
+}
+
 func getNowUtc() int64 {
-	now := time.Now().UTC()
+	now := time.Now().Add(time.Minute * time.Duration(AdditionalMinutesToCurrentDate)).UTC()
 	formatted := now.Format(YYYYMMDDHHMM)
 	d, _ := strconv.ParseInt(formatted, 10, 64)
 	return d

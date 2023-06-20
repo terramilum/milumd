@@ -12,22 +12,17 @@ import (
 // NftAccess implements types.MsgServer
 func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAccessNftRequest) (*types.MsgAccessNftResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
-	store := ctx.KVStore(k.storeKey)
-
-	hasAccess := "0"
 	currentDate := getNowUtc()
-	renterSessions := k.getRenterSessions(ctx, accessNftRequest.ClassId, accessNftRequest.NftId, accessNftRequest.Renter)
-	for _, v := range renterSessions {
-		sessionKey := store.Get(v)
-		bz := store.Get(sessionKey)
-		var nftRent types.NftRent
-		k.cdc.MustUnmarshal(bz, &nftRent)
-		if nftRent.StartDate <= currentDate && nftRent.EndDate >= currentDate {
-			hasAccess = "1"
-			break
-		}
+
+	response, err := k.getNftAccesses(ctx, currentDate, accessNftRequest.ClassId, accessNftRequest.NftId, accessNftRequest.Renter)
+	if err != nil {
+		return nil, err
 	}
 
+	hasAccess := "0"
+	if response.HasAccess {
+		hasAccess = "1"
+	}
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
 		types.EventTypeAccessNft,
 		sdk.NewAttribute(types.AttributeKeyNftCurrentDate, fmt.Sprintf("%d", currentDate)),
@@ -36,19 +31,28 @@ func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAc
 		sdk.NewAttribute(types.AttributeKeyNftRentAccess, hasAccess),
 	))
 
-	return &types.MsgAccessNftResponse{
-		HasAccess: hasAccess == "1",
-	}, nil
+	return response, nil
 }
 
-func (k Keeper) getRenterSessions(ctx sdk.Context, classId, nftId, renter string) (sessionKeys [][]byte) {
+func (k Keeper) getNftAccesses(ctx sdk.Context, currentDate int64, classId, nftId, renter string) (*types.MsgAccessNftResponse, error) {
 	store := ctx.KVStore(k.storeKey)
-	key := getStoreWithKey(KeyRentDates, classId, nftId, renter)
-	allSessionStore := prefix.NewStore(store, key)
+	response := &types.MsgAccessNftResponse{
+		HasAccess: false,
+		NftRents:  []*types.NftRent{},
+	}
+
+	renterKey := getStoreWithKey(KeyRentSessionId, classId, nftId, renter)
+	allSessionStore := prefix.NewStore(store, renterKey)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
-		sessionKeys = append(sessionKeys, iterator.Value())
+		var nftRent types.NftRent
+		k.cdc.MustUnmarshal(iterator.Value(), &nftRent)
+		if nftRent.StartDate <= currentDate && nftRent.EndDate >= currentDate {
+			response.HasAccess = true
+			break
+		}
+		response.NftRents = append(response.NftRents, &nftRent)
 	}
-	return sessionKeys
+	return response, nil
 }
