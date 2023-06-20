@@ -3,6 +3,7 @@ package keeper
 import (
 	context "context"
 	"fmt"
+	"strings"
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -29,11 +30,17 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 		return nil, sdkerrors.Wrap(types.ErrNftOwnerCanRent, "")
 	}
 
+	// todo: get nft and check minimum duration unit and get duration between dates.
+
 	params := k.GetParams(ctx)
 
 	currentDate := getNowUtcAddMin(params.RentMinStartUnit)
 	if rentNftRequest.StartDate < currentDate {
 		return nil, sdkerrors.Wrap(types.ErrNftOwnerCanRent, fmt.Sprintf("Start Date: %d", currentDate))
+	}
+
+	if rentNftRequest.StartDate >= rentNftRequest.EndDate {
+		return nil, sdkerrors.Wrap(types.ErrStartDateBiggerEndDate, "")
 	}
 
 	nftRents := k.GetSessionIdsOfNft(ctx, rentNftRequest.ClassId, rentNftRequest.NftId)
@@ -46,7 +53,7 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 		bz := k.cdc.MustMarshal(nftRent)
 		store.Set(rentersKey, bz)
 	} else {
-		return nil, sdkerrors.Wrap(types.ErrNftOwnerCanRent, fmt.Sprintf("Start Date: %d", currentDate))
+		return nil, sdkerrors.Wrap(types.ErrNftRentNotAvaliableDate, fmt.Sprintf("Rented Dates: \n %s", getRentedDates(rentNftRequest, nftRents)))
 	}
 
 	// ilgili tarihler icin mint eden adress başka kişiye yetki verebilir.
@@ -66,6 +73,14 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 	))
 
 	return &types.MsgMintRentResponse{}, nil
+}
+
+func getRentedDates(rentNftRequest *types.MsgMintRentRequest, nftRents []types.NftRent) string {
+	var builder strings.Builder
+	for _, v := range nftRents {
+		builder.WriteString(fmt.Sprintf("Start: %d End: %d \n", v.StartDate, v.EndDate))
+	}
+	return builder.String()
 }
 
 func (k Keeper) saveSessionOfNft(store sdk.KVStore, rentNftRequest *types.MsgMintRentRequest) (sessionId string, nftRent *types.NftRent) {

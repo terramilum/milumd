@@ -19,7 +19,8 @@ service Msg {
   rpc RentNftMint(MsgMintRentRequest) returns (MsgMintRentResponse);
   rpc RentNftBurn(MsgBurnRentRequest) returns (MsgBurnRentResponse);
   rpc NftAccess(MsgAccessNftRequest) returns (MsgAccessNftResponse);
-  rpc RentNftGiveAccess(MsgRentGiveAccessRequest) returns (MsgRentGiveAccessResponse);
+  rpc RentNftGiveAccess(MsgRentGiveAccessRequest)
+      returns (MsgRentGiveAccessResponse);
 }
 
 message MsgRentGiveAccessRequest {
@@ -28,7 +29,7 @@ message MsgRentGiveAccessRequest {
   string NewRenter = 2;
   string ClassId = 3;
   string NftId = 4;
-  string SessionId = 5; 
+  string SessionId = 5;
 }
 
 message MsgRentGiveAccessResponse {}
@@ -50,7 +51,7 @@ message MsgDeployNftRequest {
   // and NFT `Data` attributes. Optional
   string Uri = 5;
   // Any serilize Json data string
-  Detail Detail =6;
+  Detail Detail = 6;
 }
 
 message MsgDeployNftResponse { string ClassId = 1; }
@@ -100,7 +101,7 @@ message MsgBurnRentRequest {
   string ContractOwner = 1;
   string ClassId = 2;
   string NftId = 3;
-  string SessionId = 4; 
+  string SessionId = 4;
 }
 
 message MsgBurnRentResponse {}
@@ -121,11 +122,12 @@ message NftRent {
   int64 EndDate = 3;
 }
 
-message MsgAccessNftResponse { 
-  bool HasAccess = 1; 
-  repeated NftRent NftRents =2; 
+message MsgAccessNftResponse {
+  bool HasAccess = 1;
+  repeated NftRent NftRents = 2;
 }
 
 message Detail {
-  string JsonData=1;
+  string JsonData = 1;
+  int32 MinDurationUnit = 2;
 }

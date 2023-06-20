@@ -15,4 +15,5 @@ var (
 	ErrNftRentNotAvaliableDate = sdkerrors.Register(ModuleName, 1104, "This period is not avaliable for rent.")
 	ErrNftRentAccessGive       = sdkerrors.Register(ModuleName, 1105, "Renter has not right for this session")
 	ErrNftClassOwnerTheSame    = sdkerrors.Register(ModuleName, 1106, "Class owner should be the same to mint nft.")
+	ErrStartDateBiggerEndDate  = sdkerrors.Register(ModuleName, 1107, "Start date cannot be bigger then end date.")
 )
