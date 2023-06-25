@@ -87,6 +87,8 @@ message NftClass {
   // uri for the class metadata stored off chain. It can define schema for Class
   // and NFT `Data` attributes. Optional
   string uri = 5;
+  // detail of nft. It is json format.
+  Detail Detail = 6;
 }
 
 message NftDefinition {

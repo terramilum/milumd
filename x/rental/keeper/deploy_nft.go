@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"fmt"
 
+	codec "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	"github.com/cosmos/cosmos-sdk/x/nft"
@@ -27,12 +28,18 @@ func (k Keeper) DeployNft(context context.Context, deployNftRequest *types.MsgDe
 		return nil, err
 	}
 
+	nftDetail, err := codec.NewAnyWithValue(deployNftRequest.Detail)
+	if err != nil {
+		return nil, err
+	}
+
 	class := nft.Class{
 		Id:          classId,
 		Name:        deployNftRequest.Name,
 		Symbol:      deployNftRequest.Symbol,
 		Description: deployNftRequest.Description,
 		Uri:         deployNftRequest.Uri,
+		Data:        nftDetail,
 	}
 
 	err = k.nftKeeper.SaveClass(ctx, class)

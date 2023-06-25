@@ -24,12 +24,20 @@ func (k Keeper) Classes(c context.Context, req *types.QueryClassRequest) (*types
 			continue
 		}
 		class, _ := k.nftKeeper.GetClass(ctx, classId)
+
+		classDetail := &types.Detail{}
+		err := classDetail.Unmarshal(class.Data.Value)
+		if err != nil {
+			return nil, err
+		}
+
 		nftClass := &types.NftClass{
 			Id:          classId,
 			Name:        class.Name,
 			Symbol:      class.Symbol,
 			Description: class.Description,
 			Uri:         class.Uri,
+			Detail:      classDetail,
 		}
 		nftClasses = append(nftClasses, nftClass)
 	}
