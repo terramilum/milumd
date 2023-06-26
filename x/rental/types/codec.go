@@ -21,6 +21,7 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgMintRentRequest{},
 		&MsgBurnRentRequest{},
 		&MsgAccessNftRequest{},
+		&MsgSendSessionRequest{},
 	)
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }

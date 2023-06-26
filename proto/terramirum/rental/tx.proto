@@ -21,7 +21,20 @@ service Msg {
   rpc NftAccess(MsgAccessNftRequest) returns (MsgAccessNftResponse);
   rpc RentNftGiveAccess(MsgRentGiveAccessRequest)
       returns (MsgRentGiveAccessResponse);
+  rpc SendSession(MsgSendSessionRequest) returns (MsgSendSessionResponse);
 }
+
+message MsgSendSessionRequest {
+  option (cosmos.msg.v1.signer) = "FromRenter";
+
+  string FromRenter = 1;
+  string ToRenter = 2;
+  string ClassId = 3;
+  string NftId = 4;
+  string SessionId = 5;
+}
+
+message MsgSendSessionResponse {}
 
 message MsgRentGiveAccessRequest {
   option (cosmos.msg.v1.signer) = "Renter";
@@ -117,9 +130,9 @@ message MsgAccessNftRequest {
 
 // this line is used by starport scaffolding #
 message NftRent {
-  string SessionId = 1;
-  int64 StartDate = 2;
-  int64 EndDate = 3;
+  int64 StartDate = 1;
+  int64 EndDate = 2;
+  string SessionId = 3;
 }
 
 message MsgAccessNftResponse {

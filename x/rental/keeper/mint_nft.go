@@ -16,8 +16,8 @@ func (k Keeper) MintNft(context context.Context, mintRequest *types.MsgMintNftRe
 	ctx := sdk.UnwrapSDKContext(context)
 
 	store := ctx.KVStore(k.storeKey)
-	contractAddress := store.Get(getStoreWithKey(KeyClassContract, mintRequest.ClassId))
-	if string(contractAddress) != mintRequest.ContractOwner {
+	isOwner := store.Get(getStoreWithKey(KeyContractClassId, mintRequest.ContractOwner, mintRequest.ClassId))
+	if string(isOwner) != "1" {
 		return nil, sdkerrors.Wrap(types.ErrNftClassOwnerTheSame, "")
 	}
 

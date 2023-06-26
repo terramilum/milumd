@@ -8,6 +8,7 @@ const (
 	EventTypeMintNft       = "rental_mint"
 	EventTypeBurnNft       = "rental_burn"
 	EventTypeRentNft       = "rental_mint"
+	EventTypeRentSend      = "rental_send"
 	EventTypeBurnRentNft   = "rental_burn"
 	EventTypeAccessNft     = "rental_access"
 	EventTypeAccessGiveNft = "rental_access_give"
@@ -28,4 +29,6 @@ const (
 	AttributeKeyNftCurrentDate  = "has_access"
 	AttributeKeyNftRenter       = "renter"
 	AttributeKeyNftNewRenter    = "new_renter"
+	AttributeKeyNftFromRenter   = "from_renter"
+	AttributeKeyNftToRenter     = "to_renter"
 )

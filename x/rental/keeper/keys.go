@@ -9,11 +9,14 @@ import (
 )
 
 var (
-	KeyRentDates       = []byte{0x01}
-	KeyClassContract   = []byte{0x02}
+	KeyRentDates = []byte{0x01}
+	// store class id contract id to get contract owner of class.
+	KeyClassIdContract = []byte{0x02}
 	KeyRentSessionId   = []byte{0x03}
 	KeySessionIdRenter = []byte{0x04}
-	KeyClassIdContract = []byte{0x05}
+	// store contract address and class id to prevent minting nft at the same class.
+	KeyContractClassId = []byte{0x05}
+	KeyRentDatesOwner  = []byte{0x05}
 
 	Delimiter   = []byte{0x00}
 	Placeholder = []byte{0x01}

@@ -4,7 +4,6 @@ import (
 	context "context"
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
@@ -23,6 +22,7 @@ func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAc
 	if response.HasAccess {
 		hasAccess = "1"
 	}
+
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
 		types.EventTypeAccessNft,
 		sdk.NewAttribute(types.AttributeKeyNftCurrentDate, fmt.Sprintf("%d", currentDate)),
@@ -35,24 +35,27 @@ func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAc
 }
 
 func (k Keeper) getNftAccesses(ctx sdk.Context, currentDate int64, classId, nftId, renter string) (*types.MsgAccessNftResponse, error) {
-	store := ctx.KVStore(k.storeKey)
-	response := &types.MsgAccessNftResponse{
-		HasAccess: false,
-		NftRents:  []*types.NftRent{},
+	req := &types.QuerySessionRequest{
+		ClassId: classId,
+		NftId:   nftId,
+		Renter:  renter,
 	}
 
-	renterKey := getStoreWithKey(KeyRentSessionId, classId, nftId, renter)
-	allSessionStore := prefix.NewStore(store, renterKey)
-	iterator := allSessionStore.Iterator(nil, nil)
-	defer iterator.Close()
-	for ; iterator.Valid(); iterator.Next() {
-		var nftRent types.NftRent
-		k.cdc.MustUnmarshal(iterator.Value(), &nftRent)
+	res, err := k.Sessions(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	hasAccess := false
+	for _, nftRent := range res.NftRent {
 		if nftRent.StartDate <= currentDate && nftRent.EndDate >= currentDate {
-			response.HasAccess = true
+			hasAccess = true
 			break
 		}
-		response.NftRents = append(response.NftRents, &nftRent)
 	}
-	return response, nil
+
+	return &types.MsgAccessNftResponse{
+		HasAccess: hasAccess,
+		NftRents:  res.NftRent,
+	}, nil
 }

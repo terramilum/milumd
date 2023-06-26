@@ -50,6 +50,7 @@ message QuerySessionRequest {
   string ClassId = 1;
   string NftId = 2;
   string Renter = 3;
+  string SessionId = 4;
 }
 
 message QuerySessionResponse { repeated NftRent NftRent = 1; }

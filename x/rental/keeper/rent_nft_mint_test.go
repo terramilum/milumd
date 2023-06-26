@@ -138,6 +138,28 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	accessNftRequest.Renter = secondRenter
 	accessRes, err = s.rentKeeper.NftAccess(s.ctx, accessNftRequest)
 	require.Equal(false, accessRes.HasAccess)
+
+	renterReq := &types.QuerySessionRequest{
+		Renter: renter,
+	}
+	res, err = s.rentKeeper.Sessions(s.ctx, renterReq)
+	require.NoError(err)
+	require.Equal(2, len(res.NftRent))
+
+	sendTo := "trm16upgs0enps8mf6phjrj0pt8p2t8lp032ach8uh"
+
+	sendRequest := &types.MsgSendSessionRequest{
+		FromRenter: renter,
+		ToRenter:   sendTo,
+		ClassId:    res.NftRent[0].,
+		NftId:      "",
+		SessionId:  "",
+	}
+	s.rentKeeper.SendSession(s.ctx,  )
+
+	res, err = s.rentKeeper.Sessions(s.ctx, renterReq)
+	require.NoError(err)
+	require.Equal(1, len(res.NftRent))
 }
 
 func getNowUtcAddMin(addMin int32) int64 {

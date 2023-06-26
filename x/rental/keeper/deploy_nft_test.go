@@ -14,6 +14,7 @@ var deplotNftRequest = &types.MsgDeployNftRequest{
 	Symbol:        "RHT1",
 	Description:   "Rent wonderful house and get a break for a while",
 	Uri:           "https://testrent.io/detail",
+	Detail:        &types.Detail{},
 }
 
 func (s *TestSuite) TestDeployContract() {

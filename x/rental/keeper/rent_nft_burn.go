@@ -15,7 +15,7 @@ func (k Keeper) RentNftBurn(context context.Context, burnRentRequest *types.MsgB
 	sessionIdKey := getStoreWithKey(KeyRentSessionId, burnRentRequest.ClassId, burnRentRequest.NftId, burnRentRequest.SessionId)
 	store.Delete(sessionIdKey)
 
-	k.clearSessionIdRenters(ctx, burnRentRequest.ClassId, burnRentRequest.NftId, burnRentRequest.SessionId)
+	//k.clearSessionIdRenters(ctx, burnRentRequest.ClassId, burnRentRequest.NftId, burnRentRequest.SessionId)
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
 		types.EventTypeBurnRentNft,

@@ -3,7 +3,6 @@ package keeper
 import (
 	context "context"
 
-	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/terramirum/mirumd/x/rental/types"
@@ -13,26 +12,33 @@ func (k Keeper) RentNftGiveAccess(context context.Context, rentGiveAccessRequest
 	ctx := sdk.UnwrapSDKContext(context)
 	store := ctx.KVStore(k.storeKey)
 
-	var renters []string
-	key := getStoreWithKey(KeyRentSessionId, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId)
-	rentersStore := prefix.NewStore(store, key)
-	iterator := rentersStore.Iterator(nil, nil)
-	defer iterator.Close()
-	for ; iterator.Valid(); iterator.Next() {
-		renters = append(renters, string(iterator.Value()))
+	req := &types.QuerySessionRequest{
+		ClassId:   rentGiveAccessRequest.ClassId,
+		NftId:     rentGiveAccessRequest.NftId,
+		Renter:    rentGiveAccessRequest.Renter,
+		SessionId: rentGiveAccessRequest.SessionId,
 	}
 
-	renterExists := false
-	for _, v := range renters {
-		if v == rentGiveAccessRequest.Renter {
-			renterExists = true
-			store.Set(key, []byte(rentGiveAccessRequest.NewRenter))
-		}
+	res, err := k.Sessions(context, req)
+	if err != nil {
+		return nil, err
 	}
 
-	if !renterExists {
+	if len(res.NftRent) != 1 {
+		return nil, sdkerrors.Wrap(types.ErrQuerySessionsNotFound, "")
+	}
+
+	rentOwner := getStoreWithKey(KeyRentDatesOwner, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId, rentGiveAccessRequest.Renter)
+	if rentGiveAccessRequest.Renter != string(rentOwner) {
 		return nil, sdkerrors.Wrap(types.ErrNftRentAccessGive, "")
 	}
+
+	newRenter := getStoreWithKey(KeyRentDatesOwner, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId, rentGiveAccessRequest.NewRenter)
+	store.Set(newRenter, rentOwner)
+
+	rentersKey := getStoreWithKey(KeyRentSessionId, rentGiveAccessRequest.NewRenter, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId)
+	bz := k.cdc.MustMarshal(res.NftRent[0])
+	store.Set(rentersKey, bz)
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
 		types.EventTypeAccessGiveNft,

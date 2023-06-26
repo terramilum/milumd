@@ -13,7 +13,7 @@ func (k Keeper) Classes(c context.Context, req *types.QueryClassRequest) (*types
 
 	var nftClasses []*types.NftClass
 
-	classIdKey := getStoreWithKey(KeyClassIdContract, req.ContractOwner)
+	classIdKey := getStoreWithKey(KeyContractClassId, req.ContractOwner)
 	iterator := sdk.KVStorePrefixIterator(store, classIdKey)
 
 	defer iterator.Close()

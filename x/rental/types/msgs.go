@@ -53,6 +53,24 @@ func (m *MsgMintRentRequest) ValidateBasic() error {
 }
 
 // GetSigners implements types.Msg
+func (m *MsgSendSessionRequest) GetSigners() []types.AccAddress {
+	addr, _ := sdk.AccAddressFromBech32(m.FromRenter)
+	return []sdk.AccAddress{addr}
+}
+
+// ValidateBasic implements types.Msg
+func (m *MsgSendSessionRequest) ValidateBasic() error {
+	if _, err := sdk.AccAddressFromBech32(m.FromRenter); err != nil {
+		return sdkerrors.Wrap(err, "invalid authority address")
+	}
+
+	if _, err := sdk.AccAddressFromBech32(m.ToRenter); err != nil {
+		return sdkerrors.Wrap(err, "invalid authority address")
+	}
+	return nil
+}
+
+// GetSigners implements types.Msg
 func (m *MsgBurnRentRequest) GetSigners() []types.AccAddress {
 	addr, _ := sdk.AccAddressFromBech32(m.ContractOwner)
 	return []sdk.AccAddress{addr}
