@@ -53,7 +53,14 @@ message QuerySessionRequest {
   string SessionId = 4;
 }
 
-message QuerySessionResponse { repeated NftRent NftRent = 1; }
+message SessionDetail {
+  NftRent NftRent = 1;
+  string Renter = 2;
+  string ClassId = 3;
+  string NftId = 4;
+}
+
+message QuerySessionResponse { repeated SessionDetail SessionDetail = 1; }
 
 message QueryRenterRequest {
   string ClassId = 1;

@@ -91,11 +91,11 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	}
 	res, err := s.rentKeeper.Sessions(s.ctx, req)
 	require.NoError(err)
-	require.Equal(2, len(res.NftRent))
-	require.Equal(firstStartDate, res.NftRent[0].StartDate)
-	require.Equal(firstEndDate, res.NftRent[0].EndDate)
-	require.Equal(secondStartDate, res.NftRent[1].StartDate)
-	require.Equal(secondEndDate, res.NftRent[1].EndDate)
+	require.Equal(2, len(res.SessionDetail))
+	require.Equal(firstStartDate, res.SessionDetail[0].NftRent.StartDate)
+	require.Equal(firstEndDate, res.SessionDetail[0].NftRent.EndDate)
+	require.Equal(secondStartDate, res.SessionDetail[1].NftRent.StartDate)
+	require.Equal(secondEndDate, res.SessionDetail[1].NftRent.EndDate)
 
 	thirdStartDate := getNowUtcAddMin(60)
 	thirdEndDate := getNowUtcAddMin(65)
@@ -109,17 +109,17 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 
 	res, err = s.rentKeeper.Sessions(s.ctx, req)
 	require.NoError(err)
-	require.Equal(3, len(res.NftRent))
+	require.Equal(3, len(res.SessionDetail))
 
 	req.Renter = renter
 	res, err = s.rentKeeper.Sessions(s.ctx, req)
 	require.NoError(err)
-	require.Equal(2, len(res.NftRent))
+	require.Equal(2, len(res.SessionDetail))
 
 	req.Renter = secondRenter
 	res, err = s.rentKeeper.Sessions(s.ctx, req)
 	require.NoError(err)
-	require.Equal(1, len(res.NftRent))
+	require.Equal(1, len(res.SessionDetail))
 
 	accessNftRequest := &types.MsgAccessNftRequest{
 		Renter:  renter,
@@ -144,10 +144,10 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	}
 	res, err = s.rentKeeper.Sessions(s.ctx, renterReq)
 	require.NoError(err)
-	require.Equal(2, len(res.NftRent))
+	require.Equal(2, len(res.SessionDetail))
 
 	sendTo := "trm16upgs0enps8mf6phjrj0pt8p2t8lp032ach8uh"
-	transferedSessionId := res.NftRent[0].SessionId
+	transferedSessionId := res.SessionDetail[0].NftRent.SessionId
 	sendRequest := &types.MsgSendSessionRequest{
 		FromRenter: renter,
 		ToRenter:   sendTo,
@@ -160,18 +160,18 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 
 	res, err = s.rentKeeper.Sessions(s.ctx, renterReq)
 	require.NoError(err)
-	require.Equal(1, len(res.NftRent))
+	require.Equal(1, len(res.SessionDetail))
 
 	renterReq.SessionId = transferedSessionId
 	res, err = s.rentKeeper.Sessions(s.ctx, renterReq)
 	require.NoError(err)
-	require.Equal(0, len(res.NftRent))
+	require.Equal(0, len(res.SessionDetail))
 
 	renterReq.Renter = sendTo
 	res, err = s.rentKeeper.Sessions(s.ctx, renterReq)
 	require.NoError(err)
-	require.Equal(1, len(res.NftRent))
-	require.Equal(res.NftRent[0].SessionId, transferedSessionId)
+	require.Equal(1, len(res.SessionDetail))
+	require.Equal(res.SessionDetail[0].NftRent.SessionId, transferedSessionId)
 }
 
 func getNowUtcAddMin(addMin int32) int64 {

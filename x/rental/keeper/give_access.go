@@ -24,7 +24,7 @@ func (k Keeper) RentNftGiveAccess(context context.Context, rentGiveAccessRequest
 		return nil, err
 	}
 
-	if len(res.NftRent) != 1 {
+	if len(res.SessionDetail) != 1 {
 		return nil, sdkerrors.Wrap(types.ErrQuerySessionsNotFound, "")
 	}
 
@@ -37,7 +37,7 @@ func (k Keeper) RentNftGiveAccess(context context.Context, rentGiveAccessRequest
 	store.Set(newRenter, rentOwner)
 
 	rentersKey := getStoreWithKey(KeyRentSessionId, rentGiveAccessRequest.NewRenter, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId)
-	bz := k.cdc.MustMarshal(res.NftRent[0])
+	bz := k.cdc.MustMarshal(res.SessionDetail[0].NftRent)
 	store.Set(rentersKey, bz)
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(

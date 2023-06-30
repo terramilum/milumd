@@ -12,7 +12,7 @@ import (
 func (k Keeper) Sessions(context context.Context, req *types.QuerySessionRequest) (*types.QuerySessionResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
 	store := ctx.KVStore(k.storeKey)
-	nftRents := []*types.NftRent{}
+	sessionDetails := []*types.SessionDetail{}
 
 	var keyRenter []byte
 	if len(req.Renter) > 0 {
@@ -37,20 +37,78 @@ func (k Keeper) Sessions(context context.Context, req *types.QuerySessionRequest
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
+		sessionDetail, err := k.getSessionDetail(keyRenter, iterator.Key(), req)
+		if err != nil {
+			return nil, err
+		}
+
 		var nftRent types.NftRent
 		k.cdc.MustUnmarshal(iterator.Value(), &nftRent)
 		if len(req.SessionId) > 0 {
 			if req.SessionId == nftRent.SessionId {
-				nftRents = append(nftRents, &nftRent)
+				sessionDetail.NftRent = &nftRent
+				sessionDetails = append(sessionDetails, sessionDetail)
 			}
 		} else {
-			nftRents = append(nftRents, &nftRent)
+			sessionDetail.NftRent = &nftRent
+			sessionDetails = append(sessionDetails, sessionDetail)
 		}
 	}
 
-	res := &types.QuerySessionResponse{
-		NftRent: nftRents,
+	for _, v := range sessionDetails {
+		if len(v.Renter) == 0 {
+			v.Renter = k.getOwnerOfSession(v, store)
+		}
 	}
 
-	return res, nil
+	return &types.QuerySessionResponse{
+		SessionDetail: sessionDetails,
+	}, nil
+}
+
+func (k Keeper) getSessionDetail(queryKeyFirst, queryKeySecond []byte, req *types.QuerySessionRequest) (*types.SessionDetail, error) {
+	keys := getParsedStoreKey(queryKeyFirst)
+	keys = append(keys, getParsedStoreKey(queryKeySecond)...)
+	if keys[0] == string(KeyRentDates) {
+		return &types.SessionDetail{
+			Renter:  "",
+			ClassId: keys[1],
+			NftId:   keys[2],
+		}, nil
+	} else if keys[0] == string(KeyRentSessionId) {
+		return &types.SessionDetail{
+			Renter:  keys[1],
+			ClassId: keys[2],
+			NftId:   keys[3],
+		}, nil
+	} else {
+		return &types.SessionDetail{
+			Renter:  "",
+			ClassId: "",
+			NftId:   "",
+		}, nil
+	}
+}
+
+func (k Keeper) toNftRent(sessionDetails []*types.SessionDetail) []*types.NftRent {
+	var nftRents []*types.NftRent
+	for _, v := range sessionDetails {
+		nftRents = append(nftRents, v.NftRent)
+	}
+	return nftRents
+}
+
+func (k Keeper) getOwnerOfSession(sessionDetail *types.SessionDetail, store sdk.KVStore) string {
+	keySessionOwner := getStoreWithKey(KeyRentDatesOwner, sessionDetail.ClassId,
+		sessionDetail.NftId, sessionDetail.NftRent.SessionId)
+	allSessionStore := prefix.NewStore(store, keySessionOwner)
+	iterator := allSessionStore.Iterator(nil, nil)
+	defer iterator.Close()
+	for ; iterator.Valid(); iterator.Next() {
+		keys := getParsedStoreKey(iterator.Key())
+		if keys[1] == string(iterator.Value()) {
+			return keys[1]
+		}
+	}
+	return ""
 }

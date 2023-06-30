@@ -47,20 +47,16 @@ func (k Keeper) getNftAccesses(ctx sdk.Context, currentDate int64, classId, nftI
 	}
 
 	hasAccess := false
-	for _, nftRent := range res.NftRent {
+	for _, sessionDetail := range res.SessionDetail {
+		nftRent := sessionDetail.NftRent
 		if nftRent.StartDate <= currentDate && nftRent.EndDate >= currentDate {
 			hasAccess = true
 			break
 		}
 	}
 
-	var nftRents []*types.NftRent
-	for _, v := range res.SessionDetail {
-		nftRents = append(nftRents, v.NftRent)
-	}
-
 	return &types.MsgAccessNftResponse{
 		HasAccess: hasAccess,
-		NftRents:  res.NftRent,
+		NftRents:  k.toNftRent(res.SessionDetail),
 	}, nil
 }

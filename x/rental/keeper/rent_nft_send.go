@@ -32,14 +32,15 @@ func (k Keeper) SendSession(context context.Context, sendSessionRequest *types.M
 		return nil, err
 	}
 
-	if len(res.NftRent) != 1 {
+	if len(res.SessionDetail) != 1 {
 		return nil, sdkerrors.Wrap(types.ErrQuerySessionsNotFound, "")
 	}
 
 	currentDate := getNowUtc()
 
-	if res.NftRent[0].EndDate < currentDate {
-		k.clearOldSession(ctx, sendSessionRequest.ClassId, sendSessionRequest.NftId, res.NftRent)
+	if res.SessionDetail[0].NftRent.EndDate < currentDate {
+		nftRents := k.toNftRent(res.SessionDetail)
+		k.clearOldSession(ctx, sendSessionRequest.ClassId, sendSessionRequest.NftId, nftRents)
 		return nil, sdkerrors.Wrap(types.ErrQueryOldSessionsNotTransfer, "")
 	}
 
