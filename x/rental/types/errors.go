@@ -8,7 +8,7 @@ import (
 
 // x/rental module sentinel errors
 var (
-	ErrSample                      = sdkerrors.Register(ModuleName, 1100, "sample error")
+	ErrFieldIsRequired             = sdkerrors.Register(ModuleName, 1100, "Field is required.")
 	ErrNftOwnerCanRent             = sdkerrors.Register(ModuleName, 1101, "Only Nft owner can mint rent")
 	ErrNftRentError                = sdkerrors.Register(ModuleName, 1102, "Renting error")
 	ErrNftRentMinStartDate         = sdkerrors.Register(ModuleName, 1103, "Minimum start date")

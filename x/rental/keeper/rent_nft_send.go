@@ -12,6 +12,15 @@ import (
 func (k Keeper) SendSession(context context.Context, sendSessionRequest *types.MsgSendSessionRequest) (*types.MsgSendSessionResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
 	store := ctx.KVStore(k.storeKey)
+
+	if len(sendSessionRequest.ClassId) == 0 {
+		return nil, sdkerrors.Wrap(types.ErrFieldIsRequired, "Class Id")
+	}
+
+	if len(sendSessionRequest.NftId) == 0 {
+		return nil, sdkerrors.Wrap(types.ErrFieldIsRequired, "Class Id")
+	}
+
 	querySessions := &types.QuerySessionRequest{
 		ClassId:   sendSessionRequest.ClassId,
 		NftId:     sendSessionRequest.NftId,
@@ -29,7 +38,7 @@ func (k Keeper) SendSession(context context.Context, sendSessionRequest *types.M
 
 	currentDate := getNowUtc()
 
-	if res.NftRent[0].StartDate < currentDate {
+	if res.NftRent[0].EndDate < currentDate {
 		k.clearOldSession(ctx, sendSessionRequest.ClassId, sendSessionRequest.NftId, res.NftRent)
 		return nil, sdkerrors.Wrap(types.ErrQueryOldSessionsNotTransfer, "")
 	}

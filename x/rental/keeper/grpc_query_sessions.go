@@ -39,7 +39,13 @@ func (k Keeper) Sessions(context context.Context, req *types.QuerySessionRequest
 	for ; iterator.Valid(); iterator.Next() {
 		var nftRent types.NftRent
 		k.cdc.MustUnmarshal(iterator.Value(), &nftRent)
-		nftRents = append(nftRents, &nftRent)
+		if len(req.SessionId) > 0 {
+			if req.SessionId == nftRent.SessionId {
+				nftRents = append(nftRents, &nftRent)
+			}
+		} else {
+			nftRents = append(nftRents, &nftRent)
+		}
 	}
 
 	res := &types.QuerySessionResponse{
