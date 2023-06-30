@@ -54,6 +54,11 @@ func (k Keeper) getNftAccesses(ctx sdk.Context, currentDate int64, classId, nftI
 		}
 	}
 
+	var nftRents []*types.NftRent
+	for _, v := range res.SessionDetail {
+		nftRents = append(nftRents, v.NftRent)
+	}
+
 	return &types.MsgAccessNftResponse{
 		HasAccess: hasAccess,
 		NftRents:  res.NftRent,
