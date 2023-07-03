@@ -20,4 +20,5 @@ var (
 	ErrQuerySessionsNotFound       = sdkerrors.Register(ModuleName, 1109, "Session not found for this renter.")
 	ErrQueryOldSessionsNotTransfer = sdkerrors.Register(ModuleName, 1110, "Old session cannot be transfered.")
 	ErrSessionOwnerCanTransfer     = sdkerrors.Register(ModuleName, 1111, "Only session owner can transfer.")
+	ErrHasNoAccessCurrently        = sdkerrors.Register(ModuleName, 1112, "There has not granted for this nft currently.")
 )

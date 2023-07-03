@@ -26,7 +26,7 @@ const (
 	AttributeKeyNftRentStart    = "rent_start"
 	AttributeKeyNftRentEnd      = "rent_end"
 	AttributeKeyNftRentAccess   = "has_access"
-	AttributeKeyNftCurrentDate  = "has_access"
+	AttributeKeyNftCurrentDate  = "current_date"
 	AttributeKeyNftRenter       = "renter"
 	AttributeKeyNftNewRenter    = "new_renter"
 	AttributeKeyNftFromRenter   = "from_renter"

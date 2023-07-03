@@ -78,8 +78,8 @@ func (k Keeper) getSessionDetail(queryKeyFirst, queryKeySecond []byte, req *type
 	} else if keys[0] == string(KeyRentSessionId) {
 		return &types.SessionDetail{
 			Renter:  keys[1],
-			ClassId: keys[2],
-			NftId:   keys[3],
+			ClassId: keys[3],
+			NftId:   keys[4],
 		}, nil
 	} else {
 		return &types.SessionDetail{

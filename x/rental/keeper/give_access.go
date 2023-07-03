@@ -28,7 +28,8 @@ func (k Keeper) RentNftGiveAccess(context context.Context, rentGiveAccessRequest
 		return nil, sdkerrors.Wrap(types.ErrQuerySessionsNotFound, "")
 	}
 
-	rentOwner := getStoreWithKey(KeyRentDatesOwner, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId, rentGiveAccessRequest.Renter)
+	rentOwnerKey := getStoreWithKey(KeyRentDatesOwner, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId, rentGiveAccessRequest.Renter)
+	rentOwner := store.Get(rentOwnerKey)
 	if rentGiveAccessRequest.Renter != string(rentOwner) {
 		return nil, sdkerrors.Wrap(types.ErrNftRentAccessGive, "")
 	}

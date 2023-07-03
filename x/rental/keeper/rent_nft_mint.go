@@ -36,7 +36,7 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 
 	currentDate := getNowUtcAddMin(params.RentMinStartUnit)
 	if rentNftRequest.StartDate < currentDate {
-		return nil, sdkerrors.Wrap(types.ErrNftOwnerCanRent, fmt.Sprintf("Start Date: %d", currentDate))
+		return nil, sdkerrors.Wrap(types.ErrNftRentMinStartDate, fmt.Sprintf("Start Date: %d", currentDate))
 	}
 
 	if rentNftRequest.StartDate >= rentNftRequest.EndDate {

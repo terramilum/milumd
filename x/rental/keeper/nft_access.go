@@ -2,9 +2,11 @@ package keeper
 
 import (
 	context "context"
+	"encoding/json"
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
@@ -21,6 +23,12 @@ func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAc
 	hasAccess := "0"
 	if response.HasAccess {
 		hasAccess = "1"
+	} else {
+		nftRents, err := json.Marshal(response.NftRents)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.Wrap(types.ErrHasNoAccessCurrently, "Sessions: "+string(nftRents))
 	}
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(

@@ -167,7 +167,9 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	require.NoError(err)
 	require.Equal(0, len(res.SessionDetail))
 
-	renterReq.Renter = sendTo
+	renterReq = &types.QuerySessionRequest{
+		Renter: sendTo,
+	}
 	res, err = s.rentKeeper.Sessions(s.ctx, renterReq)
 	require.NoError(err)
 	require.Equal(1, len(res.SessionDetail))
