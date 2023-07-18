@@ -28,7 +28,7 @@ func (k Keeper) NftAccess(context context.Context, accessNftRequest *types.MsgAc
 		if err != nil {
 			return nil, err
 		}
-		return nil, sdkerrors.Wrap(types.ErrHasNoAccessCurrently, "Sessions: "+string(nftRents))
+		return response, sdkerrors.Wrap(types.ErrHasNoAccessCurrently, "Sessions: "+string(nftRents))
 	}
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
