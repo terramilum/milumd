@@ -11,13 +11,13 @@ import (
 
 func RegisterCodec(cdc *codec.LegacyAmino) {
 	// this line is used by starport scaffolding # 2
-	cdc.RegisterConcrete(&MsgDeployNftRequest{}, "/terramirum.rental.MsgDeployNftRequest", nil)
-	cdc.RegisterConcrete(&MsgMintNftRequest{}, "/terramirum.rental.MsgMintNftRequest", nil)
-	cdc.RegisterConcrete(&MsgBurnNftRequest{}, "/terramirum.rental.MsgBurnNftRequest", nil)
-	cdc.RegisterConcrete(&MsgMintRentRequest{}, "/terramirum.rental.MsgMintRentRequest", nil)
-	cdc.RegisterConcrete(&MsgBurnRentRequest{}, "/terramirum.rental.MsgBurnRentRequest", nil)
-	cdc.RegisterConcrete(&MsgAccessNftRequest{}, "/terramirum.rental.MsgAccessNftRequest", nil)
-	cdc.RegisterConcrete(&MsgSendSessionRequest{}, "/terramirum.rental.MsgSendSessionRequest", nil)
+	cdc.RegisterConcrete(&MsgDeployNftRequest{}, "rental.MsgDeployNftRequest", nil)
+	cdc.RegisterConcrete(&MsgMintNftRequest{}, "rental.MsgMintNftRequest", nil)
+	cdc.RegisterConcrete(&MsgBurnNftRequest{}, "rental.MsgBurnNftRequest", nil)
+	cdc.RegisterConcrete(&MsgMintRentRequest{}, "rental.MsgMintRentRequest", nil)
+	cdc.RegisterConcrete(&MsgBurnRentRequest{}, "rental.MsgBurnRentRequest", nil)
+	cdc.RegisterConcrete(&MsgAccessNftRequest{}, "rental.MsgAccessNftRequest", nil)
+	cdc.RegisterConcrete(&MsgSendSessionRequest{}, "rental.MsgSendSessionRequest", nil)
 }
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {

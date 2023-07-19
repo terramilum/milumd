@@ -3,6 +3,8 @@ package terramirum.rental;
 
 import "google/protobuf/timestamp.proto";
 import "cosmos/msg/v1/msg.proto";
+import "amino/amino.proto";
+
 
 // this line is used by starport scaffolding # proto/tx/import
 
@@ -25,6 +27,7 @@ service Msg {
 }
 
 message MsgSendSessionRequest {
+  option (amino.name) = "rental/MsgSendSessionRequest";
   option (cosmos.msg.v1.signer) = "FromRenter";
 
   string FromRenter = 1;
@@ -37,6 +40,7 @@ message MsgSendSessionRequest {
 message MsgSendSessionResponse {}
 
 message MsgRentGiveAccessRequest {
+  option (amino.name) = "rental/MsgRentGiveAccessRequest";
   option (cosmos.msg.v1.signer) = "Renter";
   string Renter = 1;
   string NewRenter = 2;
@@ -48,6 +52,7 @@ message MsgRentGiveAccessRequest {
 message MsgRentGiveAccessResponse {}
 
 message MsgDeployNftRequest {
+  option (amino.name) = "rental/MsgDeployNftRequest";
   option (cosmos.msg.v1.signer) = "ContractOwner";
   // contract ofner of the class
   string ContractOwner = 1;
@@ -70,6 +75,7 @@ message MsgDeployNftRequest {
 message MsgDeployNftResponse { string ClassId = 1; }
 
 message MsgMintNftRequest {
+  option (amino.name) = "rental/MsgMintNftRequest";
   option (cosmos.msg.v1.signer) = "ContractOwner";
 
   string ContractOwner = 1;
@@ -83,6 +89,7 @@ message MsgMintNftRequest {
 message MsgMintNftResponse { string NftId = 2; }
 
 message MsgBurnNftRequest {
+  option (amino.name) = "rental/MsgBurnNftRequest";
   option (cosmos.msg.v1.signer) = "ContractOwner";
 
   string ContractOwner = 1;
@@ -94,6 +101,7 @@ message MsgBurnNftRequest {
 message MsgBurnNftResponse { string NftId = 2; }
 
 message MsgMintRentRequest {
+  option (amino.name) = "rental/MsgMintRentRequest";
   option (cosmos.msg.v1.signer) = "ContractOwner";
 
   string ContractOwner = 1;
@@ -109,6 +117,7 @@ message MsgMintRentRequest {
 message MsgMintRentResponse {}
 
 message MsgBurnRentRequest {
+  option (amino.name) = "rental/MsgBurnRentRequest";
   option (cosmos.msg.v1.signer) = "ContractOwner";
 
   string ContractOwner = 1;
@@ -120,6 +129,7 @@ message MsgBurnRentRequest {
 message MsgBurnRentResponse {}
 
 message MsgAccessNftRequest {
+  option (amino.name) = "rental/MsgAccessNftRequest";
   option (cosmos.msg.v1.signer) = "Renter";
   // contract ofner of the class
   string Renter = 1;
