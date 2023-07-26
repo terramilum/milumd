@@ -25,9 +25,8 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // GenesisState defines the rental module's genesis state.
 type GenesisState struct {
-	// class defines the class of the nft type.
-	Rentals    []*MsgMintRentRequest `protobuf:"bytes,1,rep,name=Rentals,proto3" json:"Rentals,omitempty"`
-	ClassOwner []*ClassOwner         `protobuf:"bytes,2,rep,name=ClassOwner,proto3" json:"ClassOwner,omitempty"`
+	ClassOwners []*ClassOwner `protobuf:"bytes,1,rep,name=ClassOwners,proto3" json:"ClassOwners,omitempty"`
+	RentedNfts  []*RentedNft  `protobuf:"bytes,2,rep,name=RentedNfts,proto3" json:"RentedNfts,omitempty"`
 }
 
 func (m *GenesisState) Reset()         { *m = GenesisState{} }
@@ -63,23 +62,23 @@ func (m *GenesisState) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GenesisState proto.InternalMessageInfo
 
-func (m *GenesisState) GetRentals() []*MsgMintRentRequest {
+func (m *GenesisState) GetClassOwners() []*ClassOwner {
 	if m != nil {
-		return m.Rentals
+		return m.ClassOwners
 	}
 	return nil
 }
 
-func (m *GenesisState) GetClassOwner() []*ClassOwner {
+func (m *GenesisState) GetRentedNfts() []*RentedNft {
 	if m != nil {
-		return m.ClassOwner
+		return m.RentedNfts
 	}
 	return nil
 }
 
 type ClassOwner struct {
-	Address string `protobuf:"bytes,1,opt,name=Address,proto3" json:"Address,omitempty"`
-	ClassId string `protobuf:"bytes,2,opt,name=ClassId,proto3" json:"ClassId,omitempty"`
+	ClassId       string `protobuf:"bytes,1,opt,name=ClassId,proto3" json:"ClassId,omitempty"`
+	ContractOwner string `protobuf:"bytes,2,opt,name=ContractOwner,proto3" json:"ContractOwner,omitempty"`
 }
 
 func (m *ClassOwner) Reset()         { *m = ClassOwner{} }
@@ -115,13 +114,6 @@ func (m *ClassOwner) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ClassOwner proto.InternalMessageInfo
 
-func (m *ClassOwner) GetAddress() string {
-	if m != nil {
-		return m.Address
-	}
-	return ""
-}
-
 func (m *ClassOwner) GetClassId() string {
 	if m != nil {
 		return m.ClassId
@@ -129,31 +121,128 @@ func (m *ClassOwner) GetClassId() string {
 	return ""
 }
 
+func (m *ClassOwner) GetContractOwner() string {
+	if m != nil {
+		return m.ContractOwner
+	}
+	return ""
+}
+
+type RentedNft struct {
+	ClassId   string `protobuf:"bytes,1,opt,name=ClassId,proto3" json:"ClassId,omitempty"`
+	NftId     string `protobuf:"bytes,2,opt,name=NftId,proto3" json:"NftId,omitempty"`
+	SessionId string `protobuf:"bytes,3,opt,name=SessionId,proto3" json:"SessionId,omitempty"`
+	Renter    string `protobuf:"bytes,4,opt,name=Renter,proto3" json:"Renter,omitempty"`
+	StartDate int64  `protobuf:"varint,5,opt,name=StartDate,proto3" json:"StartDate,omitempty"`
+	EndDate   int64  `protobuf:"varint,6,opt,name=EndDate,proto3" json:"EndDate,omitempty"`
+}
+
+func (m *RentedNft) Reset()         { *m = RentedNft{} }
+func (m *RentedNft) String() string { return proto.CompactTextString(m) }
+func (*RentedNft) ProtoMessage()    {}
+func (*RentedNft) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1c83de681ba38598, []int{2}
+}
+func (m *RentedNft) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *RentedNft) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_RentedNft.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *RentedNft) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RentedNft.Merge(m, src)
+}
+func (m *RentedNft) XXX_Size() int {
+	return m.Size()
+}
+func (m *RentedNft) XXX_DiscardUnknown() {
+	xxx_messageInfo_RentedNft.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RentedNft proto.InternalMessageInfo
+
+func (m *RentedNft) GetClassId() string {
+	if m != nil {
+		return m.ClassId
+	}
+	return ""
+}
+
+func (m *RentedNft) GetNftId() string {
+	if m != nil {
+		return m.NftId
+	}
+	return ""
+}
+
+func (m *RentedNft) GetSessionId() string {
+	if m != nil {
+		return m.SessionId
+	}
+	return ""
+}
+
+func (m *RentedNft) GetRenter() string {
+	if m != nil {
+		return m.Renter
+	}
+	return ""
+}
+
+func (m *RentedNft) GetStartDate() int64 {
+	if m != nil {
+		return m.StartDate
+	}
+	return 0
+}
+
+func (m *RentedNft) GetEndDate() int64 {
+	if m != nil {
+		return m.EndDate
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*GenesisState)(nil), "terramirum.rental.GenesisState")
 	proto.RegisterType((*ClassOwner)(nil), "terramirum.rental.ClassOwner")
+	proto.RegisterType((*RentedNft)(nil), "terramirum.rental.RentedNft")
 }
 
 func init() { proto.RegisterFile("terramirum/rental/genesis.proto", fileDescriptor_1c83de681ba38598) }
 
 var fileDescriptor_1c83de681ba38598 = []byte{
-	// 257 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2f, 0x49, 0x2d, 0x2a,
-	0x4a, 0xcc, 0xcd, 0x2c, 0x2a, 0xcd, 0xd5, 0x2f, 0x4a, 0xcd, 0x2b, 0x49, 0xcc, 0xd1, 0x4f, 0x4f,
-	0xcd, 0x4b, 0x2d, 0xce, 0x2c, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x44, 0x28, 0xd0,
-	0x83, 0x28, 0x90, 0x12, 0x49, 0xcf, 0x4f, 0xcf, 0x07, 0xcb, 0xea, 0x83, 0x58, 0x10, 0x85, 0x52,
-	0x52, 0x98, 0x26, 0x95, 0x54, 0x40, 0xe4, 0x94, 0xfa, 0x18, 0xb9, 0x78, 0xdc, 0x21, 0xc6, 0x06,
-	0x97, 0x24, 0x96, 0xa4, 0x0a, 0xd9, 0x73, 0xb1, 0x07, 0x81, 0xd5, 0x14, 0x4b, 0x30, 0x2a, 0x30,
-	0x6b, 0x70, 0x1b, 0xa9, 0xea, 0x61, 0xd8, 0xa3, 0xe7, 0x5b, 0x9c, 0xee, 0x9b, 0x99, 0x57, 0x02,
-	0x52, 0x18, 0x94, 0x5a, 0x58, 0x9a, 0x5a, 0x5c, 0x12, 0x04, 0xd3, 0x25, 0x64, 0xcb, 0xc5, 0xe5,
-	0x9c, 0x93, 0x58, 0x5c, 0xec, 0x5f, 0x9e, 0x97, 0x5a, 0x24, 0xc1, 0x04, 0x36, 0x43, 0x16, 0x8b,
-	0x19, 0x08, 0x45, 0x41, 0x48, 0x1a, 0x94, 0x1c, 0x90, 0xb5, 0x0b, 0x49, 0x70, 0xb1, 0x3b, 0xa6,
-	0xa4, 0x14, 0xa5, 0x16, 0x83, 0x5c, 0xc3, 0xa8, 0xc1, 0x19, 0x04, 0xe3, 0x82, 0x64, 0xc0, 0xea,
-	0x3c, 0x53, 0x24, 0x98, 0x20, 0x32, 0x50, 0xae, 0x93, 0xeb, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e,
-	0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c, 0x37,
-	0x1e, 0xcb, 0x31, 0x44, 0x69, 0xa7, 0x67, 0x96, 0x64, 0x94, 0x26, 0xe9, 0x25, 0xe7, 0xe7, 0xea,
-	0x23, 0x85, 0x09, 0x98, 0x4c, 0xd1, 0xaf, 0x80, 0x07, 0x4e, 0x65, 0x41, 0x6a, 0x71, 0x12, 0x1b,
-	0x38, 0x80, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0xea, 0xf6, 0x08, 0x9f, 0x88, 0x01, 0x00,
+	// 337 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x91, 0xc1, 0x6a, 0x2a, 0x31,
+	0x14, 0x86, 0x8d, 0x5e, 0xbd, 0x78, 0xbc, 0x77, 0x71, 0x83, 0x5c, 0x82, 0xd8, 0xa9, 0x48, 0x17,
+	0x42, 0x61, 0x06, 0xda, 0x6d, 0xa1, 0x50, 0x2b, 0x45, 0x28, 0x16, 0xc6, 0x5d, 0x77, 0xd1, 0x89,
+	0xd3, 0x01, 0x4d, 0x24, 0x39, 0x52, 0xfb, 0x10, 0x85, 0xbe, 0x46, 0xdf, 0xa4, 0x4b, 0x97, 0x5d,
+	0x16, 0x7d, 0x91, 0xe2, 0x19, 0x75, 0x2c, 0x96, 0x6e, 0x42, 0xfe, 0xf3, 0xff, 0xff, 0x97, 0xc0,
+	0x81, 0x63, 0x54, 0xd6, 0xca, 0x49, 0x62, 0x67, 0x93, 0xc0, 0x2a, 0x8d, 0x72, 0x1c, 0xc4, 0x4a,
+	0x2b, 0x97, 0x38, 0x7f, 0x6a, 0x0d, 0x1a, 0xfe, 0x2f, 0x0b, 0xf8, 0x69, 0xa0, 0x56, 0x8d, 0x4d,
+	0x6c, 0xc8, 0x0d, 0xd6, 0xb7, 0x34, 0x58, 0xab, 0x1d, 0x92, 0x70, 0x9e, 0x7a, 0xcd, 0x67, 0x06,
+	0x7f, 0x6e, 0x52, 0x6c, 0x1f, 0x25, 0x2a, 0x7e, 0x09, 0x95, 0xf6, 0x58, 0x3a, 0x77, 0xf7, 0xa8,
+	0x95, 0x75, 0x82, 0x35, 0x0a, 0xad, 0xca, 0xd9, 0x91, 0x7f, 0xf0, 0x96, 0x9f, 0xa5, 0xc2, 0xfd,
+	0x06, 0xbf, 0x00, 0x08, 0x95, 0x46, 0x15, 0xf5, 0x46, 0xe8, 0x44, 0x9e, 0xfa, 0xf5, 0x6f, 0xfa,
+	0xbb, 0x50, 0xb8, 0x97, 0x6f, 0xde, 0x02, 0x64, 0x30, 0x2e, 0xe0, 0x37, 0xa9, 0x6e, 0x24, 0x58,
+	0x83, 0xb5, 0xca, 0xe1, 0x56, 0xf2, 0x13, 0xf8, 0xdb, 0x36, 0x1a, 0xad, 0x1c, 0x22, 0x45, 0x45,
+	0x9e, 0xfc, 0xaf, 0xc3, 0xe6, 0x2b, 0x83, 0xf2, 0x0e, 0xfe, 0x03, 0xad, 0x0a, 0xc5, 0xde, 0x08,
+	0xbb, 0xd1, 0x86, 0x92, 0x0a, 0x5e, 0x87, 0x72, 0x5f, 0x39, 0x97, 0x18, 0xdd, 0x8d, 0x44, 0x81,
+	0x9c, 0x6c, 0xc0, 0xff, 0x43, 0x89, 0xd0, 0x56, 0xfc, 0x22, 0x6b, 0xa3, 0xa8, 0x85, 0xd2, 0xe2,
+	0xb5, 0x44, 0x25, 0x8a, 0x0d, 0xd6, 0x2a, 0x84, 0xd9, 0x60, 0xfd, 0x87, 0x8e, 0x8e, 0xc8, 0x2b,
+	0x91, 0xb7, 0x95, 0x57, 0x9d, 0xb7, 0xa5, 0xc7, 0x16, 0x4b, 0x8f, 0x7d, 0x2c, 0x3d, 0xf6, 0xb2,
+	0xf2, 0x72, 0x8b, 0x95, 0x97, 0x7b, 0x5f, 0x79, 0xb9, 0xfb, 0xd3, 0x38, 0xc1, 0x87, 0xd9, 0xc0,
+	0x1f, 0x9a, 0x49, 0xb0, 0xb7, 0x4a, 0x3a, 0xa3, 0x60, 0xbe, 0xdb, 0xe9, 0xd3, 0x54, 0xb9, 0x41,
+	0x89, 0xf6, 0x7a, 0xfe, 0x19, 0x00, 0x00, 0xff, 0xff, 0x56, 0xd2, 0x61, 0x1b, 0x3f, 0x02, 0x00,
 	0x00,
 }
 
@@ -177,10 +266,10 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.ClassOwner) > 0 {
-		for iNdEx := len(m.ClassOwner) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.RentedNfts) > 0 {
+		for iNdEx := len(m.RentedNfts) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.ClassOwner[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.RentedNfts[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -191,10 +280,10 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0x12
 		}
 	}
-	if len(m.Rentals) > 0 {
-		for iNdEx := len(m.Rentals) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.ClassOwners) > 0 {
+		for iNdEx := len(m.ClassOwners) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.Rentals[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.ClassOwners[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -228,17 +317,78 @@ func (m *ClassOwner) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.ContractOwner) > 0 {
+		i -= len(m.ContractOwner)
+		copy(dAtA[i:], m.ContractOwner)
+		i = encodeVarintGenesis(dAtA, i, uint64(len(m.ContractOwner)))
+		i--
+		dAtA[i] = 0x12
+	}
 	if len(m.ClassId) > 0 {
 		i -= len(m.ClassId)
 		copy(dAtA[i:], m.ClassId)
 		i = encodeVarintGenesis(dAtA, i, uint64(len(m.ClassId)))
 		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *RentedNft) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *RentedNft) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *RentedNft) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.EndDate != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.EndDate))
+		i--
+		dAtA[i] = 0x30
+	}
+	if m.StartDate != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.StartDate))
+		i--
+		dAtA[i] = 0x28
+	}
+	if len(m.Renter) > 0 {
+		i -= len(m.Renter)
+		copy(dAtA[i:], m.Renter)
+		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Renter)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.SessionId) > 0 {
+		i -= len(m.SessionId)
+		copy(dAtA[i:], m.SessionId)
+		i = encodeVarintGenesis(dAtA, i, uint64(len(m.SessionId)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.NftId) > 0 {
+		i -= len(m.NftId)
+		copy(dAtA[i:], m.NftId)
+		i = encodeVarintGenesis(dAtA, i, uint64(len(m.NftId)))
+		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.Address) > 0 {
-		i -= len(m.Address)
-		copy(dAtA[i:], m.Address)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Address)))
+	if len(m.ClassId) > 0 {
+		i -= len(m.ClassId)
+		copy(dAtA[i:], m.ClassId)
+		i = encodeVarintGenesis(dAtA, i, uint64(len(m.ClassId)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -262,14 +412,14 @@ func (m *GenesisState) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if len(m.Rentals) > 0 {
-		for _, e := range m.Rentals {
+	if len(m.ClassOwners) > 0 {
+		for _, e := range m.ClassOwners {
 			l = e.Size()
 			n += 1 + l + sovGenesis(uint64(l))
 		}
 	}
-	if len(m.ClassOwner) > 0 {
-		for _, e := range m.ClassOwner {
+	if len(m.RentedNfts) > 0 {
+		for _, e := range m.RentedNfts {
 			l = e.Size()
 			n += 1 + l + sovGenesis(uint64(l))
 		}
@@ -283,13 +433,44 @@ func (m *ClassOwner) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Address)
-	if l > 0 {
-		n += 1 + l + sovGenesis(uint64(l))
-	}
 	l = len(m.ClassId)
 	if l > 0 {
 		n += 1 + l + sovGenesis(uint64(l))
+	}
+	l = len(m.ContractOwner)
+	if l > 0 {
+		n += 1 + l + sovGenesis(uint64(l))
+	}
+	return n
+}
+
+func (m *RentedNft) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.ClassId)
+	if l > 0 {
+		n += 1 + l + sovGenesis(uint64(l))
+	}
+	l = len(m.NftId)
+	if l > 0 {
+		n += 1 + l + sovGenesis(uint64(l))
+	}
+	l = len(m.SessionId)
+	if l > 0 {
+		n += 1 + l + sovGenesis(uint64(l))
+	}
+	l = len(m.Renter)
+	if l > 0 {
+		n += 1 + l + sovGenesis(uint64(l))
+	}
+	if m.StartDate != 0 {
+		n += 1 + sovGenesis(uint64(m.StartDate))
+	}
+	if m.EndDate != 0 {
+		n += 1 + sovGenesis(uint64(m.EndDate))
 	}
 	return n
 }
@@ -331,7 +512,7 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Rentals", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ClassOwners", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -358,14 +539,14 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Rentals = append(m.Rentals, &MsgMintRentRequest{})
-			if err := m.Rentals[len(m.Rentals)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.ClassOwners = append(m.ClassOwners, &ClassOwner{})
+			if err := m.ClassOwners[len(m.ClassOwners)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ClassOwner", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field RentedNfts", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -392,8 +573,8 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ClassOwner = append(m.ClassOwner, &ClassOwner{})
-			if err := m.ClassOwner[len(m.ClassOwner)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.RentedNfts = append(m.RentedNfts, &RentedNft{})
+			if err := m.RentedNfts[len(m.RentedNfts)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -449,7 +630,7 @@ func (m *ClassOwner) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ClassId", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -477,9 +658,91 @@ func (m *ClassOwner) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Address = string(dAtA[iNdEx:postIndex])
+			m.ClassId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ContractOwner", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ContractOwner = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipGenesis(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *RentedNft) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowGenesis
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: RentedNft: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: RentedNft: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ClassId", wireType)
 			}
@@ -511,6 +774,140 @@ func (m *ClassOwner) Unmarshal(dAtA []byte) error {
 			}
 			m.ClassId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NftId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NftId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SessionId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SessionId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Renter", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Renter = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StartDate", wireType)
+			}
+			m.StartDate = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.StartDate |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EndDate", wireType)
+			}
+			m.EndDate = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.EndDate |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipGenesis(dAtA[iNdEx:])

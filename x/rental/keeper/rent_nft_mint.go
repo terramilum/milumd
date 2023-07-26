@@ -30,8 +30,6 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 		return nil, sdkerrors.Wrap(types.ErrNftOwnerCanRent, "")
 	}
 
-	// todo: get nft and check minimum duration unit and get duration between dates.
-
 	params := k.GetParams(ctx)
 
 	currentDate := getNowUtcAddMin(params.RentMinStartUnit)
@@ -47,21 +45,13 @@ func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMi
 	k.clearOldSession(ctx, rentNftRequest.ClassId, rentNftRequest.NftId, nftRents)
 
 	if k.hasAvaliableSession(nftRents, rentNftRequest) {
-		sessionId, nftRent := k.saveSessionOfNft(store, rentNftRequest)
-
-		rentersKey := getStoreWithKey(KeyRentSessionId, rentNftRequest.Renter, rentNftRequest.ClassId, rentNftRequest.NftId, sessionId)
-		bz := k.cdc.MustMarshal(nftRent)
-		store.Set(rentersKey, bz)
+		err := k.saveSessionOfNft(store, rentNftRequest)
+		if err != nil {
+			return nil, err
+		}
 	} else {
-		return nil, sdkerrors.Wrap(types.ErrNftRentNotAvaliableDate, fmt.Sprintf("Rented Dates: \n %s", getRentedDates(rentNftRequest, nftRents)))
+		return nil, sdkerrors.Wrap(types.ErrNftRentNotAvaliableDate, "")
 	}
-
-	// ilgili tarihler icin mint eden adress başka kişiye yetki verebilir.
-	// Contract owner aynı tarihte birden fazla kişiye yetki verebilir.
-	// Bu kişiler birbirile yeni bir session id ile baglanacak
-	// herbir tarih yeni bir session id alacak.
-	// session id başlangıc ve bitiş toplamı olabilir
-	// session id aynı zamanda yetkili kişileri icermekte olacak
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
 		types.EventTypeRentNft,
@@ -83,10 +73,10 @@ func getRentedDates(rentNftRequest *types.MsgMintRentRequest, nftRents []*types.
 	return builder.String()
 }
 
-func (k Keeper) saveSessionOfNft(store sdk.KVStore, rentNftRequest *types.MsgMintRentRequest) (sessionId string, nftRent *types.NftRent) {
-	sessionId = fmt.Sprintf("%d", rentNftRequest.StartDate)
+func (k Keeper) saveSessionOfNft(store sdk.KVStore, rentNftRequest *types.MsgMintRentRequest) error {
+	sessionId := fmt.Sprintf("%d", rentNftRequest.StartDate)
 	keySession := getStoreWithKey(KeyRentDates, rentNftRequest.ClassId, rentNftRequest.NftId, sessionId)
-	nftRent = &types.NftRent{
+	nftRent := &types.NftRent{
 		StartDate: rentNftRequest.StartDate,
 		EndDate:   rentNftRequest.EndDate,
 		SessionId: sessionId,
@@ -98,7 +88,53 @@ func (k Keeper) saveSessionOfNft(store sdk.KVStore, rentNftRequest *types.MsgMin
 	keySession = getStoreWithKey(KeyRentDatesOwner, rentNftRequest.ClassId, rentNftRequest.NftId, sessionId, rentNftRequest.Renter)
 	store.Set(keySession, []byte(rentNftRequest.Renter))
 
-	return sessionId, nftRent
+	rentersKey := getStoreWithKey(KeyRentSessionId, rentNftRequest.Renter, rentNftRequest.ClassId, rentNftRequest.NftId, sessionId)
+	bz = k.cdc.MustMarshal(nftRent)
+	store.Set(rentersKey, bz)
+
+	return nil
+}
+
+func (k Keeper) GetAllSessionOfNft(ctx sdk.Context) []*types.RentedNft {
+	var rentedNfts []*types.RentedNft
+	store := ctx.KVStore(k.storeKey)
+	keyRents := getStoreWithKey(KeyRentDates)
+	rents := prefix.NewStore(store, keyRents)
+	iterator := rents.Iterator(nil, nil)
+	defer iterator.Close()
+	for ; iterator.Valid(); iterator.Next() {
+		iteratorKey := iterator.Key()
+		keys := getParsedStoreKey(iteratorKey)
+		if len(keys) < 4 {
+			fmt.Println(string(iteratorKey))
+			continue
+		}
+		var nftRent types.NftRent
+		k.cdc.MustUnmarshal(iterator.Value(), &nftRent)
+		rentedNft := &types.RentedNft{
+			ClassId:   keys[1],
+			NftId:     keys[2],
+			SessionId: keys[3],
+			StartDate: nftRent.StartDate,
+			EndDate:   nftRent.EndDate,
+		}
+
+		rentedNft.Renter = k.getSessionRenter(ctx, rentedNft)
+		rentedNfts = append(rentedNfts, rentedNft)
+	}
+	return rentedNfts
+}
+
+func (k Keeper) getSessionRenter(ctx sdk.Context, rentNft *types.RentedNft) string {
+	store := ctx.KVStore(k.storeKey)
+	rentOwnerKey := getStoreWithKey(KeyRentDatesOwner, rentNft.ClassId, rentNft.NftId, rentNft.SessionId)
+	rentOwner := prefix.NewStore(store, rentOwnerKey)
+	iterator := rentOwner.Iterator(nil, nil)
+	defer iterator.Close()
+	for ; iterator.Valid(); iterator.Next() {
+		return string(iterator.Value())
+	}
+	return ""
 }
 
 func (k Keeper) hasAvaliableSession(nftRents []*types.NftRent, rentNftRequest *types.MsgMintRentRequest) bool {

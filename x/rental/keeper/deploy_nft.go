@@ -9,6 +9,7 @@ import (
 	"fmt"
 
 	codec "github.com/cosmos/cosmos-sdk/codec/types"
+	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	"github.com/cosmos/cosmos-sdk/x/nft"
@@ -56,9 +57,10 @@ func (k Keeper) DeployNft(context context.Context, deployNftRequest *types.MsgDe
 		return nil, errors.New(fmt.Sprintf("Class not exist %s", class.Id))
 	}
 
-	store := ctx.KVStore(k.storeKey)
-	store.Set(getStoreWithKey(KeyClassIdContract, class.Id), []byte(deployNftRequest.ContractOwner))
-	store.Set(getStoreWithKey(KeyContractClassId, deployNftRequest.ContractOwner, class.Id), []byte("1"))
+	err = k.saveContractOwner(ctx, class.Id, deployNftRequest.ContractOwner)
+	if err != nil {
+		return nil, err
+	}
 
 	ctx.EventManager().EmitEvent(sdk.NewEvent(
 		types.EventTypeDeployNft,
@@ -78,4 +80,25 @@ func GenerateNonce() (string, error) {
 	}
 
 	return base64.URLEncoding.EncodeToString(nonceBytes), nil
+}
+
+func (k Keeper) saveContractOwner(ctx sdk.Context, classId, contractOwner string) error {
+	store := ctx.KVStore(k.storeKey)
+	store.Set(getStoreWithKey(KeyClassIdContract, classId), []byte(contractOwner))
+	store.Set(getStoreWithKey(KeyContractClassId, contractOwner, classId), []byte("1"))
+	return nil
+}
+
+func (k Keeper) GetAllClassIdsOwners(ctx sdk.Context) map[string]string {
+	classIdContractOwners := make(map[string]string)
+	store := ctx.KVStore(k.storeKey)
+	classIdContractKey := getStoreWithKey(KeyClassIdContract)
+	allClassIds := prefix.NewStore(store, classIdContractKey)
+	iterator := allClassIds.Iterator(nil, nil)
+	defer iterator.Close()
+	for ; iterator.Valid(); iterator.Next() {
+		keys := getParsedStoreKey(iterator.Key())
+		classIdContractOwners[keys[0]] = string(iterator.Value())
+	}
+	return classIdContractOwners
 }

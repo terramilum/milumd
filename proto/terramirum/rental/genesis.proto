@@ -9,13 +9,20 @@ option go_package = "github.com/terramirum/mirumd/x/rental/types";
 
 // GenesisState defines the rental module's genesis state.
 message GenesisState {
-
-  // class defines the class of the nft type.
-  repeated terramirum.rental.MsgMintRentRequest Rentals = 1;
-  repeated ClassOwner ClassOwner = 2;
+  repeated ClassOwner ClassOwners = 1;
+  repeated RentedNft RentedNfts = 2;
 }
 
 message ClassOwner {
-  string Address = 1;
-  string ClassId = 2;
+  string ClassId = 1;
+  string ContractOwner = 2;
+}
+
+message RentedNft {
+  string ClassId = 1;
+  string NftId = 2;
+  string SessionId = 3;
+  string Renter = 4;
+  int64 StartDate = 5;
+  int64 EndDate = 6;
 }

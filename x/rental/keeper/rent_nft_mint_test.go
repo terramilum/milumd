@@ -1,7 +1,6 @@
 package keeper_test
 
 import (
-	"fmt"
 	"strconv"
 	"time"
 
@@ -36,14 +35,16 @@ func (s *TestSuite) TestRentMintNft_DefineSession() {
 		EndDate:       getNowUtcAddMin(25),
 	}
 
-	res, err := s.rentKeeper.RentNftMint(s.ctx, request)
-	fmt.Println(res)
+	_, err = s.rentKeeper.RentNftMint(s.ctx, request)
+	require.NoError(err)
 }
 
 func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	require := s.Require()
 	nftOwner := "trm1z60lkcwptx4yuykdp9fqcmr56qgeqdh8h4zz3g"
 	renter := "trm1wyyz7tw8m0z4n6elkc6fx4rwtm2jsll72eh452"
+	rents := s.rentKeeper.GetAllSessionOfNft(s.ctx)
+	require.Equal(0, len(rents))
 
 	deplotNftResponse, err := s.rentKeeper.DeployNft(s.ctx, deplotNftRequest)
 	require.NoError(err)
@@ -174,6 +175,11 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	require.NoError(err)
 	require.Equal(1, len(res.SessionDetail))
 	require.Equal(res.SessionDetail[0].NftRent.SessionId, transferedSessionId)
+
+	rents = s.rentKeeper.GetAllSessionOfNft(s.ctx)
+	owners := s.rentKeeper.GetAllClassIdsOwners(s.ctx)
+	require.Equal(len(rents), 3)
+	require.Equal(len(owners), 2)
 }
 
 func getNowUtcAddMin(addMin int32) int64 {

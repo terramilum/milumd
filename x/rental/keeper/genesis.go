@@ -2,60 +2,49 @@ package keeper
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/terramirum/mirumd/x/rental/types"
 	rental "github.com/terramirum/mirumd/x/rental/types"
 )
 
 // InitGenesis initializes the nft module's genesis state from a given
 // genesis state.
 func (k Keeper) InitGenesis(ctx sdk.Context, data *rental.GenesisState) {
-	/*
-		for _, class := range data.Classes {
-			if err := k.SaveClass(ctx, *class); err != nil {
-				panic(err)
-			}
+	store := ctx.KVStore(k.storeKey)
+	for _, class := range data.ClassOwners {
+		err := k.saveContractOwner(ctx, class.ClassId, class.ContractOwner)
+		if err != nil {
+			panic(err)
 		}
-		for _, entry := range data.Entries {
-			for _, nft := range entry.Nfts {
-				owner := sdk.MustAccAddressFromBech32(entry.Owner)
+	}
 
-				if err := k.Mint(ctx, *nft, owner); err != nil {
-					panic(err)
-				}
-			}
+	for _, rent := range data.RentedNfts {
+		rentRequest := &types.MsgMintRentRequest{
+			ClassId:   rent.ClassId,
+			NftId:     rent.NftId,
+			Renter:    rent.Renter,
+			StartDate: rent.StartDate,
+			EndDate:   rent.EndDate,
 		}
-	*/
+		err := k.saveSessionOfNft(store, rentRequest)
+		if err != nil {
+			panic(err)
+		}
+	}
 }
 
 // ExportGenesis returns a GenesisState for a given context.
 func (k Keeper) ExportGenesis(ctx sdk.Context) *rental.GenesisState {
-	/*
-		classes := k.GetClasses(ctx)
-		nftMap := make(map[string][]*nft.NFT)
-		for _, class := range classes {
-			nfts := k.GetNFTsOfClass(ctx, class.Id)
-			for i, n := range nfts {
-				owner := k.GetOwner(ctx, n.ClassId, n.Id)
-				nftArr, ok := nftMap[owner.String()]
-				if !ok {
-					nftArr = make([]*nft.NFT, 0)
-				}
-				nftMap[owner.String()] = append(nftArr, &nfts[i])
-			}
-		}
+	var classOwners []*types.ClassOwner
+	classIdOwners := k.GetAllClassIdsOwners(ctx)
+	for key, val := range classIdOwners {
+		classOwners = append(classOwners, &types.ClassOwner{
+			ClassId:       key,
+			ContractOwner: val,
+		})
+	}
 
-		owners := make([]string, 0, len(nftMap))
-		for owner := range nftMap {
-			owners = append(owners, owner)
-		}
-		sort.Strings(owners)
-
-		entries := make([]*nft.Entry, 0, len(nftMap))
-		for _, owner := range owners {
-			entries = append(entries, &nft.Entry{
-				Owner: owner,
-				Nfts:  nftMap[owner],
-			})
-		}
-	*/
-	return &rental.GenesisState{}
+	return &rental.GenesisState{
+		ClassOwners: classOwners,
+		RentedNfts:  k.GetAllSessionOfNft(ctx),
+	}
 }
