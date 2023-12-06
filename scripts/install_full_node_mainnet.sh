@@ -56,5 +56,3 @@ echo "Enjoy !!!!!!!!!"
 
 sleep 5
 
-mirumd start
-

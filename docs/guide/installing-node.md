@@ -1,23 +1,21 @@
 # Installing Nodes
 
-Before starting to install node, Please check and make ready your environment for compiling go code.
-Check the setting-up-environment documentation.
+Before starting the installation of a Node, ensure that your environment is set up for compiling Go code. Refer to the "setting-up-environment" documentation for detailed instructions.
 
-## Getting source code
+## Getting the Source Code
 
-- Get codes
+- Obtain the code:
 
 ```bash  
 go get github.com/terramirum/mirumd
 ```
-if getting error like package github.com/terramirum/mirumd: no Go files in /home/code/src/github.com/terramirum/mirumd
-go to its directory and user git clone.
+If you encounter an error like "package github.com/terramirum/mirumd: no Go files in /home/code/src/github.com/terramirum/mirumd," navigate to its directory and use Git clone:
 
 ```bash
 cd $GOPATH/src/github.com/terramirum/mirumd
 ```
 
-if codes is not get by go get, then use git clone
+If the code is not obtained using go get, use Git clone:
 
 ```bash
 git clone https://github.com/terramirum/mirumd.git
@@ -29,8 +27,46 @@ git clone https://github.com/terramirum/mirumd.git
 sudo apt install make -y && sudo apt install gcc -y && make build
 ```
 
-Checking version of Terramirum chain code to be sure successfully installed.
+Check Terramirum chain application version to confirm a successful installation:
 
 ```bash
 mirumd version
+```
+## Installing Node
+
+- To begin the Node installation, navigate to the "scripts" folder to run the bash file.
+
+```bash
+cd cd $GOPATH/src/github.com/terramirum/mirumd/scripts
+```
+
+- Grant execute permission to the .sh file.
+
+```bash
+chmod 777 install_full_node_mainnet.sh
+```
+
+- Run the executable file to install the chain.
+
+Before executing the chain, modify its parameters to prevent conflicts with other chains:
+
+MONIKER: Node name visible on the block explorer if your validator approves a block.
+PASSWORD: Wallet private key stored in the system keyring with a password. Choose a strong password and save it securely.
+
+```bash
+./install_full_node_mainnet.sh
+```
+
+- Start Chain
+
+Before starting the chain, ensure you securely save the mnemonic word of your validator wallet.
+
+```bash
+mirumd start
+```
+
+To start it in the background, use nohup:
+
+```bash
+nohup mirumd start &
 ```
