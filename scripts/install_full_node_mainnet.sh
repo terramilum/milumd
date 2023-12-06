@@ -1,3 +1,4 @@
+HOMEP=${HOMEP:-~/.mirumd}
 # give any key name for full node name. This will be visible at block explorer as a validator name. 
 # should be changed. If no changes, you can change it at config.toml file with moniker name.
 MONIKER=${MONIKER:-nodeks.com}
@@ -5,13 +6,13 @@ MONIKER=${MONIKER:-nodeks.com}
 # must be correct chain id equal to gitup folder name under networks repository.
 CHAIN_ID=${CHAIN_ID:-terramirum-1}
 # configuration file names. no need to change
-FILENAME=${FILENAME:-"$HOME"/.mirumd/config/genesis.json}
-CONFIG=${CONFIG:-"$HOME"/.mirumd/config/config.toml}  
+FILENAME=${FILENAME:-"$HOMEP"/config/genesis.json}
+CONFIG=${CONFIG:-"$HOMEP"/config/config.toml}  
 APPTOML=${APPTOML:-"$HOMEP"/config/app.toml}
 CLIENTTOML=${CLIENTTOML:-"$HOMEP"/config/client.toml} 
 IS_PROD=${IS_PROD:-true}
 
-rm -rf ~/.mirumd
+rm -rf "$HOMEP"
 
 mirumd init --chain-id "$CHAIN_ID" "$MONIKER"
 
@@ -63,5 +64,10 @@ echo "After chain start and being syched, then stop the program."
 echo 'Use "nohup mirumd start &" to run process at background. '
 echo "Enjoy !!!!!!!!!"
 
+echo "Use this command to start chain. If you use different home folder then add --home flag"
+
+echo "mirumd start"
+
 sleep 5
 
+# mirumd start --home "$HOME"
