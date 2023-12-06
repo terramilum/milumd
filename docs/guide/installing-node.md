@@ -37,7 +37,7 @@ mirumd version
 - To begin the Node installation, navigate to the "scripts" folder to run the bash file.
 
 ```bash
-cd cd $GOPATH/src/github.com/terramirum/mirumd/scripts
+cd $GOPATH/src/github.com/terramirum/mirumd/scripts
 ```
 
 - Grant execute permission to the .sh file.
