@@ -51,7 +51,6 @@ chmod 777 install_full_node_mainnet.sh
 Before executing the chain, modify its parameters to prevent conflicts with other chains:
 
 MONIKER: Node name visible on the block explorer if your validator approves a block.
-PASSWORD: Wallet private key stored in the system keyring with a password. Choose a strong password and save it securely.
 
 ```bash
 ./install_full_node_mainnet.sh
@@ -59,7 +58,6 @@ PASSWORD: Wallet private key stored in the system keyring with a password. Choos
 
 - Start Chain
 
-Before starting the chain, ensure you securely save the mnemonic word of your validator wallet.
 
 ```bash
 mirumd start

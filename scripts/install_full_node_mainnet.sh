@@ -1,15 +1,15 @@
-# this is secret. Please chage it when intalling full node.
-# should be changed
-PASSWORD=${PASSWORD:-12345678} 
+# give any key name for full node name. This will be visible at block explorer as a validator name. 
+# should be changed. If no changes, you can change it at config.toml file with moniker name.
+MONIKER=${MONIKER:-nodeks.com}
 # chain id to replace genesis file with existing one.
 # must be correct chain id equal to gitup folder name under networks repository.
 CHAIN_ID=${CHAIN_ID:-terramirum-1}
-# give any key name for full node name. This will be visible at block explorer as a validator name. 
-# should be changed. If no changes, you can change it at config.toml file with moniker name.
-MONIKER=${MONIKER:-nodex}
 # configuration file names. no need to change
 FILENAME=${FILENAME:-"$HOME"/.mirumd/config/genesis.json}
 CONFIG=${CONFIG:-"$HOME"/.mirumd/config/config.toml}  
+APPTOML=${APPTOML:-"$HOMEP"/config/app.toml}
+CLIENTTOML=${CLIENTTOML:-"$HOMEP"/config/client.toml} 
+IS_PROD=${IS_PROD:-true}
 
 rm -rf ~/.mirumd
 
@@ -28,6 +28,15 @@ if [ $? -ne 0 ]; then
 fi 
 
 cp -rf $SOURCE_GENESIS $FILENAME 
+
+for file in "$CONFIG" "$APPTOML" "$CLIENTTOML"; do
+    sed -i 's/localhost/0.0.0.0/' "$file"
+    sed -i 's/127.0.0.1/0.0.0.0/' "$file"
+done
+
+if [ "$IS_PROD" = true ]; then
+    sed -i 's/log_level = "info"/log_level = "main:info,state:info,*:error"/' $CONFIG 
+fi
 
 PERSISTENT_PEERS_PATH="$HOME"/networks/"$CHAIN_ID"/persistent_peers
 

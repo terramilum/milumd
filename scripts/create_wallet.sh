@@ -1,3 +1,7 @@
+# this is secret. Please chage it when intalling full node.
+# should be changed
+PASSWORD=${PASSWORD:-12345678} 
+
 echo "Wallet create is started.  "
 
 if ! mirumd keys show validator; then
