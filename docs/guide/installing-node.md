@@ -9,6 +9,7 @@ Before starting the installation of a Node, ensure that your environment is set 
 ```bash  
 go get github.com/terramirum/mirumd
 ```
+
 If you encounter an error like "package github.com/terramirum/mirumd: no Go files in /home/code/src/github.com/terramirum/mirumd," navigate to its directory and use Git clone:
 
 ```bash
@@ -32,6 +33,7 @@ Check Terramirum chain application version to confirm a successful installation:
 ```bash
 mirumd version
 ```
+
 ## Installing Node
 
 - To begin the Node installation, navigate to the "scripts" folder to run the bash file.
@@ -43,7 +45,7 @@ cd $GOPATH/src/github.com/terramirum/mirumd/scripts
 - Grant execute permission to the .sh file.
 
 ```bash
-chmod 777 install_full_node_mainnet.sh
+sudo chmod 777 install_full_node_mainnet.sh
 ```
 
 - Run the executable file to install the chain.
@@ -53,11 +55,10 @@ Before executing the chain, modify its parameters to prevent conflicts with othe
 MONIKER: Node name visible on the block explorer if your validator approves a block.
 
 ```bash
-./install_full_node_mainnet.sh
+sudo ./install_full_node_mainnet.sh
 ```
 
 - Start Chain
-
 
 ```bash
 mirumd start
