@@ -28,6 +28,9 @@ else
    sed -i 's/"max_gas": "-1"/"time_iota_ms": "100"/' $GENESIS
 fi
 
+apt update
+apt install -y jq
+
 # to enable the api server
 sed -i '/\[api\]/,+3 s/enable = false/enable = true/' $APPTOML
 # to change the voting_period
