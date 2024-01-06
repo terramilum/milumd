@@ -38,7 +38,7 @@ jq '.app_state.gov.voting_params.voting_period = "600s"' $GENESIS > temp.json &&
 # to change the inflation
 jq '.app_state.mint.minter.inflation = "0.010000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 jq '.app_state.mint.params.inflation_rate_change = "0.010000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
-jq '.app_state.mint.params.inflation_max = "0.020000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.mint.params.inflation_max = "0.015000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 jq '.app_state.mint.params.inflation_min = "0.001000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 
 # making 1 sec block time.
@@ -61,7 +61,7 @@ echo "$PASSWORD" | mirumd genesis add-genesis-account validator "100000000000000
 
 # submit a genesis validator tx
 ## Workraround for https://github.com/cosmos/cosmos-sdk/issues/8251
-(echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | mirumd genesis gentx validator "50000000000000$STAKE" --chain-id="$CHAIN_ID" --amount="50000000000000$STAKE" --home "$HOMEP"
+(echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | mirumd genesis gentx validator "25000000000000$STAKE" --chain-id="$CHAIN_ID" --amount="25000000000000$STAKE" --home "$HOMEP"
 ## should be:
 # (echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | mirumd gentx validator "100000000000$STAKE" --chain-id="$CHAIN_ID"
 mirumd genesis collect-gentxs --home "$HOMEP"
