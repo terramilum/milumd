@@ -40,6 +40,8 @@ jq '.app_state.mint.minter.inflation = "0.010000000000000000"' $GENESIS > temp.j
 jq '.app_state.mint.params.inflation_rate_change = "0.010000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 jq '.app_state.mint.params.inflation_max = "0.015000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 jq '.app_state.mint.params.inflation_min = "0.001000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.mint.params.goal_bonded = "0.510000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.mint.params.blocks_per_year = "10519200"' $GENESIS > temp.json && mv temp.json $GENESIS
 
 # making 1 sec block time.
 sed -i 's/timeout_commit = "5s"/timeout_commit = "3s"/' $CONFIG
