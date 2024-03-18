@@ -4,28 +4,28 @@ build:
 accounts:
 - name: main
   coins:
-  - 10000000000000000trm
+  - 10000000000000000mirum
 genesis:
   app_state:
     crisis:
       constant_fee:
-        denom: trm
+        denom: mirum
     evm:
       params:
-        evm_denom: trm
+        evm_denom: mirum
     gov:
       deposit_params:
         min_deposit:
         - amount: "1000000"
-          denom: trm
+          denom: mirum
     mint:
       params:
-        mint_denom: trm
+        mint_denom: mirum
     staking:
       params:
-        bond_denom: trm
+        bond_denom: mirum
   chain_id: terramirum-testnet
 validators:
 - name: main
-  bonded: 100000000000trm
+  bonded: 100000000000mirum
   home: $HOME/.mirumd

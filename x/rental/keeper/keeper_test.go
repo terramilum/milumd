@@ -39,7 +39,7 @@ type TestSuite struct {
 }
 
 func TestTestSuite(t *testing.T) {
-	SetPrefixes("trm")
+	SetPrefixes("mirum")
 	suite.Run(t, new(TestSuite))
 }
 

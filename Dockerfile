@@ -1,5 +1,5 @@
-# docker build . -t cosmtrm/mirumd:latest
-# docker run --rm -it cosmtrm/mirumd:latest /bin/sh
+# docker build . -t cosmmirum/mirumd:latest
+# docker run --rm -it cosmmirum/mirumd:latest /bin/sh
 FROM golang:1.19-alpine3.15 AS go-builder
 ARG arch=x86_64
 
@@ -15,7 +15,7 @@ RUN apk add git
 WORKDIR /code
 COPY . /code/  
 
-# force it to use static lib (from above) not standard libgo_cosmtrm.so file
+# force it to use static lib (from above) not standard libgo_cosmmirum.so file
 RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LINK_STATICALLY=true make build
 RUN echo "Ensuring binary is statically linked ..." \
   && (file /code/build/mirumd | grep "statically linked")

@@ -6,10 +6,10 @@ import (
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
-var contractAddress = "trm1fq5xzwrduvzqeccgjraakk9sql87uttdyr78e7"
+var contractAddress = "mirum1fq5xzwrduvzqeccgjraakk9sql87uttdyr78e7"
 
 var deplotNftRequest = &types.MsgDeployNftRequest{
-	ContractOwner: "trm1fq5xzwrduvzqeccgjraakk9sql87uttdyr78e7",
+	ContractOwner: "mirum1fq5xzwrduvzqeccgjraakk9sql87uttdyr78e7",
 	Name:          "Rent House 1",
 	Symbol:        "RHT1",
 	Description:   "Rent wonderful house and get a break for a while",

@@ -9,8 +9,8 @@ import (
 
 func (s *TestSuite) TestRentMintNft_DefineSession() {
 	require := s.Require()
-	nftOwner := "trm1z60lkcwptx4yuykdp9fqcmr56qgeqdh8h4zz3g"
-	renter := "trm1wyyz7tw8m0z4n6elkc6fx4rwtm2jsll72eh452"
+	nftOwner := "mirum1z60lkcwptx4yuykdp9fqcmr56qgeqdh8h4zz3g"
+	renter := "mirum1wyyz7tw8m0z4n6elkc6fx4rwtm2jsll72eh452"
 
 	deplotNftResponse, err := s.rentKeeper.DeployNft(s.ctx, deplotNftRequest)
 	require.NoError(err)
@@ -41,8 +41,8 @@ func (s *TestSuite) TestRentMintNft_DefineSession() {
 
 func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	require := s.Require()
-	nftOwner := "trm1z60lkcwptx4yuykdp9fqcmr56qgeqdh8h4zz3g"
-	renter := "trm1wyyz7tw8m0z4n6elkc6fx4rwtm2jsll72eh452"
+	nftOwner := "mirum1z60lkcwptx4yuykdp9fqcmr56qgeqdh8h4zz3g"
+	renter := "mirum1wyyz7tw8m0z4n6elkc6fx4rwtm2jsll72eh452"
 	rents := s.rentKeeper.GetAllSessionOfNft(s.ctx)
 	require.Equal(0, len(rents))
 
@@ -101,7 +101,7 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	thirdStartDate := getNowUtcAddMin(60)
 	thirdEndDate := getNowUtcAddMin(65)
 
-	secondRenter := "trm17ulg0elrs4v32962awhaxcwh5qv7sv7vwmeusa"
+	secondRenter := "mirum17ulg0elrs4v32962awhaxcwh5qv7sv7vwmeusa"
 	request.Renter = secondRenter
 	request.StartDate = thirdStartDate
 	request.EndDate = thirdEndDate
@@ -147,7 +147,7 @@ func (s *TestSuite) TestRentMintNft_DefineQuery() {
 	require.NoError(err)
 	require.Equal(2, len(res.SessionDetail))
 
-	sendTo := "trm16upgs0enps8mf6phjrj0pt8p2t8lp032ach8uh"
+	sendTo := "mirumum16upgs0enps8mf6phjrj0pt8p2t8lp032ach8uh"
 	transferedSessionId := res.SessionDetail[0].NftRent.SessionId
 	sendRequest := &types.MsgSendSessionRequest{
 		FromRenter: renter,

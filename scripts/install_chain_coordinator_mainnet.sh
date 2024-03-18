@@ -5,8 +5,8 @@
 # HOMEP=${HOMEP:-/mnt/volume_fra1_02/terramirum}
 HOMEP=${HOMEP:-~/.mirumd}
 PASSWORD=${PASSWORD:-12345678}
-STAKE=${STAKE_TOKEN:-TRM}
-FEE=${FEE_TOKEN:-uTRM}
+STAKE=${STAKE_TOKEN:-MIRUM}
+FEE=${FEE_TOKEN:-uMIRUM}
 CHAIN_ID=${CHAIN_ID:-terramirum-1}
 MONIKER=${MONIKER:-main}
 GENESIS=${GENESIS:-"$HOMEP"/config/genesis.json}

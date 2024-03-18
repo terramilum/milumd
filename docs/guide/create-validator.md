@@ -20,7 +20,7 @@ After creating wallet like below.
 
 ```bash
 Enter keyring passphrase (attempt 1/3):
-- address: trm19q32ge2795jthnvec3s6m93j8hk9hk0aafnfvv
+- address: mirum19q32ge2795jthnvec3s6m93j8hk9hk0aafnfvv
   name: validatorwallet
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Aq/yV9/jekluF/Py+W89eYRMEshz62a3/tbnQcCQi2qA"}'
   type: local
@@ -40,7 +40,7 @@ Result:
 Enter keyring passphrase (attempt 1/3):
 Re-enter keyring passphrase:
 
-- address: trm19q32ge2795jthnvec3s6m93j8hk9hk0aafnfvv
+- address: mirum19q32ge2795jthnvec3s6m93j8hk9hk0aafnfvv
   name: validatorwallet
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Aq/yV9/jekluF/Py+W89eYRMEshz62a3/tbnQcCQi2qA"}'
   type: local
@@ -78,14 +78,14 @@ Transfer a sum of money to your wallet from various sources such as an SD exchan
 Sample of a funds transfer by using below command.
 
 ```bash
-mirumd tx bank send validatorwallet trm1wlugx30qc4zmc32xy07tpc6hslectra8wghqgf 800000000000trm --fees 2trm --chain-id terramirum-1
+mirumd tx bank send validatorwallet mirum1wlugx30qc4zmc32xy07tpc6hslectra8wghqgf 800000000000mirum --fees 2mirum --chain-id terramirum-1
 ```
 
 Retrieve the transaction hash (txhash) and verify its success or failure on the block explorer. A sample txhash looks like this: 1BA7CC62A6C4327FEE7295913013492ADBA25492ED50779DC7377364E95FFF61.
 2. **Check Balance of money**
 
 ```bash
-mirumd query bank balances trm19q32ge2795jthnvec3s6m93j8hk9hk0aafnfvv
+mirumd query bank balances mirum19q32ge2795jthnvec3s6m93j8hk9hk0aafnfvv
 ```
 
 Result:
@@ -95,7 +95,7 @@ The amount is expressed with six decimal places. To obtain the actual balance, d
 ```bash
 balances:
 - amount: "1000000000000"
-  denom: TRM
+  denom: MIRUM
 pagination:
   next_key: null
   total: "0"
@@ -108,7 +108,7 @@ After confirming the availability of the required validator coins and sufficient
 
 ```bash
 mirumd tx staking create-validator \
-  --amount=1000000000000TRM \
+  --amount=1000000000000MIRUM \
   --pubkey=$(mirumd tendermint show-validator) \
   --moniker="validator" \
   --chain-id=terramirum-1 \
@@ -117,7 +117,7 @@ mirumd tx staking create-validator \
   --commission-max-change-rate="0.01" \
   --min-self-delegation="1000000000000" \
   --gas="254246" \
-  --gas-prices="0.01TRM" \
+  --gas-prices="0.01MIRUM" \
   --from=validatorwallet  
 ```
 

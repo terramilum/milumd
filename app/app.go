@@ -137,7 +137,7 @@ import (
 var (
 	Name         = "mirumd"
 	NodeDir      = ".mirumd"
-	Bech32Prefix = "trm"
+	Bech32Prefix = "mirum"
 
 	// If EnabledSpecificProposals is "", and this is "true", then enable all x/wasm proposals.
 	// If EnabledSpecificProposals is "", and this is not "true", then disable all x/wasm proposals.

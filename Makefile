@@ -55,11 +55,11 @@ build_tags_comma_sep := $(subst $(empty),$(comma),$(build_tags))
 
 # process linker flags
 
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=trm \
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=mirum \
 		  -X github.com/cosmos/cosmos-sdk/version.AppName=mirumd\
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
-		  -X github.com/terramirum/mirumd/app.Bech32Prefix=trm \
+		  -X github.com/terramirum/mirumd/app.Bech32Prefix=mirum \
 		  -X github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)
 
 ifeq ($(WITH_CLEVELDB),yes)
