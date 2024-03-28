@@ -24,7 +24,7 @@ genesis:
     staking:
       params:
         bond_denom: mirum
-  chain_id: terramirum-testnet
+  chain_id: mirum-testnet
 validators:
 - name: main
   bonded: 100000000000mirum

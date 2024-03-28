@@ -4,7 +4,7 @@ HOMEP=${HOMEP:-~/.mirumd}
 MONIKER=${MONIKER:-nodeks.com}
 # chain id to replace genesis file with existing one.
 # must be correct chain id equal to gitup folder name under networks repository.
-CHAIN_ID=${CHAIN_ID:-terramirum-1}
+CHAIN_ID=${CHAIN_ID:-mirum-1}
 # configuration file names. no need to change
 FILENAME=${FILENAME:-"$HOMEP"/config/genesis.json}
 CONFIG=${CONFIG:-"$HOMEP"/config/config.toml}  

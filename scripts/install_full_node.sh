@@ -3,7 +3,7 @@
 PASSWORD=${PASSWORD:-12345678} 
 # chain id to replace genesis file with existing one.
 # must be correct chain id equal to gitup folder name under networks repository.
-CHAIN_ID=${CHAIN_ID:-terramirum-testnet}
+CHAIN_ID=${CHAIN_ID:-mirum-testnet}
 # give any key name for full node name. This will be visible at block explorer as a validator name. 
 # should be changed. If no changes, you can change it at config.toml file with moniker name.
 MONIKER=${MONIKER:-node002}

@@ -78,7 +78,7 @@ Transfer a sum of money to your wallet from various sources such as an SD exchan
 Sample of a funds transfer by using below command.
 
 ```bash
-mirumd tx bank send validatorwallet mirum1wlugx30qc4zmc32xy07tpc6hslectra8wghqgf 800000000000mirum --fees 2mirum --chain-id terramirum-1
+mirumd tx bank send validatorwallet mirum1wlugx30qc4zmc32xy07tpc6hslectra8wghqgf 800000000000mirum --fees 2mirum --chain-id mirum-1
 ```
 
 Retrieve the transaction hash (txhash) and verify its success or failure on the block explorer. A sample txhash looks like this: 1BA7CC62A6C4327FEE7295913013492ADBA25492ED50779DC7377364E95FFF61.
@@ -111,7 +111,7 @@ mirumd tx staking create-validator \
   --amount=1000000000000MIRUM \
   --pubkey=$(mirumd tendermint show-validator) \
   --moniker="validator" \
-  --chain-id=terramirum-1 \
+  --chain-id=mirum-1 \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
   --commission-max-change-rate="0.01" \
