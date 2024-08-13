@@ -8,11 +8,11 @@ import (
 	"encoding/base64"
 	"fmt"
 
+	"cosmossdk.io/store/prefix"
 	codec "github.com/cosmos/cosmos-sdk/codec/types"
-	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/cosmos/cosmos-sdk/x/nft"
+	"cosmossdk.io/x/nft"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 

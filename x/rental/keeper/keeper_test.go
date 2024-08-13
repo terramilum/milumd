@@ -14,16 +14,16 @@ import (
 	"github.com/terramirum/mirumd/x/rental/types"
 	renttypes "github.com/terramirum/mirumd/x/rental/types"
 
+	nft "cosmossdk.io/x/nft"
+	nftkeeper "cosmossdk.io/x/nft/keeper"
+	nftmodule "cosmossdk.io/x/nft/module"
+	nfttestutil "cosmossdk.io/x/nft/testutil"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/crypto/codec"
 	"github.com/cosmos/cosmos-sdk/testutil"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	moduletestutil "github.com/cosmos/cosmos-sdk/types/module/testutil"
-	nft "github.com/cosmos/cosmos-sdk/x/nft"
-	nftkeeper "github.com/cosmos/cosmos-sdk/x/nft/keeper"
-	nftmodule "github.com/cosmos/cosmos-sdk/x/nft/module"
-	nfttestutil "github.com/cosmos/cosmos-sdk/x/nft/testutil"
 )
 
 type TestSuite struct {
