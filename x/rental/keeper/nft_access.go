@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
+	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 

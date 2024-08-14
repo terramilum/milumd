@@ -10,7 +10,7 @@ import (
 // RentNftBurn implements types.MsgServer
 func (k Keeper) RentNftBurn(context context.Context, burnRentRequest *types.MsgBurnRentRequest) (*types.MsgBurnRentResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 
 	sessionIdKey := getStoreWithKey(KeyRentSessionId, burnRentRequest.ClassId, burnRentRequest.NftId, burnRentRequest.SessionId)
 	store.Delete(sessionIdKey)

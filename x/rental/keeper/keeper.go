@@ -1,29 +1,25 @@
 package keeper
 
 import (
-	"github.com/terramirum/mirumd/x/rental/types"
-
+	store "cosmossdk.io/core/store"
 	storetypes "cosmossdk.io/store/types"
 	nftkeeper "cosmossdk.io/x/nft/keeper"
-	"github.com/cometbft/cometbft/libs/log"
 	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 )
 
 type (
 	Keeper struct {
-		cdc        codec.BinaryCodec
-		storeKey   storetypes.StoreKey
-		memKey     storetypes.StoreKey
-		paramstore paramtypes.Subspace
-		nftKeeper  *nftkeeper.Keeper
+		storeService store.KVStoreService
+		cdc          codec.BinaryCodec
+		paramstore   paramtypes.Subspace
+		nftKeeper    *nftkeeper.Keeper
 	}
 )
 
 func NewKeeper(
 	cdc codec.BinaryCodec,
-	storeKey,
+	storeService store.KVStoreService,
 	memKey storetypes.StoreKey,
 	nftKeeper *nftkeeper.Keeper,
 ) *Keeper {
@@ -33,13 +29,9 @@ func NewKeeper(
 	// }
 
 	return &Keeper{
-		cdc:       cdc,
-		storeKey:  storeKey,
-		memKey:    memKey,
-		nftKeeper: nftKeeper,
+		storeService: storeService,
+		cdc:          cdc,
+		paramstore:   paramtypes.Subspace{},
+		nftKeeper:    nftKeeper,
 	}
-}
-
-func (k Keeper) Logger(ctx sdk.Context) log.Logger {
-	return ctx.Logger().With("module", "x/"+types.ModuleName)
 }

@@ -6,23 +6,27 @@ import (
 	"github.com/terramirum/mirumd/x/rental/keeper"
 	"github.com/terramirum/mirumd/x/rental/types"
 
+	"cosmossdk.io/log"
 	"cosmossdk.io/store"
+	storemetrics "cosmossdk.io/store/metrics"
 	storetypes "cosmossdk.io/store/types"
-	dbm "github.com/cometbft/cometbft-db"
-	"github.com/cometbft/cometbft/libs/log"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
+	dbm "github.com/cosmos/cosmos-db"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )
 
 func RentalKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
-	storeKey := sdk.NewKVStoreKey(types.StoreKey)
+	storeKey := storetypes.NewKVStoreKey(types.StoreKey)
+	storeKeyService := runtime.NewKVStoreService(storeKey)
+
 	memStoreKey := storetypes.NewMemoryStoreKey(types.MemStoreKey)
 
 	db := dbm.NewMemDB()
-	stateStore := store.NewCommitMultiStore(db)
+	stateStore := store.NewCommitMultiStore(db, log.NewTestLogger(t), storemetrics.NewNoOpMetrics())
 	stateStore.MountStoreWithDB(storeKey, storetypes.StoreTypeIAVL, db)
 	stateStore.MountStoreWithDB(memStoreKey, storetypes.StoreTypeMemory, nil)
 	require.NoError(t, stateStore.LoadLatestVersion())
@@ -30,17 +34,9 @@ func RentalKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 	registry := codectypes.NewInterfaceRegistry()
 	cdc := codec.NewProtoCodec(registry)
 
-	//nftKeeper := nftkeeper.NewKeeper(storeKey, cdc)
-	// paramsSubspace := typesparams.NewSubspace(cdc,
-	// 	types.Amino,
-	// 	storeKey,
-	// 	memStoreKey,
-	// 	"RentalParams",
-	// )
-
 	k := keeper.NewKeeper(
 		cdc,
-		storeKey,
+		storeKeyService,
 		memStoreKey,
 		nil,
 	)

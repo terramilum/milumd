@@ -4,20 +4,21 @@ import (
 	"testing"
 
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	"github.com/cosmos/cosmos-sdk/runtime"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/stretchr/testify/suite"
 
-	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
-	tmtime "github.com/cometbft/cometbft/types/time"
 	"github.com/golang/mock/gomock"
 	rentkeeper "github.com/terramirum/mirumd/x/rental/keeper"
 	"github.com/terramirum/mirumd/x/rental/types"
 	renttypes "github.com/terramirum/mirumd/x/rental/types"
 
+	storetypes "cosmossdk.io/store/types"
 	nft "cosmossdk.io/x/nft"
 	nftkeeper "cosmossdk.io/x/nft/keeper"
 	nftmodule "cosmossdk.io/x/nft/module"
 	nfttestutil "cosmossdk.io/x/nft/testutil"
+	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/crypto/codec"
 	"github.com/cosmos/cosmos-sdk/testutil"
@@ -48,20 +49,28 @@ func (s *TestSuite) SetupTest() {
 	s.addrs = simtestutil.CreateIncrementalAccounts(3)
 	s.encCfg = moduletestutil.MakeTestEncodingConfig(nftmodule.AppModuleBasic{})
 
-	key := sdk.NewKVStoreKey(renttypes.StoreKey)
-	memKeys := sdk.NewMemoryStoreKeys("test")
-
-	testCtx := testutil.DefaultContextWithDB(s.T(), key, sdk.NewTransientStoreKey("transient_test"))
-	ctx := testCtx.Ctx.WithBlockHeader(tmproto.Header{Time: tmtime.Now()})
+	keyRental := storetypes.NewKVStoreKey(renttypes.StoreKey)
+	storeServiceRental := runtime.NewKVStoreService(keyRental)
+	testCtx := testutil.DefaultContextWithDB(s.T(), keyRental, storetypes.NewTransientStoreKey("transient_test"))
+	ctx := testCtx.Ctx.WithBlockHeader(tmproto.Header{Height: 1})
 
 	// gomock initializations
 	ctrl := gomock.NewController(s.T())
 	accountKeeper := nfttestutil.NewMockAccountKeeper(ctrl)
 	bankKeeper := nfttestutil.NewMockBankKeeper(ctrl)
 	accountKeeper.EXPECT().GetModuleAddress("nft").Return(s.addrs[0]).AnyTimes()
+	keyNft := storetypes.NewKVStoreKey(nftkeeper.StoreKey)
+	storeServiceNft := runtime.NewKVStoreService(keyNft)
+	memKeys := storetypes.NewMemoryStoreKeys(renttypes.MemStoreKey)
 
-	nftKeeper := nftkeeper.NewKeeper(key, s.encCfg.Codec, accountKeeper, bankKeeper)
-	rentKeeper := rentkeeper.NewKeeper(s.encCfg.Codec, key, memKeys[renttypes.StoreKey], &nftKeeper)
+	nftKeeper := nftkeeper.NewKeeper(
+		storeServiceNft,
+		s.encCfg.Codec,
+		accountKeeper,
+		bankKeeper,
+	)
+
+	rentKeeper := rentkeeper.NewKeeper(s.encCfg.Codec, storeServiceRental, memKeys[renttypes.MemStoreKey], &nftKeeper)
 	queryHelper := baseapp.NewQueryServerTestHelper(ctx, s.encCfg.InterfaceRegistry)
 	nft.RegisterQueryServer(queryHelper, nftKeeper)
 

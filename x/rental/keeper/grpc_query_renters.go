@@ -2,22 +2,21 @@ package keeper
 
 import (
 	context "context"
+	"github.com/cosmos/cosmos-sdk/runtime"
 
 	"cosmossdk.io/store/prefix"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
 func (k Keeper) Renters(c context.Context, req *types.QueryRenterRequest) (*types.QueryRenterResponse, error) {
-	ctx := sdk.UnwrapSDKContext(c)
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(c)
 
 	renterResponse := &types.QueryRenterResponse{
 		Renter: []string{},
 	}
 
 	sessionIdKey := getStoreWithKey(KeyRentSessionId, req.ClassId, req.NftId, req.SessionId)
-	allSessionStore := prefix.NewStore(store, sessionIdKey)
+	allSessionStore := prefix.NewStore(runtime.KVStoreAdapter(store), sessionIdKey)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {

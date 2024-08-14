@@ -9,7 +9,8 @@ import (
 // InitGenesis initializes the nft module's genesis state from a given
 // genesis state.
 func (k Keeper) InitGenesis(ctx sdk.Context, data *rental.GenesisState) {
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
+
 	for _, class := range data.ClassOwners {
 		err := k.saveContractOwner(ctx, class.ClassId, class.ContractOwner)
 		if err != nil {

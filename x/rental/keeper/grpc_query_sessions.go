@@ -3,15 +3,15 @@ package keeper
 import (
 	context "context"
 
+	sdkstore "cosmossdk.io/core/store"
+	sdkerrors "cosmossdk.io/errors"
 	"cosmossdk.io/store/prefix"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/cosmos/cosmos-sdk/runtime"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
 func (k Keeper) Sessions(context context.Context, req *types.QuerySessionRequest) (*types.QuerySessionResponse, error) {
-	ctx := sdk.UnwrapSDKContext(context)
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(context)
 	sessionDetails := []*types.SessionDetail{}
 
 	var keyRenter []byte
@@ -33,7 +33,7 @@ func (k Keeper) Sessions(context context.Context, req *types.QuerySessionRequest
 		return nil, sdkerrors.Wrap(types.ErrQuerySessions, "")
 	}
 
-	allSessionStore := prefix.NewStore(store, keyRenter)
+	allSessionStore := prefix.NewStore(runtime.KVStoreAdapter(store), keyRenter)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
@@ -98,10 +98,10 @@ func (k Keeper) toNftRent(sessionDetails []*types.SessionDetail) []*types.NftRen
 	return nftRents
 }
 
-func (k Keeper) getOwnerOfSession(sessionDetail *types.SessionDetail, store sdk.KVStore) string {
+func (k Keeper) getOwnerOfSession(sessionDetail *types.SessionDetail, store sdkstore.KVStore) string {
 	keySessionOwner := getStoreWithKey(KeyRentDatesOwner, sessionDetail.ClassId,
 		sessionDetail.NftId, sessionDetail.NftRent.SessionId)
-	allSessionStore := prefix.NewStore(store, keySessionOwner)
+	allSessionStore := prefix.NewStore(runtime.KVStoreAdapter(store), keySessionOwner)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {

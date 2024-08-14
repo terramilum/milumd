@@ -3,14 +3,14 @@ package keeper
 import (
 	context "context"
 
+	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
 func (k Keeper) RentNftGiveAccess(context context.Context, rentGiveAccessRequest *types.MsgRentGiveAccessRequest) (*types.MsgRentGiveAccessResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 
 	req := &types.QuerySessionRequest{
 		ClassId:   rentGiveAccessRequest.ClassId,
@@ -29,7 +29,10 @@ func (k Keeper) RentNftGiveAccess(context context.Context, rentGiveAccessRequest
 	}
 
 	rentOwnerKey := getStoreWithKey(KeyRentDatesOwner, rentGiveAccessRequest.ClassId, rentGiveAccessRequest.NftId, rentGiveAccessRequest.SessionId, rentGiveAccessRequest.Renter)
-	rentOwner := store.Get(rentOwnerKey)
+	rentOwner, err := store.Get(rentOwnerKey)
+	if err != nil {
+		return nil, err
+	}
 	if rentGiveAccessRequest.Renter != string(rentOwner) {
 		return nil, sdkerrors.Wrap(types.ErrNftRentAccessGive, "")
 	}

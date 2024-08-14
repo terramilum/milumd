@@ -5,12 +5,11 @@ import (
 	"testing"
 	"time"
 
+	dbm "github.com/cosmos/cosmos-db"
 	"github.com/terramirum/mirumd/app"
 
 	pruningtypes "cosmossdk.io/store/pruning/types"
 	"github.com/CosmWasm/wasmd/x/wasm"
-	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
-	dbm "github.com/cometbft/cometbft-db"
 	bam "github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/crypto/hd"
@@ -61,7 +60,7 @@ func DefaultConfig() network.Config {
 		AccountRetriever:  authtypes.AccountRetriever{},
 		AppConstructor: func(val network.ValidatorI) servertypes.Application {
 			return app.New(
-				val.GetCtx().Logger, dbm.NewMemDB(), nil, true, wasmtypes.EnableAllProposals,
+				val.GetCtx().Logger, dbm.NewMemDB(), nil, true,
 				simtestutil.NewAppOptionsWithFlagHome(val.GetCtx().Config.RootDir),
 				emptyWasmOptions,
 				bam.SetPruning(pruningtypes.NewPruningOptionsFromString(val.GetAppConfig().Pruning)),
