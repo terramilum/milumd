@@ -53,7 +53,7 @@ func DefaultConfig() network.Config {
 	var emptyWasmOptions []wasm.Option
 
 	return network.Config{
-		Codec:             encoding.Marshaler,
+		Codec:             encoding.Codec,
 		TxConfig:          encoding.TxConfig,
 		LegacyAmino:       encoding.Amino,
 		InterfaceRegistry: encoding.InterfaceRegistry,
@@ -68,7 +68,7 @@ func DefaultConfig() network.Config {
 				bam.SetChainID(val.GetCtx().Viper.GetString(flags.FlagChainID)),
 			)
 		},
-		GenesisState:    app.ModuleBasics.DefaultGenesis(encoding.Marshaler),
+		GenesisState:    app.ModuleBasics.DefaultGenesis(encoding.Codec),
 		TimeoutCommit:   2 * time.Second,
 		ChainID:         fmt.Sprintf("chain-%d", tmrand.NewRand().Int()),
 		NumValidators:   1,
