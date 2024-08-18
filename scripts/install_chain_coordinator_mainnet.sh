@@ -42,9 +42,14 @@ jq '.app_state.mint.params.inflation_max = "0.015000000000000000"' $GENESIS > te
 jq '.app_state.mint.params.inflation_min = "0.001000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 jq '.app_state.mint.params.goal_bonded = "0.510000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 jq '.app_state.mint.params.blocks_per_year = "10519200"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.provider.params.max_provider_consensus_validators = "260"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.staking.params.max_validators = "300"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.slashing.params.downtime_jail_duration = "6000s"' $GENESIS > temp.json && mv temp.json $GENESIS
 
 # making 1 sec block time.
 sed -i 's/timeout_commit = "5s"/timeout_commit = "3s"/' $CONFIG
+
+sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0000001mirum"/' $APPTOML
 
 for file in "$CONFIG" "$APPTOML" "$CLIENTTOML"; do
     sed -i 's/localhost/0.0.0.0/' "$file"

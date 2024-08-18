@@ -11,6 +11,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	mirumapp "github.com/terramirum/mirumd/app"
+	apptypes "github.com/terramirum/mirumd/types"
 
 	tmcfg "github.com/cometbft/cometbft/config"
 	tmcli "github.com/cometbft/cometbft/libs/cli"
@@ -60,6 +61,15 @@ import (
 // NewRootCmd creates a new root command for simd. It is called once in the
 // main function.
 func NewRootCmd() *cobra.Command {
+	cfg := sdk.GetConfig()
+	cfg.SetBech32PrefixForAccount(mirumapp.Bech32PrefixAccAddr, mirumapp.Bech32PrefixAccPub)
+	cfg.SetBech32PrefixForValidator(mirumapp.Bech32PrefixValAddr, mirumapp.Bech32PrefixValPub)
+	cfg.SetBech32PrefixForConsensusNode(mirumapp.Bech32PrefixConsAddr, mirumapp.Bech32PrefixConsPub)
+	cfg.SetAddressVerifier(apptypes.VerifyAddressLen())
+	cfg.SetCoinType(mirumapp.CoinType)
+	cfg.SetFullFundraiserPath(mirumapp.FullFundraiserPath)
+	cfg.Seal()
+
 	// we "pre"-instantiate the application for getting the injected/configured encoding configuration
 	initAppOptions := viper.New()
 	tempDir := tempDir()

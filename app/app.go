@@ -3,7 +3,6 @@ package app
 import (
 	"fmt"
 	"io"
-	"net/http"
 	"os"
 	"path/filepath"
 
@@ -51,8 +50,6 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/cosmos/gogoproto/proto"
 	providertypes "github.com/cosmos/interchain-security/v5/x/ccv/provider/types"
-	"github.com/gorilla/mux"
-	"github.com/rakyll/statik/fs"
 	feemarketkeeper "github.com/skip-mev/feemarket/x/feemarket/keeper"
 	"github.com/spf13/cast"
 
@@ -77,8 +74,14 @@ var (
 	ProposalsEnabled = "false"
 	// If set to non-empty string it must be comma-separated list of values that are all a subset
 	// of "EnableAllProposals" (takes precedence over ProposalsEnabled)
-	// https://github.com/CosmWasm/wasmd/blob/02a54d33ff2c064f3539ae12d75d027d9c665f05/x/wasm/internal/types/proposal.go#L28-L34
 	EnableSpecificProposals = ""
+
+	// CoinType is the MIRUM coin type as defined in SLIP44 (https://github.com/satoshilabs/slips/blob/master/slip-0044.md)
+	CoinType uint32 = 876
+
+	// FullFundraiserPath is the parts of the BIP44 HD path that are fixed by
+	// what we used during the Mirum fundraiser.
+	FullFundraiserPath = "m/44'/876'/0'/0/0"
 )
 
 // These constants are derived from the above variables.
@@ -543,17 +546,6 @@ func (app *App) setupUpgradeHandlers() {
 			),
 		)
 	}
-}
-
-// RegisterSwaggerAPI registers swagger route with API Server
-func RegisterSwaggerAPI(rtr *mux.Router) {
-	statikFS, err := fs.New()
-	if err != nil {
-		panic(err)
-	}
-
-	staticServer := http.FileServer(statikFS)
-	rtr.PathPrefix("/swagger/").Handler(http.StripPrefix("/swagger/", staticServer))
 }
 
 func (app *App) OnTxSucceeded(_ sdk.Context, _, _ string, _ []byte, _ []byte) {
