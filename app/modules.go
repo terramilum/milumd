@@ -60,8 +60,12 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
+	nfttypes "cosmossdk.io/x/nft"
+	nftmodule "cosmossdk.io/x/nft/module"
 	wasm "github.com/CosmWasm/wasmd/x/wasm"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
+	rentmodule "github.com/terramirum/mirumd/x/rental"
+	renttypes "github.com/terramirum/mirumd/x/rental/types"
 )
 
 var maccPerms = map[string][]string{
@@ -79,6 +83,8 @@ var maccPerms = map[string][]string{
 	wasmtypes.ModuleName:              {authtypes.Burner},
 	feemarkettypes.ModuleName:         nil,
 	feemarkettypes.FeeCollectorName:   nil,
+	nfttypes.ModuleName:               nil,
+	renttypes.ModuleName:              nil,
 }
 
 func appModules(
@@ -120,6 +126,8 @@ func appModules(
 		app.RateLimitModule,
 		app.ProviderModule,
 		feemarket.NewAppModule(appCodec, *app.FeeMarketKeeper),
+		nftmodule.NewAppModule(appCodec, app.NFTKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
+		rentmodule.NewAppModule(appCodec, *app.RentalKeeper, app.AccountKeeper, app.BankKeeper),
 	}
 }
 
@@ -170,6 +178,8 @@ func simulationModules(
 		ibc.NewAppModule(app.IBCKeeper),
 		app.TransferModule,
 		app.ICAModule,
+		nftmodule.NewAppModule(appCodec, app.NFTKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
+		rentmodule.NewAppModule(appCodec, *app.RentalKeeper, app.AccountKeeper, app.BankKeeper),
 	}
 }
 
@@ -212,6 +222,8 @@ func orderBeginBlockers() []string {
 		providertypes.ModuleName,
 		consensusparamtypes.ModuleName,
 		wasmtypes.ModuleName,
+		nfttypes.StoreKey,
+		renttypes.StoreKey,
 	}
 }
 
@@ -251,6 +263,8 @@ func orderEndBlockers() []string {
 		providertypes.ModuleName,
 		consensusparamtypes.ModuleName,
 		wasmtypes.ModuleName,
+		nfttypes.ModuleName,
+		renttypes.ModuleName,
 	}
 }
 
@@ -298,5 +312,7 @@ func orderInitBlockers() []string {
 		// crisis needs to be last so that the genesis state is consistent
 		// when it checks invariants
 		crisistypes.ModuleName,
+		nfttypes.ModuleName,
+		renttypes.ModuleName,
 	}
 }

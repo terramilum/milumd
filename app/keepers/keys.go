@@ -30,7 +30,9 @@ import (
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
+	nftkeeper "cosmossdk.io/x/nft/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
+	renttypes "github.com/terramirum/mirumd/x/rental/types"
 )
 
 func (appKeepers *AppKeepers) GenerateKeys() {
@@ -62,6 +64,8 @@ func (appKeepers *AppKeepers) GenerateKeys() {
 		consensusparamtypes.StoreKey,
 		feemarkettypes.StoreKey,
 		wasmtypes.StoreKey,
+		renttypes.StoreKey,
+		nftkeeper.StoreKey,
 	)
 
 	// Define transient store keys

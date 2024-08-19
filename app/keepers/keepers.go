@@ -82,6 +82,10 @@ import (
 	"github.com/CosmWasm/wasmd/x/wasm"
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
+
+	nftkeeper "cosmossdk.io/x/nft/keeper"
+	rentkeeper "github.com/terramirum/mirumd/x/rental/keeper"
+	renttypes "github.com/terramirum/mirumd/x/rental/types"
 )
 
 type AppKeepers struct {
@@ -113,7 +117,8 @@ type AppKeepers struct {
 	AuthzKeeper           authzkeeper.Keeper
 	ConsensusParamsKeeper consensusparamkeeper.Keeper
 	FeeMarketKeeper       *feemarketkeeper.Keeper
-
+	RentalKeeper          *rentkeeper.Keeper
+	NFTKeeper             nftkeeper.Keeper
 	// ICS
 	ProviderKeeper icsproviderkeeper.Keeper
 
@@ -196,7 +201,6 @@ func NewAppKeeper(
 	appKeepers.ScopedTransferKeeper = appKeepers.CapabilityKeeper.ScopeToModule(ibctransfertypes.ModuleName)
 	appKeepers.ScopedICSproviderkeeper = appKeepers.CapabilityKeeper.ScopeToModule(providertypes.ModuleName)
 	appKeepers.scopedWasmKeeper = appKeepers.CapabilityKeeper.ScopeToModule(wasmtypes.ModuleName)
-
 	// Applications that wish to enforce statically created ScopedKeepers should call `Seal` after creating
 	// their scoped modules in `NewApp` with `ScopeToModule`
 	appKeepers.CapabilityKeeper.Seal()
@@ -502,6 +506,21 @@ func NewAppKeeper(
 		wasmkeeper.BuiltInCapabilities(),
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 		wasmOpts...,
+	)
+ 
+
+	appKeepers.NFTKeeper = nftkeeper.NewKeeper(
+		runtime.NewKVStoreService(appKeepers.keys[wasmtypes.StoreKey]),
+		appCodec,
+		appKeepers.AccountKeeper,
+		appKeepers.BankKeeper,
+	)
+
+	appKeepers.RentalKeeper = rentkeeper.NewKeeper(
+		appCodec,
+		runtime.NewKVStoreService(appKeepers.keys[renttypes.StoreKey]),
+		appKeepers.GetMemKey(renttypes.StoreKey),
+		&appKeepers.NFTKeeper,
 	)
 
 	// Middleware Stacks
