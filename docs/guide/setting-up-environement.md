@@ -11,7 +11,7 @@ sudo apt update && sudo apt upgrade && sudo apt install git -y
 Get the latest version of Golang and install it on the machine with the following command:
 
 ```bash
-sudo curl -OL https://golang.org/dl/go1.21.4.linux-amd64.tar.gz && sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
+sudo curl -OL https://golang.org/dl/go1.23.0.linux-amd64.tar.gz && sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.0.linux-amd64.tar.gz
 ```
 
 ## Setting up Environment
