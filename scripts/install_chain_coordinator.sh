@@ -3,6 +3,7 @@
 
 # DEFAULT_HOMEP=${HOMEP:-~/.mirumd}
 HOMEP=${HOMEP:-/mnt/volume_fra1_02/terramirum}
+# HOMEP=${HOMEP:-~/.mirumd}
 PASSWORD=${PASSWORD:-12345678}
 STAKE=${STAKE_TOKEN:-MIRUM}
 FEE=${FEE_TOKEN:-uMIRUM}
@@ -39,13 +40,21 @@ jq '.app_state.gov.voting_params.voting_period = "600s"' $GENESIS > temp.json &&
 # to change the inflation
 jq '.app_state.mint.minter.inflation = "0.100000000000000000"' $GENESIS > temp.json && mv temp.json $GENESIS
 
+jq '.app_state.provider.params.max_provider_consensus_validators = "260"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.staking.params.max_validators = "300"' $GENESIS > temp.json && mv temp.json $GENESIS
+jq '.app_state.slashing.params.downtime_jail_duration = "6000s"' $GENESIS > temp.json && mv temp.json $GENESIS
+
 # making 1 sec block time.
 sed -i 's/timeout_commit = "5s"/timeout_commit = "2s"/' $CONFIG
+
+sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0000001mirum"/' $APPTOML 
 
 for file in "$CONFIG" "$APPTOML" "$CLIENTTOML"; do
     sed -i 's/localhost/0.0.0.0/' "$file"
     sed -i 's/127.0.0.1/0.0.0.0/' "$file"
 done
+
+ 
 
 if [ "$IS_PROD" = true ]; then
     sed -i 's/log_level = "info"/log_level = "main:info,state:info,*:error"/' $CONFIG 

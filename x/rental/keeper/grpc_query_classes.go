@@ -3,18 +3,20 @@ package keeper
 import (
 	context "context"
 
+	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/terramirum/mirumd/x/rental/types"
+
+	storetypes "cosmossdk.io/store/types"
 )
 
 func (k Keeper) Classes(c context.Context, req *types.QueryClassRequest) (*types.QueryClassResponse, error) {
 	ctx := sdk.UnwrapSDKContext(c)
-	store := ctx.KVStore(k.storeKey)
-
+	store := k.storeService.OpenKVStore(ctx)
 	var nftClasses []*types.NftClass
 
 	classIdKey := getStoreWithKey(KeyContractClassId, req.ContractOwner)
-	iterator := sdk.KVStorePrefixIterator(store, classIdKey)
+	iterator := storetypes.KVStorePrefixIterator(runtime.KVStoreAdapter(store), classIdKey)
 
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {

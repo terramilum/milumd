@@ -1,9 +1,9 @@
 package types
 
 import (
+	sdkerrors "cosmossdk.io/errors"
 	"github.com/cosmos/cosmos-sdk/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 var _, _, _, _, _, _ sdk.Msg = &MsgDeployNftRequest{}, &MsgMintNftRequest{}, &MsgBurnNftRequest{}, &MsgMintNftRequest{},

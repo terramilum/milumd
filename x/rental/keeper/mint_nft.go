@@ -4,10 +4,10 @@ import (
 	context "context"
 	"fmt"
 
+	sdkerrors "cosmossdk.io/errors"
+	"cosmossdk.io/x/nft"
 	codec "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/cosmos/cosmos-sdk/x/nft"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
@@ -15,8 +15,12 @@ import (
 func (k Keeper) MintNft(context context.Context, mintRequest *types.MsgMintNftRequest) (*types.MsgMintNftResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
 
-	store := ctx.KVStore(k.storeKey)
-	isOwner := store.Get(getStoreWithKey(KeyContractClassId, mintRequest.ContractOwner, mintRequest.ClassId))
+	store := k.storeService.OpenKVStore(ctx)
+
+	isOwner, err := store.Get(getStoreWithKey(KeyContractClassId, mintRequest.ContractOwner, mintRequest.ClassId))
+	if err != nil {
+		return nil, err
+	}
 	if string(isOwner) != "1" {
 		return nil, sdkerrors.Wrap(types.ErrNftClassOwnerTheSame, "")
 	}

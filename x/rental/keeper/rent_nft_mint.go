@@ -5,17 +5,19 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	sdkstore "cosmossdk.io/core/store"
+	sdkerrors "cosmossdk.io/errors"
+	"cosmossdk.io/store/prefix"
+	nft "cosmossdk.io/x/nft"
+	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	nft "github.com/cosmos/cosmos-sdk/x/nft"
 	types "github.com/terramirum/mirumd/x/rental/types"
 )
 
 // RentNftMint implements types.MsgServer
 func (k Keeper) RentNftMint(context context.Context, rentNftRequest *types.MsgMintRentRequest) (*types.MsgMintRentResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 
 	if !k.nftKeeper.HasClass(ctx, rentNftRequest.ClassId) {
 		return nil, sdkerrors.Wrap(nft.ErrClassNotExists, rentNftRequest.ClassId)
@@ -73,7 +75,7 @@ func getRentedDates(rentNftRequest *types.MsgMintRentRequest, nftRents []*types.
 	return builder.String()
 }
 
-func (k Keeper) saveSessionOfNft(store sdk.KVStore, rentNftRequest *types.MsgMintRentRequest) error {
+func (k Keeper) saveSessionOfNft(store sdkstore.KVStore, rentNftRequest *types.MsgMintRentRequest) error {
 	sessionId := fmt.Sprintf("%d", rentNftRequest.StartDate)
 	keySession := getStoreWithKey(KeyRentDates, rentNftRequest.ClassId, rentNftRequest.NftId, sessionId)
 	nftRent := &types.NftRent{
@@ -97,9 +99,9 @@ func (k Keeper) saveSessionOfNft(store sdk.KVStore, rentNftRequest *types.MsgMin
 
 func (k Keeper) GetAllSessionOfNft(ctx sdk.Context) []*types.RentedNft {
 	var rentedNfts []*types.RentedNft
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 	keyRents := getStoreWithKey(KeyRentDates)
-	rents := prefix.NewStore(store, keyRents)
+	rents := prefix.NewStore(runtime.KVStoreAdapter(store), keyRents)
 	iterator := rents.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
@@ -126,9 +128,9 @@ func (k Keeper) GetAllSessionOfNft(ctx sdk.Context) []*types.RentedNft {
 }
 
 func (k Keeper) getSessionRenter(ctx sdk.Context, rentNft *types.RentedNft) string {
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 	rentOwnerKey := getStoreWithKey(KeyRentDatesOwner, rentNft.ClassId, rentNft.NftId, rentNft.SessionId)
-	rentOwner := prefix.NewStore(store, rentOwnerKey)
+	rentOwner := prefix.NewStore(runtime.KVStoreAdapter(store), rentOwnerKey)
 	iterator := rentOwner.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
@@ -150,9 +152,9 @@ func (k Keeper) hasAvaliableSession(nftRents []*types.NftRent, rentNftRequest *t
 }
 
 func (k Keeper) GetSessionIdsOfNft(ctx sdk.Context, classId, nftId string) (nftRents []*types.NftRent) {
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 	key := getStoreWithKey(KeyRentDates, classId, nftId)
-	allSessionStore := prefix.NewStore(store, key)
+	allSessionStore := prefix.NewStore(runtime.KVStoreAdapter(store), key)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
@@ -166,7 +168,8 @@ func (k Keeper) GetSessionIdsOfNft(ctx sdk.Context, classId, nftId string) (nftR
 // clear old sessions.
 func (k Keeper) clearOldSession(ctx sdk.Context, classId, nftId string, nftRents []*types.NftRent) {
 	currentDate := getNowUtc()
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
+
 	for _, v := range nftRents {
 		if v.EndDate < currentDate {
 			sessionId := fmt.Sprintf("%d", v.StartDate)
@@ -178,10 +181,10 @@ func (k Keeper) clearOldSession(ctx sdk.Context, classId, nftId string, nftRents
 }
 
 func (k Keeper) clearKeyRentDatesOwner(ctx sdk.Context, classId, nftId, sessionId string) {
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 
 	key := getStoreWithKey(KeyRentDatesOwner, classId, nftId, sessionId)
-	allSessionStore := prefix.NewStore(store, key)
+	allSessionStore := prefix.NewStore(runtime.KVStoreAdapter(store), key)
 	iterator := allSessionStore.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {

@@ -42,6 +42,7 @@ PERSISTENT_PEERS=$(cat $PERSISTENT_PEERS_PATH)
 # making 1 sec block time.
 sed -i 's/timeout_commit = "5s"/timeout_commit = "1s"/' $CONFIG
 sed -i "s/persistent_peers = \"\"/persistent_peers = \"$PERSISTENT_PEERS\"/" $CONFIG
+sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0000001mirum"/' $APPTOML
 
 echo "NOTICE !!!!!"
 

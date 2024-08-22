@@ -8,11 +8,12 @@ import (
 	"encoding/base64"
 	"fmt"
 
+	"cosmossdk.io/store/prefix"
 	codec "github.com/cosmos/cosmos-sdk/codec/types"
-	"github.com/cosmos/cosmos-sdk/store/prefix"
+	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/cosmos/cosmos-sdk/x/nft"
+	"cosmossdk.io/x/nft"
 	"github.com/terramirum/mirumd/x/rental/types"
 )
 
@@ -83,7 +84,7 @@ func GenerateNonce() (string, error) {
 }
 
 func (k Keeper) saveContractOwner(ctx sdk.Context, classId, contractOwner string) error {
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 	store.Set(getStoreWithKey(KeyClassIdContract, classId), []byte(contractOwner))
 	store.Set(getStoreWithKey(KeyContractClassId, contractOwner, classId), []byte("1"))
 	return nil
@@ -91,9 +92,9 @@ func (k Keeper) saveContractOwner(ctx sdk.Context, classId, contractOwner string
 
 func (k Keeper) GetAllClassIdsOwners(ctx sdk.Context) map[string]string {
 	classIdContractOwners := make(map[string]string)
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 	classIdContractKey := getStoreWithKey(KeyClassIdContract)
-	allClassIds := prefix.NewStore(store, classIdContractKey)
+	allClassIds := prefix.NewStore(runtime.KVStoreAdapter(store), classIdContractKey)
 	iterator := allClassIds.Iterator(nil, nil)
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {

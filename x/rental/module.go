@@ -99,6 +99,14 @@ type AppModule struct {
 	bankKeeper    types.BankKeeper
 }
 
+// IsAppModule implements module.AppModule.
+func (AppModule) IsAppModule() {
+}
+
+// IsOnePerModuleType implements module.AppModule.
+func (AppModule) IsOnePerModuleType() {
+}
+
 func NewAppModule(
 	cdc codec.Codec,
 	keeper keeper.Keeper,

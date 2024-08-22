@@ -3,15 +3,15 @@ package keeper
 import (
 	context "context"
 
+	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	types "github.com/terramirum/mirumd/x/rental/types"
 )
 
 // SendSession implements types.MsgServer
 func (k Keeper) SendSession(context context.Context, sendSessionRequest *types.MsgSendSessionRequest) (*types.MsgSendSessionResponse, error) {
 	ctx := sdk.UnwrapSDKContext(context)
-	store := ctx.KVStore(k.storeKey)
+	store := k.storeService.OpenKVStore(ctx)
 
 	if len(sendSessionRequest.ClassId) == 0 {
 		return nil, sdkerrors.Wrap(types.ErrFieldIsRequired, "Class Id")
@@ -46,14 +46,20 @@ func (k Keeper) SendSession(context context.Context, sendSessionRequest *types.M
 
 	// storing owner to KeyRentDates.
 	keySessionOwner := getStoreWithKey(KeyRentDatesOwner, sendSessionRequest.ClassId, sendSessionRequest.NftId, sendSessionRequest.SessionId, sendSessionRequest.FromRenter)
-	sessionOwner := store.Get(keySessionOwner)
+	sessionOwner, err := store.Get(keySessionOwner)
+	if err != nil {
+		return nil, err
+	}
 	if sendSessionRequest.FromRenter != string(sessionOwner) {
 		return nil, sdkerrors.Wrap(types.ErrSessionOwnerCanTransfer, "")
 	}
 
 	// get session info
 	rentersKey := getStoreWithKey(KeyRentSessionId, sendSessionRequest.FromRenter, sendSessionRequest.ClassId, sendSessionRequest.NftId, sendSessionRequest.SessionId)
-	rentSession := store.Get(rentersKey)
+	rentSession, err := store.Get(rentersKey)
+	if err != nil {
+		return nil, err
+	}
 
 	// clear old owners datas
 	k.clearKeyRentDatesOwner(ctx, sendSessionRequest.ClassId, sendSessionRequest.NftId, sendSessionRequest.SessionId)
