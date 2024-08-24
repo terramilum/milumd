@@ -29,7 +29,10 @@ fi
 
 apt update
 apt install -y jq
-
+# Store the original permissions
+ORIGINAL_PERMISSIONS=$(stat -c "%a" $GENESIS)
+# read and write permissiion to the owner.
+chmod 644 $GENESIS
 # to enable the api server
 sed -i '/\[api\]/,+3 s/enable = false/enable = true/' $APPTOML
 # to change the voting_period
@@ -72,3 +75,5 @@ echo "$PASSWORD" | mirumd genesis add-genesis-account validator "100000000000000
 ## should be:
 # (echo "$PASSWORD"; echo "$PASSWORD"; echo "$PASSWORD") | mirumd gentx validator "100000000000$STAKE" --chain-id="$CHAIN_ID"
 mirumd genesis collect-gentxs --home "$HOMEP"
+# Restore the original permissions
+chmod $ORIGINAL_PERMISSIONS $GENESIS
