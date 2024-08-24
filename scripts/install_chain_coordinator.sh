@@ -1,7 +1,7 @@
 #!/bin/sh
 #set -o errexit -o nounset -o pipefail
 
-# DEFAULT_HOMEP=${HOMEP:-~/.mirumd}
+DEFAULT_HOMEP=${HOMEP:-~/.mirumd}
 HOMEP=${HOMEP:-/mnt/volume_fra1_02/terramirum}
 # HOMEP=${HOMEP:-~/.mirumd}
 PASSWORD=${PASSWORD:-12345678}
@@ -17,7 +17,7 @@ IS_PROD=${IS_PROD:-true}
 
 
 rm -rf "$HOMEP"
-
+rm -rf "$DEFAULT_HOMEP"
 mirumd init --chain-id "$CHAIN_ID" "$MONIKER" --home "$HOMEP"
 # staking/governance token is hardcoded in config, change this
 sed -i "s/\"stake\"/\"$STAKE\"/" $GENESIS
@@ -51,6 +51,8 @@ jq '.app_state.slashing.params.downtime_jail_duration = "6000s"' $GENESIS > temp
 sed -i 's/timeout_commit = "5s"/timeout_commit = "2s"/' $CONFIG
 
 sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0000001mirum"/' $APPTOML 
+sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0000001mirum"/' $DEFAULT_HOMEP
+
 
 for file in "$CONFIG" "$APPTOML" "$CLIENTTOML"; do
     sed -i 's/localhost/0.0.0.0/' "$file"
