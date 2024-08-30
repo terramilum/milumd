@@ -326,12 +326,7 @@ func New(
 		panic(fmt.Errorf("failed to create AnteHandler: %s", err))
 	}
 
-	postHandlerOptions := PostHandlerOptions{
-		AccountKeeper:   app.AccountKeeper,
-		BankKeeper:      app.BankKeeper,
-		FeeGrantKeeper:  app.FeeGrantKeeper,
-		FeeMarketKeeper: app.FeeMarketKeeper,
-	}
+	postHandlerOptions := PostHandlerOptions{}
 	postHandler, err := NewPostHandler(postHandlerOptions)
 	if err != nil {
 		panic(err)
