@@ -138,7 +138,11 @@ var (
 	Name         = "mirumd"
 	NodeDir      = ".mirumd"
 	Bech32Prefix = "mirum"
-
+	// CoinType is the MIRUM coin type as defined in SLIP44 (https://github.com/satoshilabs/slips/blob/master/slip-0044.md)
+	CoinType uint32 = 876
+	// FullFundraiserPath is the parts of the BIP44 HD path that are fixed by
+	// what we used during the Mirum fundraiser.
+	FullFundraiserPath = "m/44'/876'/0'/0/0"
 	// If EnabledSpecificProposals is "", and this is "true", then enable all x/wasm proposals.
 	// If EnabledSpecificProposals is "", and this is not "true", then disable all x/wasm proposals.
 	ProposalsEnabled = "false"
