@@ -24,10 +24,10 @@ This will confirm that the mirumd daemon is successfully installed and working.
 To install the Mirum full node, use the Bash command below. Remember to replace node1 with your preferred moniker name, which identifies your node in the network.
 
 ```bash
-bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/install_full_node_mainnet.sh") node1
+bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/install_full_node_mainnet.sh") <moniker>
 ```
 
-Make sure to update node1 to a name that makes sense for your setup.
+Make sure to update '<moniker>' to a name that makes sense for your setup.
 
 # 4. Create a Wallet and Transfer validator coins
 
