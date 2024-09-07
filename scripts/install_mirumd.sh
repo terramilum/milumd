@@ -58,4 +58,5 @@ sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/releases/download/v$WAS
 sudo ldconfig
 
 # Verify that mirumd is available by checking its version
+echo 'Mirum network version:'
 mirumd version

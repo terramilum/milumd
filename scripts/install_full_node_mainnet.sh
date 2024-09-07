@@ -1,73 +1,94 @@
-HOMEP=${HOMEP:-~/.mirumd}
-# give any key name for full node name. This will be visible at block explorer as a validator name. 
-# should be changed. If no changes, you can change it at config.toml file with moniker name.
-MONIKER=${MONIKER:-nodeks.com}
-# chain id to replace genesis file with existing one.
-# must be correct chain id equal to gitup folder name under networks repository.
-CHAIN_ID=${CHAIN_ID:-mirum-1}
-# configuration file names. no need to change
-FILENAME=${FILENAME:-"$HOMEP"/config/genesis.json}
-CONFIG=${CONFIG:-"$HOMEP"/config/config.toml}  
-APPTOML=${APPTOML:-"$HOMEP"/config/app.toml}
-CLIENTTOML=${CLIENTTOML:-"$HOMEP"/config/client.toml} 
-IS_PROD=${IS_PROD:-true}
+#!/bin/bash
+set -e
 
-rm -rf "$HOMEP"
+# Moniker (node name). Visible on block explorers as the validator name.
+MONIKER=$1
 
-mirumd init --chain-id "$CHAIN_ID" "$MONIKER"
-
-rm -rf "$HOME"/networks
-
-git clone https://github.com/terramirum/networks.git "$HOME"/networks
-
-SOURCE_GENESIS="$HOME"/networks/"$CHAIN_ID"/genesis.json
-
-result=$(stat $SOURCE_GENESIS)
-if [ $? -ne 0 ]; then
-  echo "Error: genesis file not found"
+# Check if the MONIKER parameter is provided. If not, exit with an error.
+if [ -z "$MONIKER" ]; then
+  echo "Error: You must provide a moniker name for your node. Use the following syntax:"
+  echo "bash <(curl -s 'https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/install_full_node.sh') <moniker-name>"
   exit 1
-fi 
-
-cp -rf $SOURCE_GENESIS $FILENAME 
-
-for file in "$CONFIG" "$APPTOML" "$CLIENTTOML"; do
-    sed -i 's/localhost/0.0.0.0/' "$file"
-    sed -i 's/127.0.0.1/0.0.0.0/' "$file"
-done
-
-if [ "$IS_PROD" = true ]; then
-    sed -i 's/log_level = "info"/log_level = "main:info,state:info,*:error"/' $CONFIG 
 fi
 
+# Default home path for mirumd
+HOMEP=${HOMEP:-~/.mirumd}
+
+# Chain ID for the network. Must match the chain ID in the networks repo.
+CHAIN_ID=${CHAIN_ID:-mirum-1}
+
+# Configuration file paths
+FILENAME=${FILENAME:-"$HOMEP"/config/genesis.json}
+CONFIG=${CONFIG:-"$HOMEP"/config/config.toml}
+APPTOML=${APPTOML:-"$HOMEP"/config/app.toml}
+CLIENTTOML=${CLIENTTOML:-"$HOMEP"/config/client.toml}
+
+# Set this to true for production, false for development/testing.
+IS_PROD=${IS_PROD:-true}
+
+# Remove any existing installation in the home path
+rm -rf "$HOMEP"
+
+# Initialize the node with the specified moniker and chain ID
+mirumd init --chain-id "$CHAIN_ID" "$MONIKER"
+
+# Clean up old networks folder and clone the latest networks repository
+rm -rf "$HOME"/networks
+git clone https://github.com/terramirum/networks.git "$HOME"/networks
+
+# Path to the genesis file in the networks repository
+SOURCE_GENESIS="$HOME"/networks/"$CHAIN_ID"/genesis.json
+
+# Check if the genesis file exists, otherwise exit with an error
+if [ ! -f "$SOURCE_GENESIS" ]; then
+  echo "Error: Genesis file not found at $SOURCE_GENESIS"
+  exit 1
+fi
+
+# Copy the genesis file to the config folder
+cp -rf "$SOURCE_GENESIS" "$FILENAME"
+
+# Update configurations to allow external connections (0.0.0.0 instead of localhost)
+for file in "$CONFIG" "$APPTOML" "$CLIENTTOML"; do
+  sed -i 's/localhost/0.0.0.0/' "$file"
+  sed -i 's/127.0.0.1/0.0.0.0/' "$file"
+done
+
+# If this is a production environment, adjust the logging level
+if [ "$IS_PROD" = true ]; then
+  sed -i 's/log_level = "info"/log_level = "main:info,state:info,*:error"/' "$CONFIG"
+fi
+
+# Path to the persistent peers file in the networks repository
 PERSISTENT_PEERS_PATH="$HOME"/networks/"$CHAIN_ID"/persistent_peers
 
-result=$(stat $PERSISTENT_PEERS_PATH)
-if [ $? -ne 0 ]; then
-  echo "Error: genesis file not found"
+# Check if the persistent peers file exists, otherwise exit with an error
+if [ ! -f "$PERSISTENT_PEERS_PATH" ]; then
+  echo "Error: Persistent peers file not found at $PERSISTENT_PEERS_PATH"
   exit 1
-fi   
+fi
 
-PERSISTENT_PEERS=$(cat $PERSISTENT_PEERS_PATH)
+# Get the list of persistent peers and update the config
+PERSISTENT_PEERS=$(cat "$PERSISTENT_PEERS_PATH")
+sed -i 's/timeout_commit = "5s"/timeout_commit = "3s"/' "$CONFIG"
+sed -i "s/persistent_peers = \"\"/persistent_peers = \"$PERSISTENT_PEERS\"/" "$CONFIG"
 
-# making 1 sec block time.
-sed -i 's/timeout_commit = "5s"/timeout_commit = "3s"/' $CONFIG
-sed -i "s/persistent_peers = \"\"/persistent_peers = \"$PERSISTENT_PEERS\"/" $CONFIG
-
+# Display helpful messages to the user
 echo "NOTICE !!!!!"
-
-echo "Chain is starting. Node will be synchronized with name " $MONIKER
-echo "Follow belowing step."
-echo "1. Execute create_wallet.sh to create wallet. Please backup your mnemonic words"
-echo "2. Execute create_validator.sh to become validator node."
-
-echo "After chain start and being syched, then stop the program."
-echo 'Use "nohup mirumd start &" to run process at background. '
-echo "Enjoy !!!!!!!!!"
-
-echo "Use this command to start chain. If you use different home folder then add --home flag"
-
+echo "Chain is starting. Node will be synchronized with name $MONIKER."
+echo "Follow these steps:"
+echo "1. Execute create_wallet.sh to create a wallet. Make sure to back up your mnemonic words."
+echo "2. Execute create_validator.sh to become a validator node."
+echo ""
+echo "After the chain is started and synchronized, stop the program."
+echo 'Use "nohup mirumd start &" to run the process in the background.'
+echo "Enjoy !!!!!!!!"
+echo ""
+echo "Use the following command to start the chain. If you use a different home folder, add the --home flag:"
 echo "mirumd start"
 
+# Pause for a few seconds before exiting
 sleep 5
 
+# Start the mirumd process with the specified home path (optional)
 # mirumd start --home "$HOME"
