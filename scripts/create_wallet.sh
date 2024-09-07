@@ -1,17 +1,36 @@
-# this is secret. Please chage it when intalling full node.
-# should be changed
-PASSWORD=${PASSWORD:-12345678} 
+#!/bin/bash
 
-echo "Wallet create is started.  "
+# This is secret. Please change it when installing a full node.
 
-if ! mirumd keys show validator; then
-   (echo "$PASSWORD"; echo "$PASSWORD") | mirumd keys add validator
+# Check if password is provided via environment variable or as a script argument
+if [ -z "$1" ] && [ -z "$PASSWORD" ]; then
+    echo "Error: No password provided. Please provide a password as an argument or set the PASSWORD environment variable."
+    exit 1
 fi
 
-echo "!!!!!!!! store your mnemonic words to backup or import it any keplr wallet. !!!!!!!!" 
-echo "transfer some coin from anywhere like stock exchange r keplr wallet" 
-echo "Check your balance with below command. Make sure node fully sychronize with block number."
-echo "Use below command to check your balance"
-echo "mirumd query bank balances <wallet address>"
-echo "Wallet balance could be bigger then you expect. there is 6 decimal precision. Devide it to 1000000 to get exact balance."
-echo "to be a validator, execute create_validator.sh" 
+# Assign password from argument if provided
+PASSWORD=${1:-$PASSWORD}
+
+# Check if the password is the placeholder "<password>"
+if [ "$PASSWORD" == "<password>" ]; then
+    echo 'Error: Password cannot be "<password>". Please choose a secure and unique password.'
+    exit 1
+fi
+
+echo "Wallet creation is starting..."
+
+# Check if the validator wallet already exists
+if ! mirumd keys show validator > /dev/null 2>&1; then
+    # Create a new validator wallet
+    if (echo "$PASSWORD"; echo "$PASSWORD") | mirumd keys add validator; then
+        echo "Validator wallet successfully created."
+    else
+        echo "Error: Failed to create validator wallet."
+        exit 1
+    fi
+else
+    echo "Validator wallet already exists."
+fi
+
+# Instructions for the user
+echo "!!!!!!!! Store your mnemonic words to backup or import it into any Keplr wallet. !!!!!!!!"
