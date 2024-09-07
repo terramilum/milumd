@@ -24,10 +24,10 @@ This will confirm that the mirumd daemon is successfully installed and working.
 To install the Mirum full node, use the Bash command below. Remember to replace node1 with your preferred moniker name, which identifies your node in the network.
 
 ```bash
-bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/install_full_node_mainnet.sh") <moniker>
+bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/install_full_node_mainnet.sh") moniker
 ```
 
-Make sure to update '<moniker>' to a name that makes sense for your setup.
+Make sure to update 'moniker' to a name that makes sense for your setup.
 
 # 4. Create a Wallet and Transfer validator coins
 
@@ -37,10 +37,10 @@ To create a new validator wallet, use the following Bash script. This script che
 
 
 ```bash
-bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/create_wallet.sh") <password>
+bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/create_wallet.sh") password
 ```
 
-Not: Replace '<password>' with secure saved password.
+Not: Replace 'password' with secure saved password.
 
 ## Step 2: Transfer Coins to the Validator Wallet
 Once you have created the validator wallet, you'll need to transfer some coins to it from an exchange or another wallet. You can use the following command to check your wallet address:
@@ -58,11 +58,11 @@ mirumd query bank balances <wallet_address>
 ## Next Steps: Becoming a Validator
 
 ```bash
-bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/create_validator.sh") <moniker>
+bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/create_validator.sh") moniker
 ```
 After validator is created, Please check it block explorer execute this transaction
 
-Not: Replace '<moniker>' with secure saved password.
+Not: Replace 'moniker' with secure saved password.
 
 ### Key Points:
 - This Markdown document outlines the process of creating the wallet, transferring coins, checking the balance, and securing the mnemonic phrase.

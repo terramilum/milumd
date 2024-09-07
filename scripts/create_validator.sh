@@ -8,9 +8,9 @@ fi
 
 MONIKER=$1
 
-# Check if the moniker is set to the placeholder "<moniker>"
-if [ "$MONIKER" == "<moniker>" ]; then
-    echo 'Error: Moniker name cannot be "<moniker>". Please choose a unique moniker.'
+# Check if the moniker is set to the placeholder "moniker"
+if [ "$MONIKER" == "moniker" ]; then
+    echo 'Error: Moniker name cannot be "moniker". Please choose a unique moniker.'
     exit 1
 fi
 

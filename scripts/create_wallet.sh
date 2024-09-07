@@ -11,9 +11,9 @@ fi
 # Assign password from argument if provided
 PASSWORD=${1:-$PASSWORD}
 
-# Check if the password is the placeholder "<password>"
-if [ "$PASSWORD" == "<password>" ]; then
-    echo 'Error: Password cannot be "<password>". Please choose a secure and unique password.'
+# Check if the password is the placeholder "password"
+if [ "$PASSWORD" == "password" ]; then
+    echo 'Error: Password cannot be "password". Please choose a secure and unique password.'
     exit 1
 fi
 
