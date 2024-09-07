@@ -31,6 +31,8 @@ if ! grep -q "$PATH_BIN" "$HOME/.bash_profile"; then
   source "$HOME/.bash_profile"
 fi
 
+source "$HOME/.bash_profile"
+
 echo "Binary path: $PATH_BIN"
 
 # Create the binary directory if it doesn't exist
