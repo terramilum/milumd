@@ -29,6 +29,21 @@ bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts
 ```
 
 Make sure to update 'moniker' to a name that makes sense for your setup.
+### Starting `mirumd` Application with `nohup` or as a Service
+
+You can start the `mirumd` application using `nohup` or set it up to run as a service.
+
+#### Starting with `nohup`
+
+To start the `mirumd` application in the background using `nohup`, run the following command:
+
+```bash
+nohup mirumd start &
+```
+#### Running mirumd as a Service
+
+To create a service for 'mirumd', follow the detailed instructions provided in the documentation: [Create as a Service](https://github.com/terramirum/mirumd/blob/main/docs/guide/create-as-a-service.md)
+
 
 ## 4. Create a Wallet and Transfer validator coins
 
