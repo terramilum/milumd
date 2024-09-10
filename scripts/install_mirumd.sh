@@ -16,11 +16,11 @@ fi
 echo "Installing mirumd version $APP_VERSION with wasmvm version $WASMVM_VERSION"
 
 # Update and upgrade the system
-sudo apt update -y
-sudo apt upgrade -y
+apt update -y
+apt upgrade -y
 
 # Install necessary packages
-sudo apt install -y curl git jq lz4 build-essential unzip
+apt install -y curl git jq lz4 build-essential unzip
 
 # Define the path where mirumd will be installed
 PATH_BIN=$HOME/code/bin
@@ -52,10 +52,7 @@ rm -f mirumd-$APP_VERSION-linux-amd64.tar.gz
 chmod +x mirumd
 
 # Download libwasmvm and place it in /usr/lib
-sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/releases/download/v$WASMVM_VERSION/libwasmvm.x86_64.so
-
-# Ensure the library is linked correctly
-sudo ldconfig
+wget -P /usr/lib https://github.com/CosmWasm/wasmvm/releases/download/v$WASMVM_VERSION/libwasmvm.x86_64.so
 
 # Verify that mirumd is available by checking its version
 echo 'Mirum network version:'

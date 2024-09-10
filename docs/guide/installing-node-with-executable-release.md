@@ -25,6 +25,7 @@ This will confirm that the mirumd daemon is successfully installed and working.
 To install the Mirum Network full node, use the Bash command below. Remember to replace node1 with your preferred moniker name, which identifies your node in the network.
 
 ```bash
+sudo apt install -y curl git jq lz4 build-essential unzip \
 bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/install_full_node_mainnet.sh") moniker
 ```
 
