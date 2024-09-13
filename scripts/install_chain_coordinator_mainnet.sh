@@ -60,7 +60,7 @@ for file in "$CONFIG" "$APPTOML" "$CLIENTTOML"; do
 done
 
 if [ "$IS_PROD" = true ]; then
-    sed -i 's/log_level = "info"/log_level = "main:info,state:info,*:error"/' $CONFIG 
+    sed -i 's/log_level = "info"/log_level = "*:error"/' $CONFIG 
 fi
 
 if ! mirumd keys show validator --home "$HOMEP"; then
