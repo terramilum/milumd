@@ -62,7 +62,7 @@ done
 
 # If this is a production environment, adjust the logging level
 if [ "$IS_PROD" = true ]; then
-  sed -i 's/log_level = "info"/log_level = "main:info,state:info,*:error"/' "$CONFIG"
+  sed -i 's/log_level = "info"/log_level = "*:error"/' "$CONFIG"
 fi
 
 # Path to the persistent peers file in the networks repository
