@@ -2,19 +2,14 @@
 
 # This is secret. Please change it when installing a full node.
 
-# Check if password is provided via environment variable or as a script argument
+# Generate a strong random 32-byte password if none is provided
 if [ -z "$1" ] && [ -z "$PASSWORD" ]; then
-    echo "Error: No password provided. Please provide a password as an argument or set the PASSWORD environment variable."
-    exit 1
-fi
-
-# Assign password from argument if provided
-PASSWORD=${1:-$PASSWORD}
-
-# Check if the password is the placeholder "password"
-if [ "$PASSWORD" == "password" ]; then
-    echo 'Error: Password cannot be "password". Please choose a secure and unique password.'
-    exit 1
+    echo "No password provided. Generating a secure random password..."
+    PASSWORD=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 32)
+    echo "Generated password: $PASSWORD"
+else
+    # Assign password from argument or environment variable if provided
+    PASSWORD=${1:-$PASSWORD}
 fi
 
 echo "Wallet creation is starting..."
@@ -33,4 +28,4 @@ else
 fi
 
 # Instructions for the user
-echo "!!!!!!!! Store your mnemonic words to backup or import it into any Keplr wallet. !!!!!!!!"
+echo "!!!!!!!! Store your mnemonic words and wallet password. !!!!!!!!"
