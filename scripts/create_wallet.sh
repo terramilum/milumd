@@ -3,6 +3,20 @@ set -e
 
 NAME=$1
 
+#!/bin/bash
+
+# Path to the TOML file
+CONFIG_FILE="$HOME/.mirumd/config/config.toml"
+# Check if config file exists
+if [ -f "$CONFIG_FILE" ]; then
+    # Extract the moniker value
+    moniker=$(grep '^moniker' "$CONFIG_FILE" | cut -d'=' -f2 | sed 's/[ "]//g')
+    if [ -n "$moniker" ]; then
+        echo "Moniker found: $moniker"
+        NAME="$moniker"
+    fi
+fi
+
 if [ -z "$NAME" ]; then
   echo "Error: You must provide a wallet name for your wallet."
   exit 1
