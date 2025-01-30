@@ -18,7 +18,11 @@ sudo apt install -y nginx certbot python3-certbot-nginx
 
 # Create Nginx configuration for the domain
 echo "Creating Nginx configuration for $DOMAIN with port $PORT..."
-sudo bash -c "cat > /etc/nginx/sites-available/$DOMAIN <<EOF
+
+if [ -e "/etc/nginx/sites-available/$DOMAIN" ]; then
+    echo "Nginx configuration for $DOMAIN already exists. Skipping creation."
+else
+    sudo bash -c "cat > /etc/nginx/sites-available/$DOMAIN <<EOF
 server {
     listen 80;
     server_name $DOMAIN;
@@ -32,9 +36,14 @@ server {
     }
 }
 EOF"
+fi
+
 
 # Enable the site by creating a symlink to sites-enabled
-sudo ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
+if [ ! -e /etc/nginx/sites-enabled/$DOMAIN ]; then
+    sudo ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
+fi
+
 
 # Test Nginx configuration
 echo "Testing Nginx configuration..."
