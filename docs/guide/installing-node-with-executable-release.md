@@ -77,7 +77,7 @@ mirumd query bank balances <wallet_address>
 ### Next Steps: Becoming a Validator
 
 ```bash
-bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/create_validator.sh") moniker
+bash <(curl -s "https://raw.githubusercontent.com/terramirum/mirumd/main/scripts/create_validator.sh") <password>
 ```
 
 After validator is created, Please check it block explorer execute this transaction
